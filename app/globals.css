@@ -34,15 +34,17 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 68px;
   background-color: var(--clay-yellow);
   color: var(--clay-navy);
+  overflow-x: clip;
 }
 
 body {
   background-color: var(--clay-yellow);
   color: var(--clay-navy);
   font-family: var(--font-body), "Poppins", sans-serif;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* Butter yellow background with soft central radial glow matching reference */

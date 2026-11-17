@@ -144,7 +144,7 @@ export function Hero({ lang = "en", onOpenVideo }: HeroProps) {
     <section
       ref={containerRef}
       id="hero"
-      className="relative w-full min-h-screen md:h-[900px] md:max-h-screen pt-20 sm:pt-24 pb-0 px-4 sm:px-8 flex flex-col justify-center items-center butter-backdrop overflow-hidden select-none"
+      className="relative w-full min-h-[100svh] pt-14 sm:pt-20 pb-8 sm:pb-14 px-3 sm:px-8 flex flex-col justify-center items-center butter-backdrop overflow-hidden select-none"
     >
       {/* Layered Fish & Clay Props Field (Z-5, Z-25, Z-30) - Fish NEVER hide or fade on scroll */}
       <FishField
@@ -358,23 +358,30 @@ export function Hero({ lang = "en", onOpenVideo }: HeroProps) {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto relative z-40"
+          className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto max-w-xs sm:max-w-none mx-auto relative z-40"
         >
           {/* Order on WhatsApp Button */}
           <a
             href={getWhatsAppUrl("Hi Midhula Farm Hut, I'd like to order farm-bred guppies!")}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-3 rounded-full font-bold text-base text-white clay-btn-orange"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 h-[52px] rounded-full font-bold text-base text-white clay-btn-orange shadow-[0_6px_20px_rgba(255,106,19,0.35)] active:scale-[0.97] transition-transform"
           >
-            <MessageCircle className="w-5 h-5 fill-white text-[#FF6A1A]" />
+            <div className="relative w-6 h-6 shrink-0">
+              <Image
+                src="/clay/icons/whatsapp.webp"
+                alt="WhatsApp"
+                fill
+                className="object-contain"
+              />
+            </div>
             <span>{lang === "en" ? "Order on WhatsApp" : "വാട്സ്ആപ്പിൽ ഓർഡർ ചെയ്യൂ"}</span>
           </a>
 
           {/* Watch Farm Tour Button */}
           <button
             onClick={onOpenVideo}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3 rounded-full font-bold text-base text-[#0E2038] clay-btn-cream cursor-pointer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 h-[52px] rounded-full font-bold text-base text-[#0E2038] clay-btn-cream cursor-pointer active:scale-[0.97] transition-transform"
           >
             <Play className="w-4 h-4 fill-[#0E2038] text-[#0E2038]" />
             <span>{lang === "en" ? "Watch farm tour" : "ഫാം കാഴ്ചകൾ"}</span>

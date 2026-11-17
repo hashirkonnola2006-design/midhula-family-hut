@@ -53,9 +53,9 @@ export function StatsSection({ lang }: StatsSectionProps) {
   const isInView = useInView(containerRef, { once: true, margin: "-40px" });
 
   return (
-    <section className="relative py-14 sm:py-20 px-4 sm:px-8 bg-[#FFE9A8] overflow-hidden">
+    <section className="relative py-8 sm:py-16 px-3 sm:px-8 bg-[#FFE9A8] overflow-hidden">
       <div ref={containerRef} className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-6">
           {STATS.map((stat, idx) => (
             <StatClayTile
               key={idx}
@@ -96,7 +96,6 @@ function StatClayTile({
     const update = (now: number) => {
       const elapsed = now - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      // Ease out cubic
       const easeProgress = 1 - Math.pow(1 - progress, 3);
       const current = start + (stat.value - start) * easeProgress;
 
@@ -114,30 +113,30 @@ function StatClayTile({
 
   return (
     <div
-      className="clay-tile p-5 sm:p-7 flex flex-col items-center text-center justify-between min-h-[190px] sm:min-h-[220px]"
+      className="clay-tile p-3 sm:p-6 flex flex-col items-center text-center justify-between min-h-[140px] sm:min-h-[200px] rounded-[20px] sm:rounded-[32px]"
       style={{
         animationDelay: `${index * 0.08}s`,
       }}
     >
       {/* 3D Clay Icon Container */}
-      <div className="relative w-14 h-14 sm:w-16 sm:h-16 mb-3 shrink-0">
+      <div className="relative w-10 h-10 sm:w-14 sm:h-14 mb-1.5 sm:mb-2 shrink-0">
         <Image
           src={stat.iconSrc}
           alt={stat.label}
           fill
-          className="object-contain drop-shadow-md"
+          className="object-contain drop-shadow-sm"
         />
       </div>
 
       {/* Numeric Count Up */}
-      <div className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#1F4FFF] tracking-tight my-1">
+      <div className="font-display font-extrabold text-2xl sm:text-4xl text-[#1F4FFF] tracking-tight my-0.5 sm:my-1">
         {stat.prefix}
         {displayValue}
         <span className="text-[#FF6A13] ml-0.5">{stat.suffix}</span>
       </div>
 
       {/* Label */}
-      <p className="text-xs sm:text-sm font-bold text-[#0E2038]/85 leading-snug">
+      <p className="text-[11px] sm:text-xs font-bold text-[#0E2038]/85 leading-tight">
         {lang === "en" ? stat.label : stat.labelMl}
       </p>
     </div>

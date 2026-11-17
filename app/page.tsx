@@ -12,10 +12,12 @@ import { CtaSection } from "@/components/sections/CtaSection";
 import { Footer } from "@/components/sections/Footer";
 import { VideoModal } from "@/components/VideoModal";
 import { ClayWaveDivider } from "@/components/ClayWaveDivider";
+import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 
 export default function HomePage() {
   const [lang, setLang] = useState<"en" | "ml">("en");
   const [videoOpen, setVideoOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const toggleLanguage = () => {
     setLang((prev) => (prev === "en" ? "ml" : "en"));
@@ -24,7 +26,15 @@ export default function HomePage() {
   return (
     <div className="relative min-h-screen bg-[#FFE9A0] text-[#0E2038] overflow-x-hidden selection:bg-[#FF6A13]/30 selection:text-[#FF6A13]">
       {/* Clay-styled Sticky Floating Navbar */}
-      <Navbar lang={lang} onToggleLang={toggleLanguage} />
+      <Navbar
+        lang={lang}
+        onToggleLang={toggleLanguage}
+        mobileMenuOpen={mobileMenuOpen}
+        onMobileMenuChange={setMobileMenuOpen}
+      />
+
+      {/* Floating Circular 3D Clay WhatsApp Button (Pinned Bottom-Right) */}
+      <FloatingWhatsApp hidden={mobileMenuOpen} />
 
       {/* Hero: Bold Clay Typography Poster */}
       <Hero lang={lang} onOpenVideo={() => setVideoOpen(true)} />
@@ -32,7 +42,7 @@ export default function HomePage() {
       {/* Wave Transition 1: Butter-Yellow -> Sky Aqua */}
       <ClayWaveDivider fillColor="#BDEBF5" />
 
-      {/* 1. "Our Fish": Five Clay Tiles */}
+      {/* 1. "Our Fish": Compact 2-Column Mobile Grid with Filter Chips */}
       <SpeciesSection lang={lang} />
 
       {/* Wave Transition 2: Sky Aqua -> Cream */}

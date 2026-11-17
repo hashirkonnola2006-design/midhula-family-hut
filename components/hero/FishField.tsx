@@ -24,7 +24,7 @@ export interface FishConfigItem {
 }
 
 export const FISH_CONFIG: FishConfigItem[] = [
-  // 1. Anchor Hot-Pink Guppy (Upper Open Lane - RTL)
+  // 1. Anchor Hot-Pink Guppy (Upper Open Lane - RTL - Visible on Mobile & Desktop)
   {
     id: "pink-guppy-anchor",
     name: "Anchor Pink Guppy",
@@ -33,9 +33,9 @@ export const FISH_CONFIG: FishConfigItem[] = [
     height: 182,
     direction: "rtl",
     facing: "right",
-    laneTop: "12%",
+    laneTop: "10%",
     desktopWidth: 195,
-    mobileWidth: 110,
+    mobileWidth: 105,
     vwWidth: 15,
     duration: 23,
     delay: -6.5,
@@ -44,7 +44,7 @@ export const FISH_CONFIG: FishConfigItem[] = [
     staticLeft: "75%",
     mobileHidden: false,
   },
-  // 2. Big Orange Guppy (Upper Mid Lane - LTR)
+  // 2. Big Orange Guppy (Upper Mid Lane - LTR - Desktop)
   {
     id: "orange-guppy-hero",
     name: "Big Orange Guppy",
@@ -62,9 +62,9 @@ export const FISH_CONFIG: FishConfigItem[] = [
     bobDur: 3.8,
     bobAmp: "gentle",
     staticLeft: "12%",
-    mobileHidden: false,
+    mobileHidden: true,
   },
-  // 3. Electric Blue Guppy (Behind MIDHULA - RTL)
+  // 3. Electric Blue Guppy (Behind MIDHULA - RTL - Desktop)
   {
     id: "blue-guppy-hero",
     name: "Electric Blue Guppy",
@@ -82,9 +82,9 @@ export const FISH_CONFIG: FishConfigItem[] = [
     bobDur: 3.0,
     bobAmp: "gentle",
     staticLeft: "68%",
-    mobileHidden: false,
+    mobileHidden: true,
   },
-  // 4. Small Orange Guppy (Between MIDHULA & FARM - LTR)
+  // 4. Small Orange Guppy (Between MIDHULA & FARM - LTR - Desktop)
   {
     id: "orange-small-1",
     name: "Small Orange Guppy",
@@ -102,9 +102,9 @@ export const FISH_CONFIG: FishConfigItem[] = [
     bobDur: 2.6,
     bobAmp: "subtle",
     staticLeft: "22%",
-    mobileHidden: false,
+    mobileHidden: true,
   },
-  // 5. Swordtail (Open Band below FARM HUT - LTR)
+  // 5. Swordtail (Open Band below FARM HUT - LTR - Desktop)
   {
     id: "swordtail-hero",
     name: "Swordtail",
@@ -122,9 +122,9 @@ export const FISH_CONFIG: FishConfigItem[] = [
     bobDur: 2.8,
     bobAmp: "subtle",
     staticLeft: "38%",
-    mobileHidden: false,
+    mobileHidden: true,
   },
-  // 6. Small Orange-Cream Guppy (Open Band below FARM HUT - RTL)
+  // 6. Small Orange-Cream Guppy (Open Band below FARM HUT - RTL - Desktop)
   {
     id: "orange-small-2",
     name: "Small Orange-Cream Guppy",
@@ -142,9 +142,9 @@ export const FISH_CONFIG: FishConfigItem[] = [
     bobDur: 2.5,
     bobAmp: "subtle",
     staticLeft: "80%",
-    mobileHidden: false,
+    mobileHidden: true,
   },
-  // 7. Second Pink Guppy (Lower Open Water below Buttons - LTR - Desktop)
+  // 7. Second Pink Guppy (Deep Lower Open Water below Buttons - LTR - Visible on Mobile & Desktop)
   {
     id: "pink-guppy-lower",
     name: "Lower Pink Guppy",
@@ -153,16 +153,16 @@ export const FISH_CONFIG: FishConfigItem[] = [
     height: 182,
     direction: "ltr",
     facing: "right",
-    laneTop: "86%",
+    laneTop: "88%",
     desktopWidth: 155,
-    mobileWidth: 90,
+    mobileWidth: 95,
     vwWidth: 11,
     duration: 25,
     delay: -16,
     bobDur: 3.4,
     bobAmp: "gentle",
     staticLeft: "28%",
-    mobileHidden: true,
+    mobileHidden: false,
   },
   // 8. Second Blue Guppy (Upper Water - LTR - Desktop)
   {
