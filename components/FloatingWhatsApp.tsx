@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { getWhatsAppUrl } from "@/lib/content";
 
@@ -9,11 +9,27 @@ interface FloatingWhatsAppProps {
 }
 
 export function FloatingWhatsApp({ hidden = false }: FloatingWhatsAppProps) {
-  if (hidden) return null;
+  const [footerVisible, setFooterVisible] = useState(false);
+
+  useEffect(() => {
+    const footer = document.querySelector("#contact");
+    if (!footer) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setFooterVisible(entry.isIntersecting);
+      },
+      { threshold: 0.08 }
+    );
+    observer.observe(footer);
+    return () => observer.disconnect();
+  }, []);
+
+  if (hidden || footerVisible) return null;
 
   return (
     <aside
-      className="fixed z-40 transition-transform duration-200"
+      className="fixed z-40 transition-all duration-300"
       style={{
         bottom: "max(16px, env(safe-area-inset-bottom, 16px))",
         right: "16px",

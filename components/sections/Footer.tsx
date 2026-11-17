@@ -2,134 +2,163 @@
 
 import React from "react";
 import Image from "next/image";
-import { BRAND, FOUNDER_NOTE, getWhatsAppUrl, NAV_LINKS } from "@/lib/content";
+import { BRAND, getWhatsAppUrl } from "@/lib/content";
 
 interface FooterProps {
   lang: "en" | "ml";
 }
 
+const EXPLORE_LINKS = [
+  {
+    id: "fish",
+    label: "Fish",
+    labelMl: "മത്സ്യങ്ങൾ",
+    href: "#species",
+    icon: "/clay/icons/nav-fish.webp",
+  },
+  {
+    id: "farm",
+    label: "Farm",
+    labelMl: "ഫാം കാഴ്ചകൾ",
+    href: "#farm",
+    icon: "/clay/icons/nav-farm.webp",
+  },
+  {
+    id: "shipping",
+    label: "Shipping",
+    labelMl: "ഷിപ്പിംഗ്",
+    href: "#shipping",
+    icon: "/clay/icons/nav-shipping.webp",
+  },
+  {
+    id: "contact",
+    label: "Contact",
+    labelMl: "ബന്ധപ്പെടുക",
+    href: "#contact",
+    icon: "/clay/icons/nav-contact.webp",
+  },
+];
+
 export function Footer({ lang }: FooterProps) {
   return (
-    <footer id="contact" className="relative bg-[#FFF8E7] pt-12 sm:pt-20 pb-8 sm:pb-12 px-3 sm:px-8 text-[#0E2038] z-10 overflow-hidden">
-      
-      {/* Footer Corner Decorations (hidden on mobile to save vertical space) */}
-      <div className="absolute inset-x-0 bottom-0 pointer-events-none select-none z-0" aria-hidden="true">
-        {/* Bottom Left Corner: Seaweed & Rock */}
-        <div className="absolute -bottom-2 left-0 w-36 h-40 opacity-75 hidden sm:block">
-          <Image
-            src="/clay/props/seaweed-1.webp"
-            alt=""
-            fill
-            className="object-contain object-bottom object-left"
-          />
+    <footer
+      id="contact"
+      className="relative bg-[#FEEDB5] pt-20 sm:pt-28 pb-28 sm:pb-36 px-4 sm:px-8 text-[#1B2A38] z-10 overflow-hidden select-none"
+    >
+      {/* ========================================================== */}
+      {/* Translucent Clay Bubbles on Left & Right                   */}
+      {/* ========================================================== */}
+      <div className="absolute inset-0 pointer-events-none select-none z-10 overflow-hidden" aria-hidden="true">
+        {/* Left Bubbles */}
+        <div className="absolute left-3 sm:left-8 top-1/2 -translate-y-8 w-5 h-5 sm:w-6 sm:h-6 opacity-85">
+          <Image src="/clay/fx/bubble-2.webp" alt="" fill className="object-contain" />
         </div>
-        <div className="absolute -bottom-1 left-8 w-28 h-20 opacity-70 hidden sm:block">
-          <Image
-            src="/clay/props/rock-large.webp"
-            alt=""
-            fill
-            className="object-contain object-bottom object-left"
-          />
+        <div className="absolute left-6 sm:left-14 top-1/2 translate-y-6 w-6 h-6 sm:w-8 sm:h-8 opacity-80">
+          <Image src="/clay/fx/bubble-1.webp" alt="" fill className="object-contain" />
         </div>
 
-        {/* Bottom Right Corner: Mirrored Seaweed & Small Rock */}
-        <div className="absolute -bottom-2 right-0 w-36 h-40 opacity-75 hidden sm:block" style={{ transform: "scaleX(-1)" }}>
-          <Image
-            src="/clay/props/seaweed-1.webp"
-            alt=""
-            fill
-            className="object-contain object-bottom object-left"
-          />
+        {/* Right Bubbles */}
+        <div className="absolute right-4 sm:right-12 top-20 sm:top-24 w-8 h-8 sm:w-10 sm:h-10 opacity-85">
+          <Image src="/clay/fx/bubble-1.webp" alt="" fill className="object-contain" />
         </div>
-        <div className="absolute -bottom-1 right-8 w-24 h-18 opacity-70 hidden sm:block">
-          <Image
-            src="/clay/props/rock-small.webp"
-            alt=""
-            fill
-            className="object-contain object-bottom object-right"
-          />
+        <div className="absolute right-3 sm:right-8 top-1/2 -translate-y-4 w-5 h-5 sm:w-6 sm:h-6 opacity-80">
+          <Image src="/clay/fx/bubble-3.webp" alt="" fill className="object-contain" />
+        </div>
+        <div className="absolute right-8 sm:right-16 top-1/2 translate-y-8 w-6 h-6 sm:w-7 sm:h-7 opacity-75">
+          <Image src="/clay/fx/bubble-2.webp" alt="" fill className="object-contain" />
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 sm:gap-8 pb-8 sm:pb-12 border-b-2 border-[#F0DEC0]">
+      {/* ========================================================== */}
+      {/* Main Content Grid (3 Columns)                              */}
+      {/* ========================================================== */}
+      <div className="max-w-6xl mx-auto relative z-20">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-0 items-start">
           
-          {/* Col 1: Brand & Logo */}
-          <div className="lg:col-span-5 flex flex-col items-start">
-            <div className="relative h-10 w-40 sm:h-12 sm:w-48 mb-2 sm:mb-3">
+          {/* Column 1: Brand Logo, Location & Bio */}
+          <div className="md:col-span-5 md:pr-10 lg:pr-12 md:border-r border-[#E8DAB2] flex flex-col items-start">
+            {/* 3D Clay Logo */}
+            <a href="#hero" className="block relative w-48 sm:w-56 h-12 sm:h-14 mb-3 transition-transform hover:scale-105 active:scale-95">
               <Image
-                src={BRAND.logoPath}
-                alt="Midhula Farm Hut Logo"
+                src="/clay/logo/logo.webp"
+                alt="Midhula Farm Hut"
                 fill
-                sizes="192px"
+                sizes="(max-width: 640px) 200px, 240px"
                 className="object-contain object-left"
+                priority
               />
-            </div>
+            </a>
 
-            <div className="flex items-center gap-1.5 mb-2 sm:mb-3">
-              <div className="relative w-4 h-4 sm:w-5 sm:h-5 shrink-0">
+            {/* Location Tag */}
+            <div className="flex items-center gap-2 mb-3.5">
+              <div className="relative w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0">
                 <Image
-                  src="/clay/icons/location.webp"
+                  src="/clay/icons/location-green.webp"
                   alt="Location"
                   fill
                   className="object-contain"
                 />
               </div>
-              <span className="text-[11px] sm:text-xs font-bold text-[#1F7A3E]">
-                Nooluvally, Thrissur - Kerala
+              <span className="text-xs sm:text-sm font-bold text-[#1B2A38]">
+                {lang === "en" ? BRAND.location : BRAND.malayalamLocation}
               </span>
             </div>
 
-            <p className="text-xs sm:text-sm font-medium text-[#0E2038]/85 leading-relaxed max-w-sm mb-3 sm:mb-5">
+            {/* Description Bio */}
+            <p className="text-xs sm:text-[13px] font-medium text-[#3D4A5C] leading-relaxed max-w-sm">
               {lang === "en"
                 ? "Dedicated ornamental fish culturists delivering vibrant farm-bred livebearers, dwarf crayfish, and shrimp to hobbyists across India."
                 : "കേരളത്തിന്റെ തനതു ഗുണമേന്മയുള്ള വർണ്ണമത്സ്യങ്ങളും അക്വേറിയം ജീവികളും നിങ്ങളുടെ വീട്ടുപടിക്കൽ എത്തിക്കുന്നു."}
             </p>
+          </div>
 
-            {/* Founder Story Line */}
-            <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-[#FFFDF7] border-2 border-[#F0DEC0] text-[11px] sm:text-xs text-[#0E2038]/85 italic max-w-sm shadow-sm">
-              &ldquo;{lang === "en" ? FOUNDER_NOTE.quote : FOUNDER_NOTE.malayalamQuote}&rdquo;
-              <span className="block mt-1 font-bold text-[#1F4FFF] not-italic">
-                — {FOUNDER_NOTE.author}, {FOUNDER_NOTE.location}
-              </span>
+          {/* Column 2: Explore Farm Links */}
+          <div className="md:col-span-3 md:px-8 lg:px-10 md:border-r border-[#E8DAB2]">
+            <h4 className="font-display font-extrabold text-base sm:text-lg text-[#1B2A38] mb-4 sm:mb-5">
+              {lang === "en" ? "Explore Farm" : "ലിങ്കുകൾ"}
+            </h4>
+
+            <div className="flex flex-col gap-3 sm:gap-3.5">
+              {EXPLORE_LINKS.map((link) => (
+                <a
+                  key={link.id}
+                  href={link.href}
+                  className="group flex items-center gap-3.5 transition-transform hover:translate-x-1"
+                >
+                  {/* Single Clean 3D Clay Squircle Tile */}
+                  <div className="relative w-10 h-10 sm:w-11 sm:h-11 shrink-0 drop-shadow-[0_4px_8px_rgba(0,0,0,0.06)] group-hover:scale-105 transition-transform">
+                    <Image
+                      src={link.icon}
+                      alt={link.label}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+
+                  {/* Label */}
+                  <span className="text-sm sm:text-[15px] font-bold text-[#1B2A38] group-hover:text-[#1F4FFF] transition-colors">
+                    {lang === "en" ? link.label : link.labelMl}
+                  </span>
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Col 2: Navigation Links */}
-          <div className="lg:col-span-3">
-            <h4 className="font-display font-extrabold text-sm sm:text-base text-[#1F4FFF] uppercase tracking-wider mb-2.5 sm:mb-4">
-              {lang === "en" ? "Explore Farm" : "ലിങ്കുകൾ"}
-            </h4>
-            <ul className="grid grid-cols-2 sm:grid-cols-1 gap-2 sm:gap-3 text-xs sm:text-sm font-bold">
-              {NAV_LINKS.map((link) => (
-                <li key={link.id}>
-                  <a
-                    href={link.href}
-                    className="hover:text-[#1F4FFF] transition-colors flex items-center gap-1.5"
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#FF6A13]" />
-                    <span>{lang === "en" ? link.label : link.labelMl}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Col 3: Social & WhatsApp Connect */}
-          <div className="lg:col-span-4 flex flex-col">
-            <h4 className="font-display font-extrabold text-sm sm:text-base text-[#1F4FFF] uppercase tracking-wider mb-2.5 sm:mb-4">
+          {/* Column 3: Connect With Us Social Cards */}
+          <div className="md:col-span-4 md:pl-8 lg:pl-10 flex flex-col">
+            <h4 className="font-display font-extrabold text-base sm:text-lg text-[#1B2A38] mb-4 sm:mb-5">
               {lang === "en" ? "Connect With Us" : "സോഷ്യൽ മീഡിയ"}
             </h4>
 
-            <div className="space-y-2.5 sm:space-y-3.5 mb-3 sm:mb-5 text-xs sm:text-sm font-bold">
-              {/* WhatsApp */}
+            <div className="flex flex-col gap-2.5 sm:gap-3">
+              {/* WhatsApp Card */}
               <a
-                href={getWhatsAppUrl()}
+                href={getWhatsAppUrl("Hi Midhula Farm Hut, I'd like to inquire about your ornamental fish!")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 p-2.5 sm:p-3 px-3.5 sm:px-4 rounded-xl sm:rounded-2xl bg-[#FFFDF7] border-2 border-[#F0DEC0] hover:border-[#1F4FFF] text-[#0E2038] hover:text-[#1F4FFF] transition-all shadow-sm group"
+                className="flex items-center gap-3 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full bg-[#FFFDF8] border border-[#F0DEC0]/80 shadow-[0_4px_12px_rgba(0,0,0,0.05),inset_0_2px_0_rgba(255,255,255,0.95)] hover:shadow-[0_6px_16px_rgba(0,0,0,0.08)] hover:-translate-y-0.5 active:translate-y-0 transition-all group"
               >
-                <div className="relative w-6 h-6 sm:w-8 sm:h-8 shrink-0 group-hover:scale-110 transition-transform">
+                <div className="relative w-8 h-8 sm:w-9 sm:h-9 shrink-0 group-hover:scale-105 transition-transform">
                   <Image
                     src="/clay/icons/whatsapp.webp"
                     alt="WhatsApp"
@@ -137,20 +166,19 @@ export function Footer({ lang }: FooterProps) {
                     className="object-contain"
                   />
                 </div>
-                <div>
-                  <div className="text-[10px] text-[#0E2038]/60 font-medium">WhatsApp Orders</div>
-                  <div className="text-xs sm:text-sm font-bold">{BRAND.whatsappNumber}</div>
-                </div>
+                <span className="text-xs sm:text-sm font-bold text-[#1B2A38] group-hover:text-[#1F4FFF] transition-colors">
+                  WhatsApp: {BRAND.whatsappNumber}
+                </span>
               </a>
 
-              {/* Instagram */}
+              {/* Instagram Card */}
               <a
                 href={BRAND.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 p-2.5 sm:p-3 px-3.5 sm:px-4 rounded-xl sm:rounded-2xl bg-[#FFFDF7] border-2 border-[#F0DEC0] hover:border-[#1F4FFF] text-[#0E2038] hover:text-[#1F4FFF] transition-all shadow-sm group"
+                className="flex items-center gap-3 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full bg-[#FFFDF8] border border-[#F0DEC0]/80 shadow-[0_4px_12px_rgba(0,0,0,0.05),inset_0_2px_0_rgba(255,255,255,0.95)] hover:shadow-[0_6px_16px_rgba(0,0,0,0.08)] hover:-translate-y-0.5 active:translate-y-0 transition-all group"
               >
-                <div className="relative w-6 h-6 sm:w-8 sm:h-8 shrink-0 group-hover:scale-110 transition-transform">
+                <div className="relative w-8 h-8 sm:w-9 sm:h-9 shrink-0 group-hover:scale-105 transition-transform">
                   <Image
                     src="/clay/icons/instagram.webp"
                     alt="Instagram"
@@ -158,20 +186,19 @@ export function Footer({ lang }: FooterProps) {
                     className="object-contain"
                   />
                 </div>
-                <div>
-                  <div className="text-[10px] text-[#0E2038]/60 font-medium">Instagram Family</div>
-                  <div className="text-xs sm:text-sm font-bold">{BRAND.instagramHandle} (28.7K)</div>
-                </div>
+                <span className="text-xs sm:text-sm font-bold text-[#1B2A38] group-hover:text-[#1F4FFF] transition-colors">
+                  Instagram: {BRAND.instagramHandle}
+                </span>
               </a>
 
-              {/* YouTube */}
+              {/* YouTube Card */}
               <a
                 href={BRAND.youtubeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 p-2.5 sm:p-3 px-3.5 sm:px-4 rounded-xl sm:rounded-2xl bg-[#FFFDF7] border-2 border-[#F0DEC0] hover:border-[#1F4FFF] text-[#0E2038] hover:text-[#1F4FFF] transition-all shadow-sm group"
+                className="flex items-center gap-3 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full bg-[#FFFDF8] border border-[#F0DEC0]/80 shadow-[0_4px_12px_rgba(0,0,0,0.05),inset_0_2px_0_rgba(255,255,255,0.95)] hover:shadow-[0_6px_16px_rgba(0,0,0,0.08)] hover:-translate-y-0.5 active:translate-y-0 transition-all group"
               >
-                <div className="relative w-6 h-6 sm:w-8 sm:h-8 shrink-0 group-hover:scale-110 transition-transform">
+                <div className="relative w-8 h-8 sm:w-9 sm:h-9 shrink-0 group-hover:scale-105 transition-transform">
                   <Image
                     src="/clay/icons/youtube.webp"
                     alt="YouTube"
@@ -179,28 +206,295 @@ export function Footer({ lang }: FooterProps) {
                     className="object-contain"
                   />
                 </div>
-                <div>
-                  <div className="text-[10px] text-[#0E2038]/60 font-medium">YouTube Channel</div>
-                  <div className="text-xs sm:text-sm font-bold">@midhulafarmhut (75K)</div>
-                </div>
+                <span className="text-xs sm:text-sm font-bold text-[#1B2A38] group-hover:text-[#1F4FFF] transition-colors">
+                  YouTube: Midhula Farm Hut
+                </span>
               </a>
             </div>
           </div>
 
         </div>
 
-        {/* Bottom Legal & Credits */}
-        <div className="pt-4 sm:pt-8 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-4 text-[10px] sm:text-xs font-semibold text-[#0E2038]/70 text-center sm:text-left">
+        {/* ========================================================== */}
+        {/* Horizontal Divider Line                                    */}
+        {/* ========================================================== */}
+        <div className="w-full border-t border-[#E8DAB2] mt-10 sm:mt-14 mb-6 sm:mb-8" />
+
+        {/* ========================================================== */}
+        {/* Bottom Bar: Copyright, Location Pill Badge, Credit         */}
+        {/* ========================================================== */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-xs sm:text-[13px] font-medium text-[#4B5563] text-center sm:text-left">
+          {/* Copyright */}
           <div>
-            © 2026 Midhula Farm Hut. All rights reserved. Nooluvally, Thrissur.
+            © 2026 Midhula Farm Hut. All rights reserved.
           </div>
-          <div className="flex items-center gap-1.5 sm:gap-2">
-            <span>Farm-Bred Ornamental Fish Culturists</span>
-            <span>•</span>
-            <span className="text-[#1F4FFF]">Kerala, India</span>
+
+          {/* Center Location Clay Pill Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFFDF8] border border-[#F0DEC0]/80 shadow-[0_3px_8px_rgba(0,0,0,0.04),inset_0_1px_0_rgba(255,255,255,0.9)] text-xs font-bold text-[#1F4FFF]">
+            <div className="relative w-3.5 h-3.5 shrink-0">
+              <Image
+                src="/clay/icons/location.webp"
+                alt=""
+                fill
+                className="object-contain"
+              />
+            </div>
+            <span>{lang === "en" ? BRAND.location : BRAND.malayalamLocation}</span>
+          </div>
+
+          {/* Passion Credit */}
+          <div>
+            {lang === "en" ? "Bred with passion in Thrissur, Kerala 💖" : "തൃശ്ശൂരിൽ നിന്നും സ്നേഹത്തോടെ 💖"}
           </div>
         </div>
+      </div>
 
+      {/* ========================================================== */}
+      {/* Bottom Clay Water Wave Ribbon (100% width)                 */}
+      {/* ========================================================== */}
+      <div className="absolute inset-x-0 bottom-0 pointer-events-none select-none z-10 w-full overflow-hidden leading-none">
+        <svg
+          viewBox="0 0 1440 96"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-16 sm:h-24 object-cover"
+          preserveAspectRatio="none"
+        >
+          <defs>
+            {/* Primary Clay Water Gradient */}
+            <linearGradient id="footerClayWater" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#38B6FF" />
+              <stop offset="35%" stopColor="#258AFE" />
+              <stop offset="100%" stopColor="#185FE8" />
+            </linearGradient>
+
+            {/* Back Layer Ocean Gradient */}
+            <linearGradient id="footerClayWaterBack" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#1F75F8" />
+              <stop offset="100%" stopColor="#1248BC" />
+            </linearGradient>
+
+            {/* Clay Wave Shadow */}
+            <filter id="footerWaveShadow" x="-5%" y="-20%" width="110%" height="150%">
+              <feDropShadow dx="0" dy="-3" stdDeviation="4" floodColor="#0A368A" floodOpacity="0.25" />
+            </filter>
+          </defs>
+
+          {/* Secondary Back Wave */}
+          <path
+            d="M0,45 C200,20 380,60 580,35 C780,10 980,55 1180,30 C1320,15 1400,35 1440,42 L1440,96 L0,96 Z"
+            fill="url(#footerClayWaterBack)"
+            opacity="0.75"
+          />
+
+          {/* Main Clay Water Wave */}
+          <path
+            d="M0,38 C180,58 360,18 540,40 C720,62 900,22 1080,44 C1260,64 1380,28 1440,36 L1440,96 L0,96 Z"
+            fill="url(#footerClayWater)"
+            filter="url(#footerWaveShadow)"
+          />
+
+          {/* 3D Crest Highlights */}
+          <path
+            d="M0,38 C180,58 360,18 540,40 C720,62 900,22 1080,44 C1260,64 1380,28 1440,36"
+            stroke="#7ED0FF"
+            strokeWidth="4"
+            strokeLinecap="round"
+            fill="none"
+            opacity="0.85"
+          />
+          <path
+            d="M0,38 C180,58 360,18 540,40 C720,62 900,22 1080,44 C1260,64 1380,28 1440,36"
+            stroke="#FFFFFF"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            fill="none"
+            opacity="0.6"
+          />
+        </svg>
+      </div>
+
+      {/* ========================================================== */}
+      {/* Bottom Corner Props Artwork (Flush in corners)             */}
+      {/* ========================================================== */}
+      {/* Bottom Left: Grey Rocks Cluster, Green Seaweed, Red Clay Crayfish */}
+      <div
+        className="absolute pointer-events-none select-none z-20 overflow-visible"
+        style={{
+          bottom: "-2px",
+          left: "-2px",
+          width: "clamp(180px, 22vw, 320px)",
+          height: "clamp(130px, 16vw, 220px)",
+        }}
+      >
+        {/* Seaweed 1 */}
+        <div
+          className="absolute seaweed-sway-1"
+          style={{
+            bottom: "0px",
+            left: "0px",
+            width: "56%",
+            height: "94%",
+            transformOrigin: "bottom left",
+          }}
+        >
+          <Image
+            src="/clay/props/seaweed-1.webp"
+            alt=""
+            fill
+            className="object-contain object-bottom object-left"
+            sizes="(max-width: 640px) 110px, 180px"
+          />
+        </div>
+
+        {/* Seaweed 2 */}
+        <div
+          className="absolute seaweed-sway-2"
+          style={{
+            bottom: "0px",
+            left: "18%",
+            width: "36%",
+            height: "64%",
+            transformOrigin: "bottom center",
+          }}
+        >
+          <Image
+            src="/clay/props/seaweed-2.webp"
+            alt=""
+            fill
+            className="object-contain object-bottom"
+            sizes="(max-width: 640px) 70px, 120px"
+          />
+        </div>
+
+        {/* Grey Rocks Cluster */}
+        <div
+          className="absolute"
+          style={{
+            bottom: "0px",
+            left: "0px",
+            width: "78%",
+            height: "66%",
+          }}
+        >
+          <Image
+            src="/clay/props/rocks-cluster.webp"
+            alt=""
+            fill
+            className="object-contain object-bottom object-left drop-shadow-[0_4px_12px_rgba(50,50,60,0.3)]"
+            sizes="(max-width: 640px) 140px, 240px"
+          />
+        </div>
+
+        {/* Red Clay Crayfish */}
+        <div
+          className="absolute crayfish-sway"
+          style={{
+            bottom: "12%",
+            left: "7%",
+            width: "48%",
+            height: "48%",
+          }}
+        >
+          <Image
+            src="/clay/props/crayfish.webp"
+            alt=""
+            fill
+            className="object-contain drop-shadow-[0_6px_16px_rgba(180,40,20,0.35)]"
+            sizes="(max-width: 640px) 85px, 150px"
+          />
+        </div>
+      </div>
+
+      {/* Bottom Right: Large & Small Rocks and Mirrored Seaweed */}
+      <div
+        className="absolute pointer-events-none select-none z-20 overflow-visible"
+        style={{
+          bottom: "-2px",
+          right: "-2px",
+          width: "clamp(180px, 22vw, 320px)",
+          height: "clamp(130px, 16vw, 220px)",
+        }}
+      >
+        {/* Seaweed 1 (mirrored) */}
+        <div
+          className="absolute seaweed-sway-1"
+          style={{
+            bottom: "0px",
+            right: "0px",
+            width: "56%",
+            height: "94%",
+            transformOrigin: "bottom right",
+            transform: "scaleX(-1)",
+          }}
+        >
+          <Image
+            src="/clay/props/seaweed-1.webp"
+            alt=""
+            fill
+            className="object-contain object-bottom object-right"
+            sizes="(max-width: 640px) 110px, 180px"
+          />
+        </div>
+
+        {/* Seaweed 2 (mirrored) */}
+        <div
+          className="absolute seaweed-sway-2"
+          style={{
+            bottom: "0px",
+            right: "18%",
+            width: "36%",
+            height: "64%",
+            transformOrigin: "bottom center",
+            transform: "scaleX(-1)",
+          }}
+        >
+          <Image
+            src="/clay/props/seaweed-2.webp"
+            alt=""
+            fill
+            className="object-contain object-bottom"
+            sizes="(max-width: 640px) 70px, 120px"
+          />
+        </div>
+
+        {/* Rock Large */}
+        <div
+          className="absolute"
+          style={{
+            bottom: "0px",
+            right: "20%",
+            width: "60%",
+            height: "60%",
+          }}
+        >
+          <Image
+            src="/clay/props/rock-large.webp"
+            alt=""
+            fill
+            className="object-contain object-bottom drop-shadow-[0_4px_12px_rgba(50,50,60,0.3)]"
+            sizes="(max-width: 640px) 110px, 190px"
+          />
+        </div>
+
+        {/* Rock Small */}
+        <div
+          className="absolute"
+          style={{
+            bottom: "0px",
+            right: "0px",
+            width: "44%",
+            height: "48%",
+          }}
+        >
+          <Image
+            src="/clay/props/rock-small.webp"
+            alt=""
+            fill
+            className="object-contain object-bottom object-right drop-shadow-[0_3px_10px_rgba(50,50,60,0.25)]"
+            sizes="(max-width: 640px) 80px, 140px"
+          />
+        </div>
       </div>
     </footer>
   );

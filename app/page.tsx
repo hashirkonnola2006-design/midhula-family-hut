@@ -72,10 +72,10 @@ export default function HomePage() {
       {/* 6. Final CTA Band: Electric Blue Clay Banner */}
       <CtaSection lang={lang} />
 
-      {/* Wave Transition 6: Electric Blue -> Cream */}
-      <ClayWaveDivider fillColor="#FFF8E7" />
+      {/* Wave Transition 6: Electric Blue -> Butter Yellow */}
+      <ClayWaveDivider fillColor="#FEEDB5" />
 
-      {/* 7. Footer: Cream Background with Corner Seaweed & Rocks */}
+      {/* 7. Footer: Butter Yellow with 3D Clay River Wave & Corners */}
       <Footer lang={lang} />
 
       {/* Video Modal for Malayalam Farm Tour */}
