@@ -244,34 +244,6 @@ export function SpeciesSection({ lang }: SpeciesSectionProps) {
       <span id="fish" className="absolute top-0 pointer-events-none" style={{ scrollMarginTop: "88px" }} />
       {/* Background Ambient Elements matching reference */}
       <div className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0" aria-hidden="true">
-        {/* Ambient swimming orange/white fish at top right (facing left) */}
-        <div
-          className="absolute top-6 sm:top-10 right-4 sm:right-16 w-20 sm:w-28 h-14 sm:h-20 opacity-90 hidden sm:block pointer-events-none"
-          style={{
-            animation: "swimFloat 6s ease-in-out infinite alternate",
-          }}
-        >
-          <div className="relative w-full h-full -scale-x-100">
-            <Image
-              src="/clay/fish/orange-small-1.webp"
-              alt=""
-              fill
-              className="object-contain drop-shadow-[0_6px_12px_rgba(20,60,110,0.18)]"
-            />
-          </div>
-        </div>
-
-        {/* Electric Blue Clay Fan Shell on right edge matching reference */}
-        <div className="absolute top-8 sm:top-12 -right-8 sm:-right-12 w-28 sm:w-36 h-28 sm:h-36 opacity-95 pointer-events-none select-none z-0">
-          <Image
-            src="/clay/props/blue-shell.webp"
-            alt=""
-            fill
-            unoptimized
-            className="object-contain drop-shadow-[0_8px_20px_rgba(20,60,140,0.22)] -rotate-12"
-          />
-        </div>
-
         {/* Ambient Blue Clay Bubbles */}
         <div className="absolute top-28 left-6 sm:left-12 w-6 sm:w-8 h-6 sm:h-8 opacity-80 pointer-events-none">
           <Image src="/clay/fx/bubble-1.webp" alt="" fill className="object-contain" />
