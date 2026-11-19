@@ -416,6 +416,25 @@ export function Hero({ lang = "en", onOpenVideo }: HeroProps) {
           </a>
         </motion.div>
       </div>
+
+      {/* ========================================================== */}
+      {/* Seamless Sky Aqua Water Wave transition directly into #species */}
+      {/* ========================================================== */}
+      <div className="absolute inset-x-0 bottom-0 pointer-events-none select-none z-20 w-full overflow-hidden leading-none">
+        <svg
+          viewBox="0 0 1440 120"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-16 sm:h-24 md:h-32 object-cover block"
+          preserveAspectRatio="none"
+        >
+          {/* Main Sky Aqua Wave matching #species bg (#BDEBF5) */}
+          <path
+            d="M0,44 C260,78 480,72 720,38 C960,10 1200,62 1440,32 L1440,120 L0,120 Z"
+            fill="#BDEBF5"
+          />
+        </svg>
+      </div>
     </section>
   );
 }

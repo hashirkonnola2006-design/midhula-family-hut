@@ -24,7 +24,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#FFE9A0] text-[#0E2038] overflow-x-hidden selection:bg-[#FF6A13]/30 selection:text-[#FF6A13]">
+    <div className="relative min-h-screen bg-[#FDE58B] text-[#0E2038] overflow-x-hidden selection:bg-[#FF6A13]/30 selection:text-[#FF6A13]">
       {/* Clay-styled Sticky Floating Navbar */}
       <Navbar
         lang={lang}
@@ -36,11 +36,8 @@ export default function HomePage() {
       {/* Floating Circular 3D Clay WhatsApp Button (Pinned Bottom-Right) */}
       <FloatingWhatsApp hidden={mobileMenuOpen} />
 
-      {/* Hero: Bold Clay Typography Poster */}
+      {/* Hero: Bold Clay Typography Poster with integrated bottom water wave */}
       <Hero lang={lang} onOpenVideo={() => setVideoOpen(true)} />
-
-      {/* Wave Transition 1: Butter-Yellow -> Sky Aqua */}
-      <ClayWaveDivider fillColor="#BDEBF5" />
 
       {/* 1. "Our Fish": Compact 2-Column Mobile Grid with Filter Chips */}
       <SpeciesSection lang={lang} />

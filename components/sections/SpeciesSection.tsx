@@ -134,6 +134,17 @@ export function SpeciesSection({ lang }: SpeciesSectionProps) {
           </div>
         </div>
 
+        {/* Electric Blue Clay Fan Shell on right edge matching reference */}
+        <div className="absolute top-8 sm:top-12 -right-8 sm:-right-12 w-28 sm:w-36 h-28 sm:h-36 opacity-95 pointer-events-none select-none z-0">
+          <Image
+            src="/clay/props/blue-shell.webp"
+            alt=""
+            fill
+            unoptimized
+            className="object-contain drop-shadow-[0_8px_20px_rgba(20,60,140,0.22)] -rotate-12"
+          />
+        </div>
+
         {/* Ambient Blue Clay Bubbles */}
         <div className="absolute top-28 left-6 sm:left-12 w-6 sm:w-8 h-6 sm:h-8 opacity-80 pointer-events-none">
           <Image src="/clay/fx/bubble-1.webp" alt="" fill className="object-contain" />
