@@ -67,6 +67,8 @@ export interface SpeciesItem {
   badge: string;
   photo: string;
   colorPalette: string[];
+  tagline: string;
+  malayalamTagline: string;
   description: string;
   malayalamDescription: string;
   careLevel: "Easy" | "Beginner" | "Intermediate";
@@ -84,6 +86,8 @@ export const SPECIES_CATALOG: SpeciesItem[] = [
     badge: "Bestseller Strain",
     photo: "/clay/cards/guppies.webp",
     colorPalette: ["#FF7A33", "#2DD4E6", "#FF4D6D", "#B6F23A"],
+    tagline: "Vibrant colours, graceful fins.",
+    malayalamTagline: "മനോഹരമായ ചിറകുകളും നിറങ്ങളും.",
     description: "Selective farm-bred strains with dramatic delta, fan, and crown tails. High-vitality lines acclimatised to natural open-air Kerala water conditions.",
     malayalamDescription: "വൈവിധ്യമാർന്ന ഫാൻ, ഡെൽറ്റ വാലുകളോടു കൂടിയ കേരളത്തിലെ സ്വാഭാവിക കാലാവസ്ഥയിൽ വളർത്തിയെടുത്ത ഉന്നത ഗുണനിലവാരമുള്ള ഗപ്പി ഇനങ്ങൾ.",
     careLevel: "Easy",
@@ -99,6 +103,8 @@ export const SPECIES_CATALOG: SpeciesItem[] = [
     badge: "Peaceful Community",
     photo: "/clay/cards/platies.webp",
     colorPalette: ["#FF5722", "#FFC107", "#E91E63"],
+    tagline: "Active and hardy.",
+    malayalamTagline: "തുടക്കക്കാർക്കും അനുയോജ്യമായവ.",
     description: "Hardy, active livebearers featuring bold red, tuxedo, and sunset colorations. Perfect companions for lush planted nano aquariums.",
     malayalamDescription: "വർണ്ണശബളമായ റെഡ്, ടക്സീഡോ പ്ലാറ്റികൾ. തുടക്കക്കാർക്കും പ്ലാന്റഡ് ടാങ്കുകൾക്കും ഏറ്റവും അനുയോജ്യം.",
     careLevel: "Beginner",
@@ -114,6 +120,8 @@ export const SPECIES_CATALOG: SpeciesItem[] = [
     badge: "Vibrant & Active",
     photo: "/clay/cards/swordtails.webp",
     colorPalette: ["#FF3D00", "#FF9100", "#D50000"],
+    tagline: "Elegant and lively.",
+    malayalamTagline: "നീന്തൽ വേഗതയും ഭംഗിയും.",
     description: "Streamlined graceful swimmers with signature caudal sword extensions. Vigorous breeders that bring non-stop movement to community tanks.",
     malayalamDescription: "നീളമേറിയ വാൽമുനയുള്ള അത്യന്തം ഊർജ്ജസ്വലരായ സ്വോർഡ്ടെയിലുകൾ. വലിയ ടാങ്കുകൾക്ക് മികച്ച കാഴ്ച.",
     careLevel: "Easy",
@@ -129,6 +137,8 @@ export const SPECIES_CATALOG: SpeciesItem[] = [
     badge: "Exotic Bottom Dwellers",
     photo: "/clay/cards/crayfish.webp",
     colorPalette: ["#0288D1", "#00B0FF", "#E65100"],
+    tagline: "Playful freshwater mini lobsters.",
+    malayalamTagline: "ശുദ്ധജലത്തിലെ കുള്ളൻ കൊഞ്ചുകൾ.",
     description: "Fascinating miniature lobster-like crustaceans that explore rocks and substrates. Active scavengers that keep bottom debris meticulously clean.",
     malayalamDescription: "കല്ലുകൾക്കിടയിൽ ചുറ്റിനടക്കുന്ന ആകർഷകമായ ശുദ്ധജല ക്രേഫിഷുകൾ. അടിത്തട്ട് വൃത്തിയാക്കാൻ മിടുക്കർ.",
     careLevel: "Intermediate",
@@ -144,6 +154,8 @@ export const SPECIES_CATALOG: SpeciesItem[] = [
     badge: "Bio-Cleanup Crew",
     photo: "/clay/cards/shrimp.webp",
     colorPalette: ["#FF1744", "#D50000", "#FF5252"],
+    tagline: "Supreme algae-cleaning crew.",
+    malayalamTagline: "അക്വേറിയം വൃത്തിയാക്കുന്ന ചെമ്മീൻ.",
     description: "Intense crimson graded neocaridina shrimp. The supreme plant-safe cleanup crew that feeds on biofilm and keeps moss emerald green.",
     malayalamDescription: "അക്വേറിയം സസ്യങ്ങളെയും പായലുകളെയും വൃത്തിയായി സംരക്ഷിക്കുന്ന തിളങ്ങുന്ന ചുവപ്പ് ചെറി ചെമ്മീനുകൾ.",
     careLevel: "Beginner",
