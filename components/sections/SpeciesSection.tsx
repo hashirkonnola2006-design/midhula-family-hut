@@ -74,6 +74,21 @@ export function SpeciesSection({ lang }: SpeciesSectionProps) {
         </div>
       </div>
 
+      {/* 3D Electric Blue Clay Seashell peeking from right edge (matching reference mockup) */}
+      <div
+        className="absolute -right-8 sm:-right-16 top-[28%] sm:top-[22%] w-32 sm:w-60 h-36 sm:h-64 pointer-events-none select-none z-10"
+        aria-hidden="true"
+      >
+        <div className="relative w-full h-full">
+          <Image
+            src="/clay/props/blue-shell.webp"
+            alt=""
+            fill
+            className="object-contain object-right drop-shadow-[0_10px_24px_rgba(31,79,255,0.22)]"
+          />
+        </div>
+      </div>
+
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-12">

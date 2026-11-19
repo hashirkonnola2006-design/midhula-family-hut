@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import { MapPin, MessageCircle, Play } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { BRAND, getWhatsAppUrl } from "@/lib/content";
 import { FishField } from "./FishField";
 
@@ -353,39 +353,41 @@ export function Hero({ lang = "en", onOpenVideo }: HeroProps) {
             : BRAND.malayalamSubtext}
         </motion.p>
 
-        {/* Call-to-action buttons (Z-40: instant clickability) */}
+        {/* Call-to-action button with yellow rays (matching reference mockup) */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto max-w-xs sm:max-w-none mx-auto relative z-40"
+          className="relative inline-flex items-center justify-center mx-auto z-40"
         >
-          {/* Order on WhatsApp Button */}
+          {/* 3 Yellow Clay Spark Rays to the left */}
+          <div className="absolute -left-9 sm:-left-12 top-1/2 -translate-y-1/2 w-7 sm:w-9 h-9 sm:h-11 pointer-events-none select-none">
+            <Image
+              src="/clay/fx/rays.webp"
+              alt=""
+              fill
+              className="object-contain -rotate-12 drop-shadow-[0_4px_10px_rgba(230,160,20,0.35)]"
+            />
+          </div>
+
+          {/* Green Clay WhatsApp CTA Button */}
           <a
-            href={getWhatsAppUrl("Hi Midhula Farm Hut, I'd like to order farm-bred guppies!")}
+            href={getWhatsAppUrl("Hi Midhula Farm Hut, I'd like to order farm-bred fishes!")}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 h-[52px] rounded-full font-bold text-base text-white clay-btn-orange shadow-[0_6px_20px_rgba(255,106,19,0.35)] active:scale-[0.97] transition-transform"
+            className="clay-btn-green inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 h-[50px] sm:h-[52px] rounded-full font-bold text-sm sm:text-base text-white shadow-[0_6px_20px_rgba(30,131,77,0.35)] active:scale-[0.97] transition-all"
           >
-            <div className="relative w-6 h-6 shrink-0">
+            <div className="relative w-5 h-5 sm:w-6 sm:h-6 shrink-0">
               <Image
-                src="/clay/icons/whatsapp.webp"
+                src="/clay/icons/whatsapp-circle-btn.webp"
                 alt="WhatsApp"
                 fill
                 className="object-contain"
               />
             </div>
             <span>{lang === "en" ? "Order on WhatsApp" : "വാട്സ്ആപ്പിൽ ഓർഡർ ചെയ്യൂ"}</span>
+            <span className="text-lg sm:text-xl font-bold ml-0.5">→</span>
           </a>
-
-          {/* Watch Farm Tour Button */}
-          <button
-            onClick={onOpenVideo}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 h-[52px] rounded-full font-bold text-base text-[#0E2038] clay-btn-cream cursor-pointer active:scale-[0.97] transition-transform"
-          >
-            <Play className="w-4 h-4 fill-[#0E2038] text-[#0E2038]" />
-            <span>{lang === "en" ? "Watch farm tour" : "ഫാം കാഴ്ചകൾ"}</span>
-          </button>
         </motion.div>
       </div>
     </section>
