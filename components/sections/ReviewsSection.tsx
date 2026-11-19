@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight, MapPin } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { TESTIMONIALS, Testimonial } from "@/lib/content";
+import { Decor } from "@/components/Decor";
 
 interface ReviewsSectionProps {
   lang: "en" | "ml";
@@ -87,6 +88,20 @@ export function ReviewsSection({ lang }: ReviewsSectionProps) {
       <div
         className="absolute top-0 right-0 w-[540px] sm:w-[720px] h-[460px] sm:h-[540px] bg-[radial-gradient(circle_at_75%_35%,rgba(255,255,255,0.6)_0%,transparent_65%)] pointer-events-none"
         aria-hidden="true"
+      />
+
+      {/* Unified Sprite Sheet Decor: Starfish (upper-left) & Seaweed-short (bottom-left) */}
+      <Decor
+        name="starfish"
+        className="top-16 lg:top-20 left-4 lg:left-8 xl:left-14"
+        size={72}
+        shadow
+      />
+      <Decor
+        name="seaweed-short"
+        className="bottom-8 lg:bottom-12 left-4 lg:left-8 xl:left-14"
+        size={95}
+        shadow
       />
 
       {/* Translucent Animated Floating Bubbles */}

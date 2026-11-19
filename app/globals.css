@@ -103,7 +103,9 @@ body {
 /* ========================================================================== */
 
 /* Headings */
-h1, h2, h3,
+h1,
+h2,
+h3,
 .hero-title,
 .section-title {
   font-family: var(--font-heading);
@@ -422,7 +424,8 @@ p.italic {
 }
 
 /* Clay Cards & Tiles */
-.clay-tile, .clay-card {
+.clay-tile,
+.clay-card {
   background: #FFF8E7;
   border-radius: 32px;
   border: 2px solid rgba(255, 255, 255, 0.85);
@@ -436,7 +439,8 @@ p.italic {
   overflow: hidden;
 }
 
-.clay-tile:hover, .clay-card:hover {
+.clay-tile:hover,
+.clay-card:hover {
   transform: translateY(-4px);
   box-shadow:
     0 3px 0 rgba(255, 255, 255, 1) inset,
@@ -445,7 +449,8 @@ p.italic {
     0 28px 56px rgba(180, 140, 30, 0.12);
 }
 
-.clay-tile:active, .clay-card:active {
+.clay-tile:active,
+.clay-card:active {
   transform: translateY(2px) scale(0.97);
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.8) inset,
@@ -524,6 +529,7 @@ p.italic {
   width: 0;
   height: 0;
 }
+
 * {
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -537,6 +543,7 @@ p.italic {
     opacity: 1;
     transform: translateY(0px) scale(1);
   }
+
   100% {
     opacity: 0;
     transform: translateY(-40px) scale(0.92);
@@ -581,6 +588,7 @@ p.italic {
   0% {
     transform: translateX(-35vw);
   }
+
   100% {
     transform: translateX(135vw);
   }
@@ -590,6 +598,7 @@ p.italic {
   0% {
     transform: translateX(135vw);
   }
+
   100% {
     transform: translateX(-35vw);
   }
@@ -597,18 +606,24 @@ p.italic {
 
 /* Gentle independent vertical bobbing */
 @keyframes fish-bob-gentle {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(-4px);
   }
+
   50% {
     transform: translateY(4px);
   }
 }
 
 @keyframes fish-bob-subtle {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(-2.5px);
   }
+
   50% {
     transform: translateY(2.5px);
   }
@@ -646,12 +661,15 @@ p.italic {
     transform: translateY(0);
     opacity: 0;
   }
+
   6% {
     opacity: 0.85;
   }
+
   85% {
     opacity: 0.85;
   }
+
   100% {
     transform: translateY(-112vh);
     opacity: 0;
@@ -662,6 +680,7 @@ p.italic {
   0% {
     transform: translateX(-12px);
   }
+
   100% {
     transform: translateX(12px);
   }
@@ -679,18 +698,39 @@ p.italic {
 
 /* Ambient Seaweed & Crayfish sway */
 @keyframes seaweed-sway-anim-1 {
-  0%, 100% { transform: rotate(-2deg); }
-  50% { transform: rotate(2deg); }
+
+  0%,
+  100% {
+    transform: rotate(-2deg);
+  }
+
+  50% {
+    transform: rotate(2deg);
+  }
 }
 
 @keyframes seaweed-sway-anim-2 {
-  0%, 100% { transform: rotate(1.8deg); }
-  50% { transform: rotate(-1.8deg); }
+
+  0%,
+  100% {
+    transform: rotate(1.8deg);
+  }
+
+  50% {
+    transform: rotate(-1.8deg);
+  }
 }
 
 @keyframes crayfish-sway-anim {
-  0%, 100% { transform: rotate(-1.2deg); }
-  50% { transform: rotate(1.2deg); }
+
+  0%,
+  100% {
+    transform: rotate(-1.2deg);
+  }
+
+  50% {
+    transform: rotate(1.2deg);
+  }
 }
 
 .seaweed-sway-1 {
@@ -712,41 +752,54 @@ p.italic {
 /* Dynamic Clay Bubbles & Aquatic Floating Animations                         */
 /* ========================================================================== */
 @keyframes clay-float-1 {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
+
   50% {
     transform: translateY(-8px) rotate(1.5deg);
   }
 }
 
 @keyframes clay-float-2 {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
+
   50% {
     transform: translateY(-7px) rotate(-1.5deg);
   }
 }
 
 @keyframes clay-float-3 {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
+
   50% {
     transform: translateY(-6px) rotate(1deg);
   }
 }
 
 @keyframes clay-bubble-float-anim {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0) translateX(0) scale(1);
     opacity: 0.8;
   }
+
   35% {
     transform: translateY(-12px) translateX(5px) scale(1.06);
     opacity: 1;
   }
+
   70% {
     transform: translateY(-20px) translateX(-4px) scale(0.98);
     opacity: 0.85;
@@ -758,12 +811,119 @@ p.italic {
     transform: translateY(14px) translateX(-3px) scale(0.85);
     opacity: 0;
   }
+
   20% {
     opacity: 0.95;
   }
+
   80% {
     opacity: 0.95;
   }
+
+  100% {
+    transform: translateY(-56px) translateX(4px) scale(1.12);
+    opacity: 0;
+  }
+}
+
+.animate-float {
+  animation: clay-float-1 4.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-float-slow {
+  animation: clay-float-2 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-float-delayed {
+  animation: clay-float-3 5.2s ease-in-out infinite;
+  animation-delay: -2.5s;
+  will-change: transform;
+}
+
+.animate-bubble-float {
+  animation: clay-bubble-float-anim 4.2s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.animate-bubble-drift {
+  animation: clay-bubble-drift-anim 6.5s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* ========================================================================== */
+/* Dynamic Clay Bubbles & Aquatic Floating Animations                         */
+/* ========================================================================== */
+@keyframes clay-float-1 {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-8px) rotate(1.5deg);
+  }
+}
+
+@keyframes clay-float-2 {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-7px) rotate(-1.5deg);
+  }
+}
+
+@keyframes clay-float-3 {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-6px) rotate(1deg);
+  }
+}
+
+@keyframes clay-bubble-float-anim {
+
+  0%,
+  100% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0.8;
+  }
+
+  35% {
+    transform: translateY(-12px) translateX(5px) scale(1.06);
+    opacity: 1;
+  }
+
+  70% {
+    transform: translateY(-20px) translateX(-4px) scale(0.98);
+    opacity: 0.85;
+  }
+}
+
+@keyframes clay-bubble-drift-anim {
+  0% {
+    transform: translateY(14px) translateX(-3px) scale(0.85);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0.95;
+  }
+
+  80% {
+    opacity: 0.95;
+  }
+
   100% {
     transform: translateY(-56px) translateX(4px) scale(1.12);
     opacity: 0;
@@ -797,6 +957,7 @@ p.italic {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .fish-track-ltr,
   .fish-track-rtl,
   .fish-bob-gentle,

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { SHIPPING_STEPS, getWhatsAppUrl } from "@/lib/content";
+import { Decor } from "@/components/Decor";
 
 interface ShippingSectionProps {
   lang: "en" | "ml";
@@ -36,24 +37,32 @@ export function ShippingSection({ lang }: ShippingSectionProps) {
         aria-hidden="true"
       />
 
-      {/* Floating Ambient Soft Clay Fish & Low-Opacity Bubbles in Outer Side Margins */}
-      <div className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden" aria-hidden="true">
-        {/* Left Outer Margin: Soft Clay Pink Guppy & Faint Bubble (Visible on Desktop >= 1024px) */}
-        <div className="hidden lg:block absolute top-16 left-4 xl:left-8 w-13 lg:w-14 aspect-[750/484] opacity-90 animate-float-slow">
-          <Image src="/clay/shipping/guppy-pink.webp" alt="" fill className="object-contain" priority unoptimized />
-        </div>
-        <div className="hidden lg:block absolute top-28 left-8 xl:left-16 w-6 h-6 opacity-20 animate-bubble-float">
-          <Image src="/clay/fx/bubble-1.webp" alt="" fill className="object-contain" priority unoptimized />
-        </div>
-
-        {/* Right Outer Margin: Soft Clay Blue Guppy & Faint Bubble (Visible on Desktop >= 1024px) */}
-        <div className="hidden lg:block absolute top-18 right-4 xl:right-8 w-13 lg:w-14 aspect-[290/183] opacity-90 animate-float scale-x-[-1]">
-          <Image src="/clay/fish/blue-guppy.webp" alt="" fill className="object-contain" priority unoptimized />
-        </div>
-        <div className="hidden lg:block absolute top-32 right-8 xl:right-16 w-6 h-6 opacity-20 animate-bubble-float">
-          <Image src="/clay/fx/bubble-3.webp" alt="" fill className="object-contain" priority unoptimized />
-        </div>
-      </div>
+      {/* Unified Sprite Sheet Decor: Koi (far left), Betta (upper-right), Swordtail (mid/lower-right) */}
+      <Decor
+        name="koi"
+        className="top-20 lg:top-24 left-3 lg:left-6 xl:left-12"
+        size={84}
+        flip={true}
+        delay={0.2}
+        shadow
+      />
+      <Decor
+        name="betta"
+        className="top-16 lg:top-20 right-3 lg:right-6 xl:right-12"
+        size={78}
+        flip={false}
+        delay={0.6}
+        shadow
+      />
+      <Decor
+        name="swordtail"
+        className="top-48 lg:top-52 right-4 lg:right-8 xl:right-16"
+        size={82}
+        flip={false}
+        delay={1.0}
+        visibility="desktop"
+        shadow
+      />
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* ================================================================== */}

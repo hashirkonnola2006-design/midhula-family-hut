@@ -3,6 +3,7 @@
 import React, { useState, useRef } from "react";
 import Image from "next/image";
 import { Play, ArrowRight } from "lucide-react";
+import { Decor } from "@/components/Decor";
 
 interface FarmSectionProps {
   lang: "en" | "ml";
@@ -83,31 +84,32 @@ export function FarmSection({ lang }: FarmSectionProps) {
       id="farm"
       className="relative bg-[#FAF4E8] text-[#1E293B] pt-14 pb-20 sm:pt-20 sm:pb-28 px-4 sm:px-6 lg:px-8 overflow-hidden select-none"
     >
-      {/* ============================================================ */}
-      {/* AMBIENT DECORATIONS: Soft Clay Decor (Outer Margins, Max 2-3)*/}
-      {/* ============================================================ */}
+      {/* Unified Sprite Sheet Decor: Seaweed-tall (bottom-left), Guppy (upper-left), Coral (bottom-right clear of WhatsApp) */}
+      <Decor
+        name="guppy"
+        className="top-20 lg:top-24 left-4 lg:left-8 xl:left-14"
+        size={76}
+        flip={true}
+        delay={0.3}
+        visibility="desktop"
+        shadow
+      />
+      <Decor
+        name="seaweed-tall"
+        className="bottom-0 left-2 lg:left-8 xl:left-12"
+        size={105}
+        shadow
+      />
+      <Decor
+        name="coral"
+        className="bottom-28 right-6 lg:right-10 xl:right-16"
+        size={74}
+        visibility="desktop"
+        shadow
+      />
 
-      {/* Floating Soft Clay Goldfish (Left Outer Margin, Visible on Large Desktops) */}
-      <div className="absolute left-3 lg:left-6 xl:left-10 top-[46%] -translate-y-1/2 pointer-events-none z-0 hidden lg:block animate-float-slow select-none">
-        <Image
-          src="/clay/farm/clay-goldfish-left-hd.webp"
-          alt=""
-          width={160}
-          height={104}
-          className="w-13 lg:w-14 h-auto"
-        />
-      </div>
-
-      {/* Subtle Low-Opacity Bubbles (Hidden on Mobile/Tablet) */}
-      <div className="absolute left-6 lg:left-12 top-20 w-6 h-6 pointer-events-none z-0 hidden lg:block animate-bubble-float opacity-20">
-        <Image src="/clay/fx/bubble-1.webp" alt="" fill className="object-contain" />
-      </div>
-      <div className="absolute right-8 lg:right-16 top-28 w-5 h-5 pointer-events-none z-0 hidden lg:block animate-bubble-float opacity-20">
-        <Image src="/clay/fx/bubble-3.webp" alt="" fill className="object-contain" />
-      </div>
-
       {/* ============================================================ */}
-      {/* BOTTOM BLUE WAVES & CLEAN SEAWEED CORNER                     */}
+      {/* BOTTOM BLUE WAVES                                            */}
       {/* ============================================================ */}
       <div className="absolute bottom-0 left-0 right-0 pointer-events-none overflow-hidden z-0 leading-none">
         <svg
@@ -127,17 +129,6 @@ export function FarmSection({ lang }: FarmSectionProps) {
             fillOpacity="0.65"
           />
         </svg>
-      </div>
-
-      {/* Bottom-left Seaweed sprig (Small, Hidden on Mobile, Zero Box Shadow) */}
-      <div className="absolute bottom-0 left-0 w-20 sm:w-24 md:w-28 pointer-events-none z-0 hidden md:block">
-        <Image
-          src="/clay/farm/seaweed-bl-hd.webp"
-          alt=""
-          width={220}
-          height={300}
-          className="w-full h-auto object-contain object-bottom"
-        />
       </div>
 
       {/* ============================================================ */}
@@ -239,11 +230,10 @@ export function FarmSection({ lang }: FarmSectionProps) {
                 <div
                   key={video.id}
                   onClick={() => handleSelectVideo(idx)}
-                  className={`group flex items-center gap-3 sm:gap-4 p-2.5 sm:p-3 rounded-2xl sm:rounded-3xl transition-all duration-200 cursor-pointer ${
-                    isSelected
-                      ? "bg-white border border-[#2F6BFF]/30 shadow-[0_8px_24px_rgba(47,107,255,0.12)] -translate-y-0.5"
-                      : "bg-[#FFFDF8] hover:bg-white border border-[#EFE5D5] shadow-xs hover:shadow-md hover:-translate-y-0.5"
-                  }`}
+                  className={`group flex items-center gap-3 sm:gap-4 p-2.5 sm:p-3 rounded-2xl sm:rounded-3xl transition-all duration-200 cursor-pointer ${isSelected
+                    ? "bg-white border border-[#2F6BFF]/30 shadow-[0_8px_24px_rgba(47,107,255,0.12)] -translate-y-0.5"
+                    : "bg-[#FFFDF8] hover:bg-white border border-[#EFE5D5] shadow-xs hover:shadow-md hover:-translate-y-0.5"
+                    }`}
                 >
                   {/* Thumbnail Container */}
                   <div className="relative w-24 sm:w-28 md:w-32 aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden shrink-0 bg-slate-900/10">
@@ -271,11 +261,10 @@ export function FarmSection({ lang }: FarmSectionProps) {
                   {/* Video Title & Subtitle */}
                   <div className="flex-1 min-w-0 pr-1">
                     <h3
-                      className={`text-sm sm:text-base font-extrabold line-clamp-1 leading-snug transition-colors ${
-                        isSelected
-                          ? "text-[#2F6BFF]"
-                          : "text-[#1E293B] group-hover:text-[#2F6BFF]"
-                      }`}
+                      className={`text-sm sm:text-base font-extrabold line-clamp-1 leading-snug transition-colors ${isSelected
+                        ? "text-[#2F6BFF]"
+                        : "text-[#1E293B] group-hover:text-[#2F6BFF]"
+                        }`}
                     >
                       {lang === "en" ? video.title : video.titleMl}
                     </h3>

@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { MapPin } from "lucide-react";
 import { BRAND, getWhatsAppUrl } from "@/lib/content";
-import { FishField } from "./FishField";
+import { Decor } from "@/components/Decor";
 
 interface HeroProps {
   lang?: "en" | "ml";
@@ -146,11 +146,21 @@ export function Hero({ lang = "en", onOpenVideo }: HeroProps) {
       id="hero"
       className="relative w-full min-h-[100svh] pt-14 sm:pt-20 pb-8 sm:pb-14 px-3 sm:px-8 flex flex-col justify-center items-center butter-backdrop overflow-hidden select-none"
     >
-      {/* Layered Fish & Clay Props Field (Z-5, Z-25, Z-30) - Fish NEVER hide or fade on scroll */}
-      <FishField
-        isVisible={true}
-        isPaused={!isInView}
-        reducedMotion={reducedMotion}
+      {/* Unified Sprite Sheet Decor: Goldfish (left) & Bubbles (right) away from WhatsApp button */}
+      <Decor
+        name="goldfish"
+        className="top-24 lg:top-32 left-3 lg:left-6 xl:left-12"
+        size={76}
+        flip={true}
+        delay={0.2}
+        shadow
+      />
+      <Decor
+        name="bubbles"
+        className="top-28 lg:top-36 right-4 lg:right-8 xl:right-14"
+        size={42}
+        opacity={0.65}
+        delay={0.8}
       />
 
       {/* Main Content Area */}
@@ -177,60 +187,6 @@ export function Hero({ lang = "en", onOpenVideo }: HeroProps) {
           >
             {BLUE_LETTERS.map((item, idx) => {
               const widthPct = (item.width / BLUE_TOTAL_WIDTH) * 100;
-
-              // The peeking fish sits inside the counter hole of 'D' (rendered BEHIND D)
-              if (item.char === "D") {
-                return (
-                  <motion.div
-                    key={`l1-${item.char}-${idx}`}
-                    {...getLetterWobble(idx)}
-                    className="relative inline-block"
-                    style={{ width: `${widthPct}%` }}
-                  >
-                    {/* peek-blue anchored inside the hole of the 'D' and rendered BEHIND D (Z-1) */}
-                    <div
-                      className="absolute inset-0 flex items-center justify-center pointer-events-none"
-                      style={{ zIndex: 1 }}
-                    >
-                      <motion.div
-                        animate={
-                          reducedMotion
-                            ? {}
-                            : {
-                              y: [-3, 3, -3],
-                              rotate: [-1.4, 1.4, -1.4],
-                            }
-                        }
-                        transition={{ duration: 3.0, repeat: Infinity, ease: "easeInOut" as const }}
-                        style={{ width: "56%", height: "56%", marginTop: "-4%", marginLeft: "-4%" }}
-                        className="relative"
-                      >
-                        <Image
-                          src="/clay/fish/peek-blue.webp"
-                          alt=""
-                          fill
-                          className="object-contain drop-shadow-[0_2px_8px_rgba(20,50,150,0.35)]"
-                        />
-                      </motion.div>
-                    </div>
-
-                    {/* D Letter Image on top (Z-10) with open counter hole */}
-                    <div className="relative z-10 w-full">
-                      <Image
-                        src={`/clay/letters/${item.file}`}
-                        alt={item.char}
-                        width={item.width}
-                        height={item.height}
-                        priority
-                        className="clay-headline-letter w-full h-auto object-contain cursor-pointer transition-transform duration-200 hover:scale-105 active:scale-95"
-                        style={{
-                          filter: "drop-shadow(0 14px 24px rgba(31,75,255,0.18))",
-                        }}
-                      />
-                    </div>
-                  </motion.div>
-                );
-              }
 
               return (
                 <motion.div

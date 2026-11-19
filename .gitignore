@@ -35,9 +35,11 @@ yarn-error.log*
 
 # vercel
 .vercel
+/scratch
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
 
 .vercel
+/scratch
