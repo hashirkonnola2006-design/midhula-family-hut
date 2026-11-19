@@ -112,17 +112,6 @@ export function ReviewsSection({ lang }: ReviewsSectionProps) {
             className="absolute rounded-full border border-white/60 bg-white/20 backdrop-blur-[0.5px] shadow-[inset_0_2px_4px_rgba(255,255,255,0.85),0_4px_12px_rgba(60,100,200,0.12)] before:content-[''] before:absolute before:top-1.5 before:left-1.5 before:w-1.5 before:h-1.5 before:rounded-full before:bg-white/80"
           />
         ))}
-
-        {/* Bottom Left Decoration: 3D Clay Seaweed Mound (Beside Card 1) */}
-        <div className="absolute bottom-10 sm:bottom-14 left-1 sm:left-4 lg:left-8 w-20 sm:w-28 lg:w-32 aspect-[491/779] pointer-events-none z-20">
-          <Image
-            src="/clay/props/seaweed-mound.webp"
-            alt=""
-            fill
-            className="object-contain object-bottom drop-shadow-[0_12px_24px_rgba(30,70,140,0.2)]"
-            unoptimized
-          />
-        </div>
       </div>
 
       <div className="max-w-[1280px] mx-auto relative z-10">
