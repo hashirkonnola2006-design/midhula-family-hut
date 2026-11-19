@@ -1,5 +1,26 @@
 @import "tailwindcss";
 
+/* ========================================================================== */
+/* Size-Adjusted Fallback Fonts to Prevent Layout Shift                       */
+/* ========================================================================== */
+@font-face {
+  font-family: "Fredoka Fallback";
+  src: local("Arial Rounded MT Bold"), local("Arial");
+  ascent-override: 86%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+  size-adjust: 104%;
+}
+
+@font-face {
+  font-family: "Nunito Fallback";
+  src: local("Arial");
+  ascent-override: 95%;
+  descent-override: 24%;
+  line-gap-override: 0%;
+  size-adjust: 100%;
+}
+
 @theme {
   --color-butter-bg: #FFE9A0;
   --color-butter-glow: #FFF3C4;
@@ -11,13 +32,20 @@
   --color-clay-sky: #BDEBF5;
   --color-clay-grey: #D9D9DE;
   --color-clay-navy: #0E2038;
-  --font-baloo: var(--font-baloo), var(--font-display), sans-serif;
-  --font-display: var(--font-display), "Baloo 2", "Fredoka", sans-serif;
-  --font-body: var(--font-body), "Poppins", sans-serif;
-  --font-malayalam: var(--font-malayalam), "Noto Sans Malayalam", sans-serif;
+  --font-heading: var(--font-heading);
+  --font-display: var(--font-heading);
+  --font-body: var(--font-body);
+  --font-malayalam: var(--font-malayalam);
 }
 
 :root {
+  --font-heading: "Fredoka", "Baloo 2", system-ui, sans-serif;
+  --font-body: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-malayalam: "Noto Sans Malayalam", "Nunito", sans-serif;
+  --font-malayalam-heading: "Baloo Chettan 2", var(--font-heading);
+  --font-display: var(--font-heading);
+  --font-baloo: var(--font-heading);
+
   --clay-yellow: #FFE9A0;
   --clay-cream: #FFF8E7;
   --clay-blue: #1F4FFF;
@@ -57,10 +85,142 @@ html {
 body {
   background-color: var(--clay-yellow);
   color: var(--clay-navy);
-  font-family: var(--font-body), "Poppins", sans-serif;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   overflow-x: clip;
   scrollbar-width: none;
   -ms-overflow-style: none;
+}
+
+/* ========================================================================== */
+/* Clay Typography Rules                                                      */
+/* Fredoka for Headings, Nunito for Body, Malayalam Selectors                 */
+/* ========================================================================== */
+
+/* Headings */
+h1, h2, h3,
+.hero-title,
+.section-title {
+  font-family: var(--font-heading);
+  letter-spacing: 0.01em;
+}
+
+h1 {
+  font-weight: 700;
+  line-height: 1.15;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+}
+
+h2 {
+  font-weight: 700;
+  line-height: 1.2;
+  font-size: clamp(1.75rem, 4vw, 3rem);
+}
+
+h3 {
+  font-weight: 600;
+  line-height: 1.25;
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+
+/* Card Titles */
+.card-title,
+.clay-card h3,
+.clay-tile h3 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* Badges, Orange Pill Badges, Location Pills, Nav Links, Buttons and CTA Labels */
+button,
+[role="button"],
+.clay-btn-orange,
+.clay-btn-green,
+.clay-btn-green-chubby,
+.clay-btn-cream,
+.clay-pill,
+.clay-pill-orange,
+.clay-location-pill,
+nav a,
+.nav-link,
+.badge,
+.pill-badge,
+[class*="rounded-full"][class*="inline-flex"],
+[class*="rounded-full"][class*="px-"][class*="py-"] {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* Testimonial Author Names */
+.testimonial-author,
+.testimonial-card span.font-extrabold {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* Body, Paragraphs, Subtitles, Descriptions */
+p,
+.subtitle,
+.description {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
+
+/* Small muted text */
+small,
+.text-muted,
+.meta-text {
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+/* Emphasised text and meta labels */
+strong,
+b,
+.meta-label {
+  font-family: var(--font-body);
+  font-weight: 700;
+}
+
+/* Form inputs, chips, tooltips */
+input,
+textarea,
+select,
+.chip,
+.tooltip {
+  font-family: var(--font-body);
+}
+
+/* Testimonial quotes in true italic Nunito */
+blockquote,
+.testimonial-quote,
+p.italic {
+  font-family: var(--font-body);
+  font-style: italic;
+}
+
+/* Malayalam Font Switching via :lang(ml) */
+:lang(ml) h1,
+:lang(ml) h2,
+:lang(ml) h3 {
+  font-family: "Baloo Chettan 2", var(--font-heading);
+}
+
+:lang(ml) body,
+:lang(ml) p {
+  font-family: var(--font-malayalam);
 }
 
 /* Butter yellow background with soft central radial glow matching reference */
@@ -72,18 +232,12 @@ body {
 .clay-headline-letter {
   display: inline-block;
   color: #1F4FFF;
-  font-family: var(--font-baloo), "Baloo 2", sans-serif;
-  font-weight: 800;
-  line-height: 0.88;
-  letter-spacing: -0.015em;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
   transform-origin: center bottom;
-  text-shadow:
-    -2px -2px 3px rgba(180, 215, 255, 0.65),
-    -1px -1px 1px rgba(255, 255, 255, 0.4),
-    1px 2px 2px #163CC5,
-    2px 4px 5px rgba(18, 45, 160, 0.45),
-    0 8px 16px rgba(31, 79, 255, 0.16),
-    0 16px 28px rgba(180, 140, 20, 0.2);
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.08);
   transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
   user-select: none;
 }
@@ -253,24 +407,18 @@ body {
 /* Clay Headings */
 .clay-heading-blue {
   color: #1F4FFF;
-  font-family: var(--font-baloo), "Baloo 2", sans-serif;
-  font-weight: 800;
-  letter-spacing: -0.015em;
-  text-shadow:
-    -1px -1px 1px rgba(255, 255, 255, 0.7),
-    1px 2px 1px #163CC5,
-    2px 4px 5px rgba(18, 45, 160, 0.3);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-shadow: none;
 }
 
 .clay-heading-white {
   color: #FFFFFF;
-  font-family: var(--font-baloo), "Baloo 2", sans-serif;
-  font-weight: 800;
-  letter-spacing: -0.015em;
-  text-shadow:
-    -1px -1px 0 rgba(255, 255, 255, 0.9),
-    1px 2px 0 #0F32B5,
-    2px 5px 6px rgba(5, 20, 80, 0.4);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-shadow: none;
 }
 
 /* Clay Cards & Tiles */
