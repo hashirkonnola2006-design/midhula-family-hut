@@ -144,7 +144,7 @@ export function CtaSection({ lang }: CtaSectionProps) {
       </div>
 
       {/* ============================================================ */}
-      {/* 5. BOTTOM GENTLE WAVE: Seamless transition to Footer (#FEEDB5)*/}
+      {/* 5. BOTTOM GENTLE WAVE: Seamless transition to Footer (#FFF4D6)*/}
       {/* ============================================================ */}
       <div
         className="absolute bottom-0 left-0 right-0 w-full pointer-events-none z-20 overflow-hidden leading-none"
@@ -159,7 +159,7 @@ export function CtaSection({ lang }: CtaSectionProps) {
         >
           <path
             d="M0,90 L0,38 C220,18 460,74 820,58 C1120,44 1300,16 1440,36 L1440,90 Z"
-            fill="#FEEDB5"
+            fill="#FFF4D6"
           />
         </svg>
       </div>
