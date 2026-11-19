@@ -107,56 +107,9 @@ export function ShippingSection({ lang }: ShippingSectionProps) {
         </div>
 
         {/* ================================================================== */}
-        {/* 4 Cards in a Row with Curved Orange Dashed SVG Connectors           */}
+        {/* 4 Cards in a Row with Clean Arched Dashed Connectors               */}
         {/* ================================================================== */}
         <div className="relative">
-          {/* Desktop Curved Orange Dashed SVG Connectors (Between Cards at Illustration Level) */}
-          <div className="hidden xl:block absolute top-[115px] inset-x-0 h-10 pointer-events-none z-10">
-            <svg
-              className="w-full h-full overflow-visible"
-              viewBox="0 0 1200 40"
-              fill="none"
-              preserveAspectRatio="none"
-            >
-              {/* Connector 1 -> 2 */}
-              <motion.path
-                d="M 285 20 Q 330 0 375 20"
-                stroke="#FF8A2A"
-                strokeWidth="3.5"
-                strokeLinecap="round"
-                strokeDasharray="6 7"
-                initial={shouldAnimate ? { pathLength: 0 } : undefined}
-                whileInView={shouldAnimate ? { pathLength: 1 } : undefined}
-                viewport={{ once: true }}
-                transition={{ duration: 0.9, delay: 0.3 }}
-              />
-              {/* Connector 2 -> 3 */}
-              <motion.path
-                d="M 585 20 Q 630 0 675 20"
-                stroke="#FF8A2A"
-                strokeWidth="3.5"
-                strokeLinecap="round"
-                strokeDasharray="6 7"
-                initial={shouldAnimate ? { pathLength: 0 } : undefined}
-                whileInView={shouldAnimate ? { pathLength: 1 } : undefined}
-                viewport={{ once: true }}
-                transition={{ duration: 0.9, delay: 0.5 }}
-              />
-              {/* Connector 3 -> 4 */}
-              <motion.path
-                d="M 885 20 Q 930 0 975 20"
-                stroke="#FF8A2A"
-                strokeWidth="3.5"
-                strokeLinecap="round"
-                strokeDasharray="6 7"
-                initial={shouldAnimate ? { pathLength: 0 } : undefined}
-                whileInView={shouldAnimate ? { pathLength: 1 } : undefined}
-                viewport={{ once: true }}
-                transition={{ duration: 0.9, delay: 0.7 }}
-              />
-            </svg>
-          </div>
-
           {/* Cards Grid: 4 columns >= 1200px, 2 columns 700-1199px, 1 column < 700px */}
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-7 items-stretch">
             {SHIPPING_STEPS.map((step, idx) => (
@@ -368,9 +321,42 @@ function ShippingCard({
         </p>
       </div>
 
+      {/* Playful Arched Dashed Step Connector (Desktop & Tablet Horizontal Gaps) */}
+      {index < 3 && (
+        <div
+          className={`absolute left-full top-[108px] w-6 lg:w-7 h-6 -translate-y-1/2 items-center justify-center pointer-events-none z-20 ${
+            index === 0 || index === 2 ? "hidden md:flex" : "hidden xl:flex"
+          }`}
+          aria-hidden="true"
+        >
+          <svg
+            className="w-full h-auto overflow-visible"
+            viewBox="0 0 28 16"
+            fill="none"
+          >
+            {/* Smooth Arched Dashed Trajectory bridging the gap */}
+            <path
+              d="M 2 12 Q 13.5 -7 25 10"
+              stroke="#FF7A13"
+              strokeWidth="2.8"
+              strokeLinecap="round"
+              strokeDasharray="3.6 4"
+            />
+            {/* Soft Rounded Clay Directional Chevron */}
+            <path
+              d="M 20.5 7 L 25 10 L 21.5 13.5"
+              stroke="#FF7A13"
+              strokeWidth="2.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </div>
+      )}
+
       {/* Mobile-only Vertical Connector to Next Card */}
       {index < 3 && (
-        <div className="xl:hidden flex justify-center -mb-9 mt-4 z-10 pointer-events-none">
+        <div className="md:hidden flex justify-center -mb-9 mt-4 z-10 pointer-events-none">
           <svg width="24" height="28" viewBox="0 0 24 28" fill="none">
             <line
               x1="12"
