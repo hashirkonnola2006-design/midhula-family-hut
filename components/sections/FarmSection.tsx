@@ -28,7 +28,7 @@ const PLAYLIST_VIDEOS: PlaylistVideo[] = [
     subtitle: "A glimpse of our beautiful fishes.",
     subtitleMl: "മനോഹരമായ മത്സ്യങ്ങളുടെ ഒരു ദൃശ്യം.",
     duration: "2:15",
-    thumbnail: "/clay/farm/playlist-1.webp",
+    thumbnail: "/clay/farm/playlist-1-hd.webp",
     previewImage: "/clay/farm/player-preview.webp",
   },
   {
@@ -38,7 +38,7 @@ const PLAYLIST_VIDEOS: PlaylistVideo[] = [
     subtitle: "Our modern farming setup.",
     subtitleMl: "ഞങ്ങളുടെ ആധുനിക ഫാം ഒരുക്കങ്ങൾ.",
     duration: "1:48",
-    thumbnail: "/clay/farm/playlist-2.webp",
+    thumbnail: "/clay/farm/playlist-2-hd.webp",
     previewImage: "/clay/farm/player-preview.webp",
   },
   {
@@ -48,7 +48,7 @@ const PLAYLIST_VIDEOS: PlaylistVideo[] = [
     subtitle: "How we feed our fishes.",
     subtitleMl: "മത്സ്യങ്ങൾക്ക് ഭക്ഷണം നൽകുന്ന വിധം.",
     duration: "3:10",
-    thumbnail: "/clay/farm/playlist-3.webp",
+    thumbnail: "/clay/farm/playlist-3-hd.webp",
     previewImage: "/clay/farm/player-preview.webp",
   },
   {
@@ -58,7 +58,7 @@ const PLAYLIST_VIDEOS: PlaylistVideo[] = [
     subtitle: "Life at Midhula Farm Hut.",
     subtitleMl: "മിഥുല ഫാം ഹട്ടിലെ ജീവിതം.",
     duration: "2:20",
-    thumbnail: "/clay/farm/playlist-4.webp",
+    thumbnail: "/clay/farm/playlist-4-hd.webp",
     previewImage: "/clay/farm/player-preview.webp",
   },
 ];
@@ -90,11 +90,11 @@ export function FarmSection({ lang }: FarmSectionProps) {
       {/* Floating Orange Goldfish (Left Side) */}
       <div className="absolute left-3 sm:left-8 lg:left-12 top-[46%] -translate-y-1/2 pointer-events-none z-10 hidden sm:block animate-float-slow">
         <Image
-          src="/clay/farm/clay-goldfish-left.webp"
+          src="/clay/farm/clay-goldfish-left-hd.webp"
           alt="Clay Goldfish"
-          width={70}
-          height={55}
-          className="w-12 sm:w-16 h-auto drop-shadow-md"
+          width={200}
+          height={130}
+          className="w-16 sm:w-22 h-auto drop-shadow-md"
         />
       </div>
 
@@ -131,24 +131,24 @@ export function FarmSection({ lang }: FarmSectionProps) {
       </div>
 
       {/* Bottom-left Seaweed sprigs */}
-      <div className="absolute bottom-0 left-0 w-20 sm:w-28 md:w-36 pointer-events-none z-10">
+      <div className="absolute bottom-0 left-0 w-24 sm:w-36 md:w-44 pointer-events-none z-10">
         <Image
-          src="/clay/farm/seaweed-bl-transparent.webp"
+          src="/clay/farm/seaweed-bl-hd.webp"
           alt="Seaweed"
-          width={110}
-          height={166}
-          className="w-full h-auto object-contain object-bottom"
+          width={220}
+          height={300}
+          className="w-full h-auto object-contain object-bottom drop-shadow-[0_8px_16px_rgba(20,80,40,0.15)]"
         />
       </div>
 
       {/* Bottom-right Seaweed sprigs */}
-      <div className="absolute bottom-0 right-0 w-20 sm:w-28 md:w-36 pointer-events-none z-10">
+      <div className="absolute bottom-0 right-0 w-24 sm:w-36 md:w-44 pointer-events-none z-10">
         <Image
-          src="/clay/farm/seaweed-br-transparent.webp"
+          src="/clay/farm/seaweed-br-hd.webp"
           alt="Seaweed"
-          width={110}
-          height={166}
-          className="w-full h-auto object-contain object-bottom"
+          width={220}
+          height={300}
+          className="w-full h-auto object-contain object-bottom drop-shadow-[0_8px_16px_rgba(20,80,40,0.15)]"
         />
       </div>
 
@@ -189,11 +189,11 @@ export function FarmSection({ lang }: FarmSectionProps) {
           {/* Floating Orange Goldfish (positioned near top-right header area) */}
           <div className="absolute right-48 sm:right-64 top-8 sm:top-12 pointer-events-none z-20 hidden md:block animate-float">
             <Image
-              src="/clay/farm/clay-goldfish.webp"
+              src="/clay/farm/clay-goldfish-hd.webp"
               alt="Clay Goldfish"
-              width={100}
-              height={105}
-              className="w-16 sm:w-20 h-auto drop-shadow-md"
+              width={200}
+              height={130}
+              className="w-18 sm:w-24 h-auto drop-shadow-md"
             />
           </div>
 
@@ -281,6 +281,12 @@ export function FarmSection({ lang }: FarmSectionProps) {
                       <div className="w-7 h-7 rounded-full bg-black/60 backdrop-blur-xs flex items-center justify-center text-white">
                         <Play className="w-3.5 h-3.5 fill-white ml-0.5" />
                       </div>
+                    </div>
+
+                    {/* Duration badge at bottom-right */}
+                    <div className="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-black/75 backdrop-blur-xs text-[10px] font-bold text-white flex items-center gap-0.5 leading-none">
+                      <Play className="w-2 h-2 fill-white" />
+                      <span>{video.duration}</span>
                     </div>
                   </div>
 
