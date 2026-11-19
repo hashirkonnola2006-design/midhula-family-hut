@@ -302,9 +302,8 @@ export function FishField({
 
   return (
     <div
-      className={`absolute inset-0 overflow-hidden pointer-events-none select-none ${
-        isPaused ? "hero-animations-paused" : ""
-      }`}
+      className={`absolute inset-0 overflow-hidden pointer-events-none select-none ${isPaused ? "hero-animations-paused" : ""
+        }`}
       aria-hidden="true"
     >
       {/* ============================================================== */}
@@ -325,9 +324,8 @@ export function FishField({
             /* Outer Tier: .fish-lane (ONLY horizontal translation) */
             <div
               key={fish.id}
-              className={`fish-lane absolute pointer-events-none select-none ${
-                fish.mobileHidden ? "hidden sm:block" : "block"
-              } ${reducedMotion ? "" : trackClass}`}
+              className={`fish-lane absolute pointer-events-none select-none ${fish.mobileHidden ? "hidden sm:block" : "block"
+                } ${reducedMotion ? "" : trackClass}`}
               style={{
                 top: fish.laneTop,
                 left: reducedMotion ? fish.staticLeft : 0,
@@ -383,9 +381,8 @@ export function FishField({
         {HERO_BUBBLES.map((b) => (
           <div
             key={b.id}
-            className={`absolute bottom-[-50px] pointer-events-none select-none ${
-              b.mobileHidden ? "hidden sm:block" : "block"
-            } ${reducedMotion ? "hidden" : "bubble-rise"}`}
+            className={`absolute bottom-[-50px] pointer-events-none select-none ${b.mobileHidden ? "hidden sm:block" : "block"
+              } ${reducedMotion ? "hidden" : "bubble-rise"}`}
             style={{
               left: b.left,
               animationDuration: `${b.duration}s`,
@@ -424,7 +421,7 @@ export function FishField({
       {/* LAYER Z-30: Corner Decorations Anchored Flush to Bottom Corners*/}
       {/* ============================================================== */}
       <div className="absolute inset-x-0 bottom-0 z-30 pointer-events-none">
-        
+
         {/* BOTTOM-LEFT CORNER: Rocks cluster, seaweed, and red crayfish */}
         <div
           className="absolute pointer-events-none select-none overflow-visible"

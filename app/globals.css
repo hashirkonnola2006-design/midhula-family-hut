@@ -38,6 +38,8 @@ html {
   background-color: var(--clay-yellow);
   color: var(--clay-navy);
   overflow-x: clip;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 body {
@@ -45,6 +47,8 @@ body {
   color: var(--clay-navy);
   font-family: var(--font-body), "Poppins", sans-serif;
   overflow-x: clip;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 /* Butter yellow background with soft central radial glow matching reference */
@@ -273,20 +277,15 @@ body {
     0 0 0 3px rgba(31, 79, 255, 0.25);
 }
 
-/* Custom scrollbar for warm aesthetic */
+/* Hide scrollbar completely to eliminate the yellow gutter/stripe on multi-color sections */
 ::-webkit-scrollbar {
-  width: 9px;
+  display: none;
+  width: 0;
+  height: 0;
 }
-::-webkit-scrollbar-track {
-  background: #FFE9A0;
-}
-::-webkit-scrollbar-thumb {
-  background: #F0D582;
-  border-radius: 5px;
-  border: 2px solid #FFE9A0;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #E2C264;
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 /* ========================================================================== */

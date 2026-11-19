@@ -21,7 +21,7 @@ export function ReviewsSection({ lang }: ReviewsSectionProps) {
   return (
     <section id="reviews" className="relative py-10 sm:py-24 px-3 sm:px-8 bg-[#BDEBF5] overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10">
-        
+
         {/* Section Header with Navigation Arrows */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6 sm:mb-12 gap-4">
           <div>

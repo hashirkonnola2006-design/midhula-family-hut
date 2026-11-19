@@ -155,7 +155,7 @@ export function Hero({ lang = "en", onOpenVideo }: HeroProps) {
 
       {/* Main Content Area */}
       <div className="w-full max-w-6xl mx-auto flex flex-col items-center justify-center flex-1 my-auto text-center z-10 pointer-events-auto">
-        
+
         {/* Screen Reader & SEO Title */}
         <h1 className="sr-only">Midhula Farm Hut</h1>
 
@@ -197,9 +197,9 @@ export function Hero({ lang = "en", onOpenVideo }: HeroProps) {
                           reducedMotion
                             ? {}
                             : {
-                                y: [-3, 3, -3],
-                                rotate: [-1.4, 1.4, -1.4],
-                              }
+                              y: [-3, 3, -3],
+                              rotate: [-1.4, 1.4, -1.4],
+                            }
                         }
                         transition={{ duration: 3.0, repeat: Infinity, ease: "easeInOut" as const }}
                         style={{ width: "56%", height: "56%", marginTop: "-4%", marginLeft: "-4%" }}

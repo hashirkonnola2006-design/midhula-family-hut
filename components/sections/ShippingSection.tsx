@@ -48,7 +48,7 @@ export function ShippingSection({ lang }: ShippingSectionProps) {
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        
+
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full clay-pill-orange text-xs font-bold text-white mb-2.5 sm:mb-3 shadow-sm">
