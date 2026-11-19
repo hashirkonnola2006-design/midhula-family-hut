@@ -10,24 +10,23 @@ interface ReviewsSectionProps {
   lang: "en" | "ml";
 }
 
-// Sparkle dash pill pairs matching the reference
-function SparklePair({ className = "" }: { className?: string }) {
+// Sparkle dash pill arc above boy's head matching the reference
+function HeadSparkles({ className = "" }: { className?: string }) {
   return (
     <div className={`flex items-center gap-1.5 pointer-events-none select-none ${className}`} aria-hidden="true">
-      <div className="w-2 sm:w-2.5 h-5 sm:h-6 rounded-full bg-[#FFB703] shadow-[0_2px_6px_rgba(255,183,3,0.4)]" />
-      <div className="w-2 sm:w-2.5 h-3.5 sm:h-4.5 rounded-full bg-[#FF8A2A] shadow-[0_2px_6px_rgba(255,138,42,0.4)] mt-1" />
+      <div className="w-2 sm:w-2.5 h-5 sm:h-6 rounded-full bg-[#FFB703] shadow-[0_2px_6px_rgba(255,183,3,0.4)] rotate-[22deg]" />
+      <div className="w-2 sm:w-2.5 h-6 sm:h-7 rounded-full bg-[#FF8A2A] shadow-[0_2px_6px_rgba(255,138,42,0.4)] rotate-[38deg] -translate-y-1" />
+      <div className="w-2 sm:w-2.5 h-5 sm:h-6 rounded-full bg-[#FFB703] shadow-[0_2px_6px_rgba(255,183,3,0.4)] rotate-[54deg]" />
     </div>
   );
 }
 
 // Translucent glowing bubbles matching reference
 const BUBBLES = [
-  { size: 28, left: "4%", top: "16%", duration: 5.2, delay: 0 },
-  { size: 40, left: "7%", top: "64%", duration: 6.0, delay: 0.8 },
-  { size: 22, left: "45%", top: "10%", duration: 4.8, delay: 0.4 },
-  { size: 18, left: "53%", top: "22%", duration: 5.5, delay: 1.2 },
-  { size: 34, right: "4%", top: "12%", duration: 5.8, delay: 0.6 },
-  { size: 46, right: "6%", top: "54%", duration: 6.4, delay: 1.5 },
+  { size: 28, left: "6%", bottom: "35%", duration: 5.2, delay: 0 },
+  { size: 22, left: "52%", top: "18%", duration: 4.8, delay: 0.4 },
+  { size: 34, right: "5%", top: "15%", duration: 5.8, delay: 0.6 },
+  { size: 20, right: "7%", top: "25%", duration: 5.0, delay: 1.2 },
 ];
 
 export function ReviewsSection({ lang }: ReviewsSectionProps) {
@@ -72,9 +71,9 @@ export function ReviewsSection({ lang }: ReviewsSectionProps) {
       id="reviews"
       style={{
         scrollMarginTop: "88px",
-        backgroundColor: "var(--color-customers-bg, #BBDDFA)",
+        backgroundColor: "#BBDDFA",
       }}
-      className="relative py-16 sm:py-24 lg:py-28 px-4 sm:px-8 lg:px-12 overflow-hidden select-none"
+      className="relative py-14 sm:py-20 lg:py-24 px-4 sm:px-8 lg:px-12 overflow-hidden select-none"
     >
       <span id="customers" className="absolute top-0 pointer-events-none" style={{ scrollMarginTop: "88px" }} />
 
@@ -86,7 +85,7 @@ export function ReviewsSection({ lang }: ReviewsSectionProps) {
 
       {/* Subtle Lighter-Blue Radial Glow behind the illustration */}
       <div
-        className="absolute top-0 right-0 w-[540px] sm:w-[700px] h-[460px] sm:h-[540px] bg-[radial-gradient(circle_at_70%_35%,rgba(255,255,255,0.48)_0%,transparent_68%)] pointer-events-none"
+        className="absolute top-0 right-0 w-[540px] sm:w-[720px] h-[460px] sm:h-[540px] bg-[radial-gradient(circle_at_75%_35%,rgba(255,255,255,0.6)_0%,transparent_65%)] pointer-events-none"
         aria-hidden="true"
       />
 
@@ -108,24 +107,21 @@ export function ReviewsSection({ lang }: ReviewsSectionProps) {
               left: b.left,
               right: b.right,
               top: b.top,
+              bottom: b.bottom,
             }}
-            className="absolute rounded-full border border-white/55 bg-white/20 backdrop-blur-[0.5px] shadow-[inset_0_2px_4px_rgba(255,255,255,0.8),0_4px_12px_rgba(60,100,200,0.12)] before:content-[''] before:absolute before:top-1.5 before:left-1.5 before:w-1.5 before:h-1.5 before:rounded-full before:bg-white/80"
+            className="absolute rounded-full border border-white/60 bg-white/20 backdrop-blur-[0.5px] shadow-[inset_0_2px_4px_rgba(255,255,255,0.85),0_4px_12px_rgba(60,100,200,0.12)] before:content-[''] before:absolute before:top-1.5 before:left-1.5 before:w-1.5 before:h-1.5 before:rounded-full before:bg-white/80"
           />
         ))}
 
-        {/* Sparkle Dash Pair 1: Top Right near Boy's Head */}
-        <div className="absolute top-8 sm:top-12 right-6 sm:right-16 lg:right-32 rotate-[25deg]">
-          <SparklePair />
-        </div>
-
-        {/* Sparkle Dash Pair 2: Far Left near Card 1 */}
-        <div className="absolute top-[420px] sm:top-[440px] left-3 sm:left-6 rotate-[-20deg]">
-          <SparklePair />
-        </div>
-
-        {/* Sparkle Dash Pair 3: Bottom Right near Card 3 */}
-        <div className="absolute bottom-6 sm:bottom-10 right-4 sm:right-12 rotate-[42deg]">
-          <SparklePair />
+        {/* Bottom Left Decoration: 3D Clay Seaweed Mound (Beside Card 1) */}
+        <div className="absolute bottom-10 sm:bottom-14 left-1 sm:left-4 lg:left-8 w-20 sm:w-28 lg:w-32 aspect-[491/779] pointer-events-none z-20">
+          <Image
+            src="/clay/props/seaweed-mound.webp"
+            alt=""
+            fill
+            className="object-contain object-bottom drop-shadow-[0_12px_24px_rgba(30,70,140,0.2)]"
+            unoptimized
+          />
         </div>
       </div>
 
@@ -133,37 +129,36 @@ export function ReviewsSection({ lang }: ReviewsSectionProps) {
         {/* ================================================================== */}
         {/* TOP ROW: Left Header + Right 3D Clay Hero Illustration & Podium     */}
         {/* ================================================================== */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-8 lg:gap-6 mb-10 sm:mb-14 lg:mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-6 lg:gap-8 mb-6 sm:mb-8 lg:mb-10">
           {/* Header Left (7 cols on desktop) */}
-          <div className="lg:col-span-7 flex flex-col items-start z-10">
+          <div className="lg:col-span-7 flex flex-col items-start z-10 pt-2">
             {/* Orange Pill Badge: "Hobbyist Community" */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-[var(--color-customers-pill-from,#FF8A3D)] to-[var(--color-customers-pill-to,#F26A1B)] text-white text-xs sm:text-sm font-extrabold shadow-[0_4px_14px_rgba(242,106,27,0.35)] mb-3 sm:mb-4 select-none">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-[#FF8A3D] to-[#F26A1B] text-white text-xs sm:text-sm font-extrabold shadow-[0_4px_14px_rgba(242,106,27,0.35)] mb-3 sm:mb-4 select-none">
               <span className="w-2 h-2 rounded-full bg-white shadow-sm" />
               <span>{lang === "en" ? "Hobbyist Community" : "ഉപഭോക്താക്കൾ പറയുന്നു"}</span>
             </div>
 
-            {/* Main Title: Solid Deep Navy, Clamped Extra-Bold */}
-            <h2 className="text-4xl sm:text-6xl lg:text-[72px] xl:text-[80px] font-black text-[var(--color-customers-navy,#1F2A6B)] leading-[1.04] tracking-tight font-display mb-3 sm:mb-4">
+            {/* Main Title: Solid Deep Navy, Bold Clamped */}
+            <h2 className="text-4xl sm:text-6xl lg:text-[68px] xl:text-[76px] font-black text-[#1F2A6B] leading-[1.06] tracking-tight font-display mb-3">
               {lang === "en" ? "Happy Customers" : "തൃപ്തികരമായ അനുഭവങ്ങൾ"}
             </h2>
 
             {/* Subtitle: Medium Navy-Grey */}
-            <p className="text-sm sm:text-base lg:text-[20px] font-medium text-[var(--color-customers-quote,#3B4A7A)] max-w-xl leading-relaxed">
+            <p className="text-sm sm:text-base lg:text-[19px] font-medium text-[#3B4A7A] max-w-xl leading-relaxed">
               {lang === "en"
                 ? "Real tank unboxings and thriving live arrivals across India."
                 : "ഇന്ത്യയിലുടനീളമുള്ള ഞങ്ങളുടെ ഉപഭോക്താക്കളുടെ വാക്കുകൾ."}
             </p>
           </div>
 
-          {/* Right Hero Illustration with Clay Podium (5 cols on desktop) */}
+          {/* Right Hero Illustration with Podium (5 cols on desktop) */}
           <div className="lg:col-span-5 relative flex items-center justify-center lg:justify-end">
-            {/* Rounded Blue 3D Clay Podium / Pedestal (Positioned Behind Illustration & overlapping Card 3) */}
-            <div
-              className="absolute -bottom-8 lg:-bottom-14 right-1/2 translate-x-1/2 lg:translate-x-0 lg:right-0 w-[320px] sm:w-[400px] lg:w-[450px] h-[100px] sm:h-[125px] lg:h-[140px] rounded-[50px] sm:rounded-[60px] bg-[var(--color-customers-podium,#86B8F5)] shadow-[inset_0_4px_6px_rgba(255,255,255,0.7),0_14px_28px_rgba(30,70,140,0.16)] border-t-2 border-white/40 z-0 pointer-events-none"
-              aria-hidden="true"
-            />
+            {/* Sparkles above boy's head */}
+            <div className="absolute -top-3 sm:-top-5 right-[55%] sm:right-[52%] z-20">
+              <HeadSparkles />
+            </div>
 
-            {/* Floating 3D Clay Illustration (Boy Resting Chin + Glass Fishbowl) */}
+            {/* Floating 3D Clay Illustration (Boy Resting Chin + Glass Fishbowl on Podium) */}
             <motion.div
               animate={shouldAnimate ? { y: [0, -6, 0] } : {}}
               transition={{
@@ -171,16 +166,16 @@ export function ReviewsSection({ lang }: ReviewsSectionProps) {
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className="relative w-[300px] sm:w-[380px] lg:w-[420px] aspect-[410/240] z-10 shrink-0 select-none"
+              className="relative w-[320px] sm:w-[420px] lg:w-[480px] aspect-[768/717] z-0 shrink-0 select-none -mb-8 lg:-mb-20"
             >
               <Image
-                src="/assets/happy-customers-hero.png"
-                alt="Happy customer with glass fishbowl"
+                src="/assets/happy-customers-hero.webp"
+                alt="Happy customer with glass fishbowl on podium"
                 fill
                 priority
                 unoptimized
-                sizes="(max-width: 640px) 300px, (max-width: 1024px) 380px, 420px"
-                className="object-contain drop-shadow-[0_12px_24px_rgba(30,70,140,0.18)]"
+                sizes="(max-width: 640px) 310px, (max-width: 1024px) 410px, 460px"
+                className="object-contain drop-shadow-[0_16px_32px_rgba(30,70,140,0.22)]"
               />
             </motion.div>
           </div>
@@ -189,14 +184,14 @@ export function ReviewsSection({ lang }: ReviewsSectionProps) {
         {/* ================================================================== */}
         {/* CARDS CONTAINER & CAROUSEL CONTROLS                                */}
         {/* ================================================================== */}
-        <div className="relative">
-          {/* Soft White Circular Carousel Buttons with Navy Chevrons (Aligned Right Above Cards) */}
-          <div className="flex items-center justify-end gap-3 mb-4 pr-1 z-20">
+        <div className="relative z-10">
+          {/* Circular Carousel Buttons (Aligned Right Above Cards) */}
+          <div className="flex items-center justify-end gap-3 mb-4 pr-1 z-30">
             <button
               onClick={() => scroll("left")}
               disabled={!canScrollLeft}
-              className={`w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white text-[var(--color-customers-navy,#1F2A6B)] shadow-[0_6px_20px_rgba(60,100,200,0.16)] flex items-center justify-center transition-all hover:scale-105 active:scale-95 cursor-pointer border border-white/80 ${
-                !canScrollLeft ? "opacity-35 cursor-not-allowed hover:scale-100" : "hover:bg-white hover:shadow-[0_8px_24px_rgba(60,100,200,0.24)]"
+              className={`w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#FFFDF7] text-[#1F2A6B] shadow-[0_4px_14px_rgba(60,100,200,0.14)] flex items-center justify-center transition-all hover:scale-105 active:scale-95 cursor-pointer border border-[#F0DEC0]/70 ${
+                !canScrollLeft ? "opacity-35 cursor-not-allowed hover:scale-100" : "hover:bg-white hover:shadow-[0_8px_24px_rgba(60,100,200,0.2)]"
               }`}
               aria-label="Previous customer testimonial"
             >
@@ -205,8 +200,8 @@ export function ReviewsSection({ lang }: ReviewsSectionProps) {
             <button
               onClick={() => scroll("right")}
               disabled={!canScrollRight}
-              className={`w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white text-[var(--color-customers-navy,#1F2A6B)] shadow-[0_6px_20px_rgba(60,100,200,0.16)] flex items-center justify-center transition-all hover:scale-105 active:scale-95 cursor-pointer border border-white/80 ${
-                !canScrollRight ? "opacity-35 cursor-not-allowed hover:scale-100" : "hover:bg-white hover:shadow-[0_8px_24px_rgba(60,100,200,0.24)]"
+              className={`w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#FFFDF7] text-[#1F2A6B] shadow-[0_4px_14px_rgba(60,100,200,0.14)] flex items-center justify-center transition-all hover:scale-105 active:scale-95 cursor-pointer border border-[#F0DEC0]/70 ${
+                !canScrollRight ? "opacity-35 cursor-not-allowed hover:scale-100" : "hover:bg-white hover:shadow-[0_8px_24px_rgba(60,100,200,0.2)]"
               }`}
               aria-label="Next customer testimonial"
             >
@@ -217,7 +212,7 @@ export function ReviewsSection({ lang }: ReviewsSectionProps) {
           {/* Horizontally Scrollable Track (Desktop shows 3 cards in row, slides to 4th; Tablet 2-col; Mobile 1-col peek) */}
           <div
             ref={scrollRef}
-            className="flex gap-6 sm:gap-7 overflow-x-auto pb-10 pt-6 px-3 -mx-3 scrollbar-none snap-x snap-mandatory"
+            className="flex gap-5 sm:gap-6 lg:gap-7 overflow-x-auto pb-6 pt-2 px-2 -mx-2 scrollbar-none snap-x snap-mandatory"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {TESTIMONIALS.map((item, idx) => (
@@ -237,16 +232,12 @@ export function ReviewsSection({ lang }: ReviewsSectionProps) {
 }
 
 /**
- * Individual Testimonial Squircle Card
- * Matches the reference mockup:
- * - Rounded 40px squircle
- * - Soft lavender-white background (#F6F6FC)
- * - Blue layered shadow
- * - Top-left light blue quote badge
- * - Italic navy quote
- * - Thin divider
- * - Author row with avatar, bold navy name, map pin icon, and muted location/product
- * - Subtle tilt per card (Card 1: -1.5deg, Card 2: +1deg down, Card 3: -1deg up/overlapping podium)
+ * Individual Testimonial Cream Card matching the reference mockup:
+ * - 5 Gold Stars ★★★★★
+ * - "5.0 Verified" light blue pill badge
+ * - Quoted testimonial text in italic navy
+ * - Thin light blue divider line
+ * - Customer Author row with circular avatar, name, and location • species
  */
 function TestimonialCard({
   item,
@@ -259,89 +250,73 @@ function TestimonialCard({
   lang: "en" | "ml";
   shouldAnimate: boolean;
 }) {
-  // Tilt & offset per card on desktop (Card 1: -1.5deg, Card 2: +1deg down, Card 3: -1deg up/overlapping podium)
-  // On mobile, reduced tilt (0.5deg) to maintain comfortable reading
-  const getCardTransformClass = () => {
-    switch (index % 3) {
-      case 0:
-        return "-rotate-[0.5deg] lg:-rotate-[1.5deg] lg:translate-y-0";
-      case 1:
-        return "rotate-[0.5deg] lg:rotate-[1deg] lg:translate-y-5";
-      case 2:
-        return "-rotate-[0.5deg] lg:-rotate-[1deg] lg:-translate-y-3 z-20";
-      default:
-        return "rotate-[0.5deg] lg:rotate-[1deg] lg:translate-y-2";
-    }
-  };
-
   return (
     <motion.div
-      initial={shouldAnimate ? { opacity: 0, y: 30 } : undefined}
+      initial={shouldAnimate ? { opacity: 0, y: 20 } : undefined}
       whileInView={shouldAnimate ? { opacity: 1, y: 0 } : undefined}
       viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
-      className={`testimonial-card relative shrink-0 w-[86%] sm:w-[calc((100%-24px)/2)] lg:w-[calc((100%-48px)/3)] snap-start ${getCardTransformClass()}`}
+      transition={{ duration: 0.45, delay: index * 0.08, ease: "easeOut" }}
+      className="testimonial-card relative shrink-0 w-[88%] sm:w-[calc((100%-24px)/2)] lg:w-[calc((100%-48px)/3)] snap-start z-10"
     >
-      {/* Blue "Shadow Card" peeking behind Card 2 for depth */}
-      {index === 1 && (
-        <div
-          className="hidden lg:block absolute inset-0 bg-[#D4E6FC] rounded-[38px] sm:rounded-[42px] -rotate-2 translate-y-3.5 -z-10 shadow-[0_16px_32px_rgba(60,100,200,0.12)] pointer-events-none"
-          aria-hidden="true"
-        />
-      )}
-
-      {/* Main Squircle Card */}
+      {/* Main Cream Card */}
       <div
-        className="relative bg-[var(--color-customers-card,#F6F6FC)] rounded-[36px] sm:rounded-[42px] p-6 sm:p-8 lg:p-9 flex flex-col justify-between h-full border-0 transition-all duration-300 ease-out group hover:-translate-y-2 hover:rotate-0 hover:shadow-[0_28px_50px_rgba(60,100,200,0.22)] cursor-default"
+        className="relative bg-[#FFFDF7] rounded-[28px] sm:rounded-[34px] p-6 sm:p-7 lg:p-8 flex flex-col justify-between h-full border border-[#F0DEC0]/50 transition-all duration-300 ease-out group hover:-translate-y-1.5 hover:shadow-[0_24px_48px_rgba(40,80,160,0.18)] cursor-default"
         style={{
           boxShadow:
-            "0 20px 40px rgba(60, 100, 200, 0.14), inset 0 1px 2px rgba(255, 255, 255, 0.95)",
+            "0 14px 32px rgba(40, 80, 160, 0.12), inset 0 1px 2px rgba(255, 255, 255, 0.95)",
         }}
       >
-        {/* Floating Quote Badge (Top-Left, Overlapping Card Edge) */}
-        <div
-          className="absolute -top-4 sm:-top-5 -left-2 sm:-left-3 w-[52px] h-[52px] sm:w-[58px] sm:h-[58px] rounded-[18px] sm:rounded-[20px] bg-[var(--color-customers-badge,#DCEBFF)] text-[var(--color-customers-navy,#1F2A6B)] flex items-center justify-center font-serif text-3xl sm:text-4xl font-black shadow-[0_6px_16px_rgba(60,100,200,0.18)] z-10 select-none"
-          aria-hidden="true"
-        >
-          “
+        {/* Top Row: 5 Gold Stars + 5.0 Verified Badge */}
+        <div className="flex items-center justify-between gap-2 mb-3.5 sm:mb-4">
+          {/* 5 Golden Stars */}
+          <div className="flex items-center gap-0.5 text-[#FFB703]">
+            {[...Array(5)].map((_, i) => (
+              <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+              </svg>
+            ))}
+          </div>
+
+          {/* 5.0 Verified Pill */}
+          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-[#EAF2FF] border border-[#D5E5FD] text-[#1A5CFF] text-[11px] sm:text-xs font-bold leading-normal">
+            5.0 Verified
+          </span>
         </div>
 
         {/* Review Quote Text */}
-        <div className="pt-4 sm:pt-5 mb-5 sm:mb-6">
-          <p className="text-[var(--color-customers-quote,#2A3470)] italic font-medium text-base sm:text-lg lg:text-[18.5px] leading-[1.58]">
+        <div className="mb-4 sm:mb-5">
+          <p className="text-[#1F2A6B] italic font-medium text-sm sm:text-base lg:text-[17px] leading-[1.6]">
             &ldquo;{lang === "en" ? item.text : item.malayalamText}&rdquo;
           </p>
         </div>
 
         <div>
           {/* Thin Divider Line */}
-          <div className="w-full h-px bg-[#E2EAF8] mb-4 sm:mb-5" />
+          <div className="w-full h-px bg-[#E2EAF8] mb-3.5 sm:mb-4" />
 
           {/* Customer Author Row */}
-          <div className="flex items-center gap-3.5 sm:gap-4">
+          <div className="flex items-center gap-3 sm:gap-3.5">
             {/* Avatar */}
-            <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden shrink-0 border-2 border-white shadow-[0_2px_8px_rgba(60,100,200,0.15)] bg-[#E8F0FC]">
+            <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-full overflow-hidden shrink-0 border-2 border-white shadow-xs bg-[#E8F0FC]">
               <Image
                 src={item.photo}
                 alt={item.author}
                 fill
-                sizes="56px"
+                sizes="48px"
                 className="object-cover"
                 unoptimized
               />
             </div>
 
-            {/* Author Meta */}
-            <div className="min-w-0 flex-1">
-              <h4 className="font-bold text-base sm:text-[17.5px] text-[var(--color-customers-navy,#1F2A6B)] leading-snug truncate">
+            {/* Author Details */}
+            <div className="flex flex-col min-w-0">
+              <span className="font-extrabold text-sm sm:text-base text-[#1F2A6B] leading-snug truncate">
                 {item.author}
-              </h4>
-              <div className="flex items-center gap-1.5 text-xs sm:text-[13.5px] font-medium text-[var(--color-customers-muted,#5B6A9A)] mt-0.5 truncate">
-                <MapPin className="w-3.5 h-3.5 text-[var(--color-customers-muted,#5B6A9A)] shrink-0" />
-                <span className="truncate">
-                  {item.location} • {item.speciesPurchased}
-                </span>
-              </div>
+              </span>
+              <span className="text-xs text-[#5A687A] font-medium flex items-center gap-1 mt-0.5 truncate">
+                <MapPin className="w-3.5 h-3.5 text-[#1F7A3E] shrink-0" />
+                <span className="truncate">{item.location} • {item.speciesPurchased}</span>
+              </span>
             </div>
           </div>
         </div>
