@@ -63,14 +63,8 @@ export default function HomePage() {
       {/* 5. "Happy Customers": Horizontal Scrollable Photo Cards */}
       <ReviewsSection lang={lang} />
 
-      {/* Wave Transition 5: Sky Aqua -> Electric Blue */}
-      <ClayWaveDivider fillColor="#1F4FFF" />
-
-      {/* 6. Final CTA Band: Electric Blue Clay Banner */}
+      {/* 6. Final CTA Band: Electric Blue Clay Banner with Integrated Top/Bottom Waves */}
       <CtaSection lang={lang} />
-
-      {/* Wave Transition 6: Electric Blue -> Butter Yellow */}
-      <ClayWaveDivider fillColor="#FEEDB5" />
 
       {/* 7. Footer: Butter Yellow with 3D Clay River Wave & Corners */}
       <Footer lang={lang} />
