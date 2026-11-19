@@ -19,12 +19,15 @@ const CATEGORY_CHIPS = [
 ];
 
 const N = SPECIES_CATALOG.length; // 5 items
-// 3 repeated sets to allow seamless infinite continuous wheel in both directions
-const INFINITE_ITEMS = [...SPECIES_CATALOG, ...SPECIES_CATALOG, ...SPECIES_CATALOG];
+// 7 repeated sets (35 items total) gives a wide runway so rapid clicking never runs out of cards
+const REPEAT_SETS = 7;
+const CENTER_SET = 3; // Sets 0, 1, 2, [3], 4, 5, 6
+const BASE_INDEX = CENTER_SET * N; // 15
+const INFINITE_ITEMS = Array.from({ length: REPEAT_SETS }, () => SPECIES_CATALOG).flat();
 
 export function SpeciesSection({ lang }: SpeciesSectionProps) {
-  // Start at Set 1 (middle set: index N = 5)
-  const [displayIndex, setDisplayIndex] = useState(N);
+  // Start at Set 3 (middle set: index BASE_INDEX = 15)
+  const [displayIndex, setDisplayIndex] = useState(BASE_INDEX);
   const [enableTransition, setEnableTransition] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [isHovered, setIsHovered] = useState(false);
@@ -37,6 +40,10 @@ export function SpeciesSection({ lang }: SpeciesSectionProps) {
   const wasDragged = useRef(false);
   const [dragDelta, setDragDelta] = useState(0);
 
+  // Guards against rapid click flooding and desync during silent reset
+  const lastActionRef = useRef<number>(0);
+  const isResettingRef = useRef<boolean>(false);
+
   // Active item index in [0, N-1]
   const activeIdx = ((displayIndex % N) + N) % N;
 
@@ -45,8 +52,14 @@ export function SpeciesSection({ lang }: SpeciesSectionProps) {
     if (!containerRef.current) return;
     const updateWidth = () => {
       if (containerRef.current) {
-        setEnableTransition(false);
-        setContainerWidth(containerRef.current.clientWidth);
+        const newWidth = containerRef.current.clientWidth;
+        setContainerWidth((prev) => {
+          if (Math.abs(prev - newWidth) > 1) {
+            setEnableTransition(false);
+            return newWidth;
+          }
+          return prev;
+        });
       }
     };
     updateWidth();
@@ -83,15 +96,18 @@ export function SpeciesSection({ lang }: SpeciesSectionProps) {
 
   // Handle seamless wrap-around when transition finishes
   const handleTransitionEnd = (e: React.TransitionEvent<HTMLDivElement>) => {
-    if (e.propertyName !== "transform") return;
-    if (displayIndex >= 2 * N) {
-      // Arrived at Set 2 -> silently reposition to Set 1 without animation
-      setEnableTransition(false);
-      setDisplayIndex((prev) => prev - N);
-    } else if (displayIndex < N) {
-      // Arrived at Set 0 -> silently reposition to Set 1 without animation
-      setEnableTransition(false);
-      setDisplayIndex((prev) => prev + N);
+    if (e.propertyName !== "transform" || e.target !== e.currentTarget) return;
+
+    // If displayIndex drifted away from the center set (below index 10 or at/above 20),
+    // normalize it back into the center set [15..19] silently.
+    if (displayIndex < BASE_INDEX - N || displayIndex >= BASE_INDEX + 2 * N) {
+      const activeModulo = ((displayIndex % N) + N) % N;
+      const normalized = BASE_INDEX + activeModulo;
+      if (normalized !== displayIndex) {
+        isResettingRef.current = true;
+        setEnableTransition(false);
+        setDisplayIndex(normalized);
+      }
     }
   };
 
@@ -101,45 +117,75 @@ export function SpeciesSection({ lang }: SpeciesSectionProps) {
       const id = requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           setEnableTransition(true);
+          isResettingRef.current = false;
         });
       });
       return () => cancelAnimationFrame(id);
     }
   }, [enableTransition]);
 
-  // Navigate to next card (continuous wheel forward)
+  // Navigate to next card with rapid-click throttling & safety bounds wrapping
   const handleNext = useCallback(() => {
+    if (isResettingRef.current) return;
+    const now = Date.now();
+    if (now - lastActionRef.current < 160) return;
+    lastActionRef.current = now;
+
     setEnableTransition(true);
-    setDisplayIndex((prev) => prev + 1);
+    setDisplayIndex((prev) => {
+      // Safety guard: if near the extreme buffer edge (rare), wrap into center
+      if (prev >= REPEAT_SETS * N - 4) {
+        return BASE_INDEX + (((prev + 1) % N) + N) % N;
+      }
+      return prev + 1;
+    });
   }, []);
 
-  // Navigate to previous card (continuous wheel backward)
+  // Navigate to previous card with rapid-click throttling & safety bounds wrapping
   const handlePrev = useCallback(() => {
+    if (isResettingRef.current) return;
+    const now = Date.now();
+    if (now - lastActionRef.current < 160) return;
+    lastActionRef.current = now;
+
     setEnableTransition(true);
-    setDisplayIndex((prev) => prev - 1);
+    setDisplayIndex((prev) => {
+      // Safety guard: if near the extreme left buffer edge, wrap into center
+      if (prev <= 3) {
+        return BASE_INDEX + (((prev - 1) % N) + N) % N;
+      }
+      return prev - 1;
+    });
   }, []);
 
   // Handle Category Chip Click via shortest circular path
   const handleChipClick = (chip: typeof CATEGORY_CHIPS[0]) => {
+    if (isResettingRef.current) return;
+    const now = Date.now();
+    if (now - lastActionRef.current < 180) return;
+    lastActionRef.current = now;
+
     setSelectedCategory(chip.id);
     const targetIdx = chip.itemIndex;
     let diff = targetIdx - activeIdx;
     if (diff > 2) diff -= N;
     if (diff < -2) diff += N;
+    if (diff === 0) return;
+
     setEnableTransition(true);
     setDisplayIndex((prev) => prev + diff);
   };
 
-  // Autoplay functionality: moves automatically like a continuous wheel, stops on hover/touch
+  // Autoplay functionality: moves automatically like a continuous wheel, resets timer on user actions
   useEffect(() => {
     if (isHovered) return;
 
     const interval = setInterval(() => {
       handleNext();
-    }, 3800);
+    }, 4000);
 
     return () => clearInterval(interval);
-  }, [isHovered, handleNext]);
+  }, [isHovered, handleNext, displayIndex]);
 
   // Touch Swipe Handlers for mobile
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -312,7 +358,7 @@ export function SpeciesSection({ lang }: SpeciesSectionProps) {
               style={{
                 transform: step > 0 ? `translateX(-${displayIndex * step - dragDelta}px)` : undefined,
                 transition: enableTransition
-                  ? "transform 500ms cubic-bezier(0.25, 1, 0.5, 1)"
+                  ? "transform 360ms cubic-bezier(0.22, 1, 0.36, 1)"
                   : "none",
               }}
               onTransitionEnd={handleTransitionEnd}
@@ -352,9 +398,15 @@ export function SpeciesSection({ lang }: SpeciesSectionProps) {
               <button
                 key={dotIdx}
                 onClick={() => {
+                  if (isResettingRef.current) return;
+                  const now = Date.now();
+                  if (now - lastActionRef.current < 180) return;
+                  lastActionRef.current = now;
+
                   let diff = dotIdx - activeIdx;
                   if (diff > 2) diff -= N;
                   if (diff < -2) diff += N;
+                  if (diff === 0) return;
                   setEnableTransition(true);
                   setDisplayIndex((prev) => prev + diff);
                 }}
@@ -408,7 +460,7 @@ function ProductClayCard({
 }) {
   return (
     <div
-      style={width > 0 ? { width: `${width}px` } : undefined}
+      style={width > 0 ? { width: `${width}px`, minWidth: `${width}px` } : undefined}
       className="flex-shrink-0 w-[85%] sm:w-[calc((100%-24px)/2)] lg:w-[calc((100%-48px)/3)] snap-start bg-[#FFFDF9] rounded-[28px] sm:rounded-[34px] border-2 border-[#E8DCC2]/90 p-3 sm:p-4 shadow-[0_10px_28px_rgba(14,32,56,0.07)] hover:shadow-[0_16px_36px_rgba(14,32,56,0.12)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group cursor-pointer"
       onClick={onSelect}
     >
@@ -421,7 +473,7 @@ function ProductClayCard({
             fill
             sizes="(max-width: 640px) 85vw, (max-width: 1024px) 45vw, 380px"
             className="object-cover transition-transform duration-500 group-hover:scale-105"
-            priority={index < 8}
+            priority={index >= 12 && index <= 18}
             unoptimized
           />
 
