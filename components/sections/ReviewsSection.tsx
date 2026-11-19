@@ -136,11 +136,7 @@ export function ReviewsSection({ lang }: ReviewsSectionProps) {
         <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-6 lg:gap-8 mb-6 sm:mb-8 lg:mb-10">
           {/* Header Left (7 cols on desktop) */}
           <div className="lg:col-span-7 flex flex-col items-start z-10 pt-2">
-            {/* Orange Pill Badge: "Hobbyist Community" */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-[#FF8A3D] to-[#F26A1B] text-white text-xs sm:text-sm font-extrabold shadow-[0_4px_14px_rgba(242,106,27,0.35)] mb-3 sm:mb-4 select-none">
-              <span className="w-2 h-2 rounded-full bg-white shadow-sm" />
-              <span>{lang === "en" ? "Hobbyist Community" : "ഉപഭോക്താക്കൾ പറയുന്നു"}</span>
-            </div>
+
 
             {/* Main Title: Solid Deep Navy, Bold Clamped */}
             <h2 className="text-4xl sm:text-6xl lg:text-[68px] xl:text-[76px] font-black text-[#1F2A6B] leading-[1.06] tracking-tight font-display mb-3">
