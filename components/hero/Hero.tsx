@@ -435,6 +435,31 @@ export function Hero({ lang = "en", onOpenVideo }: HeroProps) {
           />
         </svg>
       </div>
+
+      {/* Corner River Stone Props Nestled on the Water Wave Edge */}
+      <div className="absolute bottom-1 sm:bottom-3 md:bottom-4 left-1 sm:left-3 md:left-5 w-28 sm:w-36 md:w-44 lg:w-48 pointer-events-none z-30 select-none">
+        <div className="relative aspect-[764/778] w-full crayfish-sway">
+          <Image
+            src="/clay/props/corner-rocks-crayfish.webp"
+            alt="Aquarium Stones & Crayfish"
+            fill
+            sizes="(max-width: 640px) 112px, 192px"
+            className="object-contain drop-shadow-[0_12px_24px_rgba(20,60,120,0.22)]"
+          />
+        </div>
+      </div>
+
+      <div className="absolute bottom-1 sm:bottom-3 md:bottom-4 right-1 sm:right-3 md:right-5 w-28 sm:w-36 md:w-44 lg:w-48 pointer-events-none z-30 select-none">
+        <div className="relative aspect-[682/725] w-full seaweed-sway-1">
+          <Image
+            src="/clay/props/corner-rocks-shell.webp"
+            alt="Aquarium Stones & Shell"
+            fill
+            sizes="(max-width: 640px) 112px, 192px"
+            className="object-contain drop-shadow-[0_12px_24px_rgba(20,60,120,0.22)]"
+          />
+        </div>
+      </div>
     </section>
   );
 }

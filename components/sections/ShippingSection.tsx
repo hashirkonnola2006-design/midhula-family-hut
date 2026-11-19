@@ -36,19 +36,34 @@ export function ShippingSection({ lang }: ShippingSectionProps) {
         aria-hidden="true"
       />
 
-      {/* Floating Ambient Clay Bubbles around Title */}
+      {/* Floating Ambient Dynamic Clay Bubbles & Swimming Guppy around Title */}
       <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
-        <div className="absolute top-16 left-[12%] w-6 h-6 sm:w-8 sm:h-8 opacity-80 animate-float-slow">
-          <Image src="/clay/shipping/bubbles.webp" alt="" fill className="object-contain" priority unoptimized />
+        {/* Left Side: Swimming Electric Blue Guppy & Rising Glossy Clay Bubbles */}
+        <div className="absolute top-10 sm:top-14 left-[6%] sm:left-[10%] lg:left-[14%] w-16 sm:w-22 lg:w-26 aspect-[290/183] opacity-90 animate-float-slow hidden sm:block">
+          <Image src="/clay/fish/blue-guppy.webp" alt="" fill className="object-contain drop-shadow-[0_8px_16px_rgba(31,79,255,0.22)]" />
         </div>
-        <div className="absolute top-28 left-[24%] w-4 h-4 sm:w-5 sm:h-5 opacity-70 animate-float-delayed">
-          <Image src="/clay/shipping/bubbles.webp" alt="" fill className="object-contain" priority unoptimized />
+        <div className="absolute top-14 left-[4%] sm:left-[8%] w-7 h-7 sm:w-9 sm:h-9 opacity-85 animate-bubble-float">
+          <Image src="/clay/fx/clay-bubble.webp" alt="" fill className="object-contain" priority unoptimized />
         </div>
-        <div className="absolute top-20 right-[15%] w-7 h-7 sm:w-9 sm:h-9 opacity-75 animate-float-slow">
-          <Image src="/clay/shipping/bubbles.webp" alt="" fill className="object-contain" priority unoptimized />
+        <div className="absolute top-28 left-[18%] sm:left-[22%] w-5 h-5 sm:w-6 sm:h-6 opacity-75 animate-float-delayed">
+          <Image src="/clay/fx/bubble-1.webp" alt="" fill className="object-contain" priority unoptimized />
         </div>
-        <div className="absolute top-36 right-[26%] w-5 h-5 sm:w-6 sm:h-6 opacity-65 animate-float-delayed">
-          <Image src="/clay/shipping/bubbles.webp" alt="" fill className="object-contain" priority unoptimized />
+        <div className="absolute top-44 left-[10%] sm:left-[14%] w-4 h-4 sm:w-5 sm:h-5 opacity-70 animate-bubble-drift hidden sm:block">
+          <Image src="/clay/fx/bubble-2.webp" alt="" fill className="object-contain" priority unoptimized />
+        </div>
+
+        {/* Right Side: Swimming Swordtail & Rising Glossy Clay Bubbles */}
+        <div className="absolute top-12 sm:top-16 right-[6%] sm:right-[9%] lg:right-[13%] w-20 sm:w-26 lg:w-30 aspect-[315/127] opacity-90 animate-float hidden sm:block scale-x-[-1]">
+          <Image src="/clay/fish/swordtail.webp" alt="" fill className="object-contain drop-shadow-[0_8px_16px_rgba(255,106,19,0.22)]" />
+        </div>
+        <div className="absolute top-16 right-[5%] sm:right-[8%] w-8 h-8 sm:w-10 sm:h-10 opacity-85 animate-bubble-float">
+          <Image src="/clay/fx/clay-bubble.webp" alt="" fill className="object-contain" priority unoptimized />
+        </div>
+        <div className="absolute top-36 right-[17%] sm:right-[21%] w-5 h-5 sm:w-6 sm:h-6 opacity-75 animate-float-slow">
+          <Image src="/clay/fx/bubble-3.webp" alt="" fill className="object-contain" priority unoptimized />
+        </div>
+        <div className="absolute top-52 right-[11%] sm:right-[15%] w-4 h-4 sm:w-5 sm:h-5 opacity-70 animate-bubble-drift hidden sm:block">
+          <Image src="/clay/fx/bubble-4.webp" alt="" fill className="object-contain" priority unoptimized />
         </div>
       </div>
 
