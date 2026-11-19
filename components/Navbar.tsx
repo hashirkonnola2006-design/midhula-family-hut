@@ -121,23 +121,8 @@ export function Navbar({
             })}
           </nav>
 
-          {/* Right Action: Circular Green Clay WhatsApp Button */}
-          <div className="flex items-center gap-2 sm:gap-3">
-            <a
-              href={getWhatsAppUrl("Hi Midhula Farm Hut, I'm interested in your ornamental fishes.")}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-10 h-10 sm:w-11 sm:h-11 rounded-full relative flex items-center justify-center transition-transform hover:scale-105 active:scale-95 drop-shadow-[0_4px_10px_rgba(30,131,77,0.35)]"
-              aria-label="Contact on WhatsApp"
-            >
-              <Image
-                src="/clay/icons/whatsapp-circle-btn.webp"
-                alt="WhatsApp"
-                fill
-                className="object-contain"
-              />
-            </a>
-
+          {/* Right Action: Mobile Hamburger Button & Desktop Balance Spacer */}
+          <div className="flex items-center justify-end md:w-[125px] sm:md:w-[155px]">
             {/* Mobile Hamburger Button (44px min tap target) */}
             <button
               onClick={() => setMenuOpen(!isMenuOpen)}

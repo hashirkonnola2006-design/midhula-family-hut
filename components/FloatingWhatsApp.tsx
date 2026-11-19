@@ -41,17 +41,15 @@ export function FloatingWhatsApp({ hidden = false }: FloatingWhatsAppProps) {
         href={getWhatsAppUrl("Hi Midhula Farm Hut, I'd like to check current fish stock & pricing!")}
         target="_blank"
         rel="noopener noreferrer"
-        className="w-14 h-14 rounded-full clay-btn-orange shadow-[0_8px_24px_rgba(255,106,19,0.45)] flex items-center justify-center cursor-pointer active:scale-95 transition-transform group"
+        className="w-12 h-12 sm:w-14 sm:h-14 rounded-full relative flex items-center justify-center cursor-pointer active:scale-95 hover:scale-105 transition-transform duration-200 drop-shadow-[0_6px_18px_rgba(20,100,55,0.4)] group"
         aria-label="Chat with us on WhatsApp"
       >
-        <div className="relative w-8 h-8 shrink-0 group-hover:scale-110 transition-transform">
-          <Image
-            src="/clay/icons/whatsapp.webp"
-            alt="WhatsApp"
-            fill
-            className="object-contain"
-          />
-        </div>
+        <Image
+          src="/clay/icons/whatsapp-circle-btn.webp"
+          alt="WhatsApp"
+          fill
+          className="object-contain"
+        />
       </a>
     </aside>
   );
