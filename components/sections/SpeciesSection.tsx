@@ -18,97 +18,176 @@ const CATEGORY_CHIPS = [
   { id: "shrimp", label: "Shrimp", labelMl: "ചെമ്മീൻ", itemIndex: 4 },
 ];
 
+const N = SPECIES_CATALOG.length; // 5 items
+// 3 repeated sets to allow seamless infinite continuous wheel in both directions
+const INFINITE_ITEMS = [...SPECIES_CATALOG, ...SPECIES_CATALOG, ...SPECIES_CATALOG];
+
 export function SpeciesSection({ lang }: SpeciesSectionProps) {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  // Start at Set 1 (middle set: index N = 5)
+  const [displayIndex, setDisplayIndex] = useState(N);
+  const [enableTransition, setEnableTransition] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [isHovered, setIsHovered] = useState(false);
   const [selectedSpecies, setSelectedSpecies] = useState<SpeciesItem | null>(null);
+  const [containerWidth, setContainerWidth] = useState(0);
 
-  const carouselRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const touchStartPos = useRef({ x: 0, y: 0 });
+  const isHorizontalSwipe = useRef<boolean | null>(null);
+  const wasDragged = useRef(false);
+  const [dragDelta, setDragDelta] = useState(0);
 
-  // Smooth scroll to card at specific index
-  const scrollToIndex = useCallback((index: number) => {
-    if (!carouselRef.current) return;
-    const container = carouselRef.current;
-    const cards = container.children;
-    if (cards[index]) {
-      const card = cards[index] as HTMLElement;
-      // Center card on mobile, align to start on desktop
-      const isMobile = window.innerWidth < 640;
-      const targetLeft = isMobile
-        ? card.offsetLeft - (container.clientWidth - card.clientWidth) / 2
-        : card.offsetLeft;
+  // Active item index in [0, N-1]
+  const activeIdx = ((displayIndex % N) + N) % N;
 
-      container.scrollTo({
-        left: Math.max(0, targetLeft),
-        behavior: "smooth",
-      });
-      setCurrentIndex(index);
-    }
+  // Measure container width for pixel-perfect card step calculations
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const updateWidth = () => {
+      if (containerRef.current) {
+        setEnableTransition(false);
+        setContainerWidth(containerRef.current.clientWidth);
+      }
+    };
+    updateWidth();
+    const ro = new ResizeObserver(updateWidth);
+    ro.observe(containerRef.current);
+    return () => ro.disconnect();
   }, []);
 
-  // Sync category filter chip when currentIndex changes
-  useEffect(() => {
-    const activeItem = SPECIES_CATALOG[currentIndex];
-    if (activeItem) {
-      setSelectedCategory(activeItem.id);
+  // Compute card dimensions and step based on container width
+  const isDesktop = containerWidth >= 1024;
+  const isTablet = containerWidth >= 640 && containerWidth < 1024;
+  const gap = isDesktop || isTablet ? 24 : 16;
+  let cardWidth = 0;
+  if (containerWidth > 0) {
+    if (isDesktop) {
+      cardWidth = (containerWidth - 48) / 3;
+    } else if (isTablet) {
+      cardWidth = (containerWidth - 24) / 2;
+    } else {
+      cardWidth = Math.round(containerWidth * 0.85);
     }
-  }, [currentIndex]);
+  }
+  const step = cardWidth + gap;
 
-  // Handle Category Chip Click
+  // Sync category filter chip when activeIdx changes
+  useEffect(() => {
+    const activeItem = SPECIES_CATALOG[activeIdx];
+    if (activeItem) {
+      if (selectedCategory !== "all" || activeIdx !== 0) {
+        setSelectedCategory(activeItem.id);
+      }
+    }
+  }, [activeIdx, selectedCategory]);
+
+  // Handle seamless wrap-around when transition finishes
+  const handleTransitionEnd = (e: React.TransitionEvent<HTMLDivElement>) => {
+    if (e.propertyName !== "transform") return;
+    if (displayIndex >= 2 * N) {
+      // Arrived at Set 2 -> silently reposition to Set 1 without animation
+      setEnableTransition(false);
+      setDisplayIndex((prev) => prev - N);
+    } else if (displayIndex < N) {
+      // Arrived at Set 0 -> silently reposition to Set 1 without animation
+      setEnableTransition(false);
+      setDisplayIndex((prev) => prev + N);
+    }
+  };
+
+  // Re-enable transition on the next frame after silent repositioning
+  useEffect(() => {
+    if (!enableTransition) {
+      const id = requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setEnableTransition(true);
+        });
+      });
+      return () => cancelAnimationFrame(id);
+    }
+  }, [enableTransition]);
+
+  // Navigate to next card (continuous wheel forward)
+  const handleNext = useCallback(() => {
+    setEnableTransition(true);
+    setDisplayIndex((prev) => prev + 1);
+  }, []);
+
+  // Navigate to previous card (continuous wheel backward)
+  const handlePrev = useCallback(() => {
+    setEnableTransition(true);
+    setDisplayIndex((prev) => prev - 1);
+  }, []);
+
+  // Handle Category Chip Click via shortest circular path
   const handleChipClick = (chip: typeof CATEGORY_CHIPS[0]) => {
     setSelectedCategory(chip.id);
-    scrollToIndex(chip.itemIndex);
+    const targetIdx = chip.itemIndex;
+    let diff = targetIdx - activeIdx;
+    if (diff > 2) diff -= N;
+    if (diff < -2) diff += N;
+    setEnableTransition(true);
+    setDisplayIndex((prev) => prev + diff);
   };
 
-  // Previous & Next navigation
-  const handlePrev = () => {
-    const newIdx = currentIndex === 0 ? SPECIES_CATALOG.length - 1 : currentIndex - 1;
-    scrollToIndex(newIdx);
-  };
-
-  const handleNext = () => {
-    const newIdx = (currentIndex + 1) % SPECIES_CATALOG.length;
-    scrollToIndex(newIdx);
-  };
-
-  // Autoplay functionality: moves automatically, stops when hovered or touched
+  // Autoplay functionality: moves automatically like a continuous wheel, stops on hover/touch
   useEffect(() => {
     if (isHovered) return;
 
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => {
-        const next = (prev + 1) % SPECIES_CATALOG.length;
-        scrollToIndex(next);
-        return next;
-      });
+      handleNext();
     }, 3800);
 
     return () => clearInterval(interval);
-  }, [isHovered, scrollToIndex]);
+  }, [isHovered, handleNext]);
 
-  // Track manual scroll to update active pagination index
-  const handleScroll = useCallback(() => {
-    if (!carouselRef.current) return;
-    const container = carouselRef.current;
-    const scrollLeft = container.scrollLeft;
+  // Touch Swipe Handlers for mobile
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setIsHovered(true);
+    touchStartPos.current = {
+      x: e.touches[0].clientX,
+      y: e.touches[0].clientY,
+    };
+    isHorizontalSwipe.current = null;
+    wasDragged.current = false;
+    setDragDelta(0);
+  };
 
-    let closestIdx = 0;
-    let minDiff = Infinity;
+  const handleTouchMove = (e: React.TouchEvent) => {
+    const currentX = e.touches[0].clientX;
+    const currentY = e.touches[0].clientY;
+    const dx = currentX - touchStartPos.current.x;
+    const dy = currentY - touchStartPos.current.y;
 
-    Array.from(container.children).forEach((child, idx) => {
-      const card = child as HTMLElement;
-      const diff = Math.abs(card.offsetLeft - scrollLeft);
-      if (diff < minDiff) {
-        minDiff = diff;
-        closestIdx = idx;
+    if (isHorizontalSwipe.current === null) {
+      if (Math.abs(dx) > 8 || Math.abs(dy) > 8) {
+        isHorizontalSwipe.current = Math.abs(dx) > Math.abs(dy);
       }
-    });
-
-    if (closestIdx !== currentIndex) {
-      setCurrentIndex(closestIdx);
     }
-  }, [currentIndex]);
+
+    if (isHorizontalSwipe.current) {
+      wasDragged.current = true;
+      setEnableTransition(false);
+      setDragDelta(dx);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setIsHovered(false);
+    if (isHorizontalSwipe.current) {
+      setEnableTransition(true);
+      if (dragDelta < -40) {
+        handleNext();
+      } else if (dragDelta > 40) {
+        handlePrev();
+      }
+    }
+    setDragDelta(0);
+    isHorizontalSwipe.current = null;
+    setTimeout(() => {
+      wasDragged.current = false;
+    }, 120);
+  };
 
   return (
     <section
@@ -161,14 +240,8 @@ export function SpeciesSection({ lang }: SpeciesSectionProps) {
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Section Header */}
+        {/* Section Header (Circled tag removed as requested) */}
         <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-8">
-          {/* Orange Clay Pill Tag */}
-          <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full clay-pill-orange text-xs font-bold text-white mb-2.5 sm:mb-3 shadow-[0_4px_12px_rgba(255,106,19,0.3)]">
-            <span className="w-2 h-2 rounded-full bg-white shadow-sm" />
-            <span>{lang === "en" ? "Fresh From Farm Tubs" : "ഫാമിൽ നിന്നും നേരിട്ട്"}</span>
-          </div>
-
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold clay-heading-blue mb-2.5 tracking-tight">
             {lang === "en" ? "Our Fish" : "ഞങ്ങളുടെ മത്സ്യങ്ങൾ"}
           </h2>
@@ -205,8 +278,6 @@ export function SpeciesSection({ lang }: SpeciesSectionProps) {
           className="relative group"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          onTouchStart={() => setIsHovered(true)}
-          onTouchEnd={() => setIsHovered(false)}
         >
           {/* Left Arrow Button (Desktop/Tablet) */}
           <button
@@ -226,25 +297,39 @@ export function SpeciesSection({ lang }: SpeciesSectionProps) {
             <ChevronRight className="w-6 h-6" />
           </button>
 
-          {/* 3-Cards Horizontal Scroll Track */}
+          {/* Continuous Wheel Horizontal Sliding Track */}
           <div
-            ref={carouselRef}
-            onScroll={handleScroll}
-            className="flex gap-4 sm:gap-6 overflow-x-auto scrollbar-none snap-x snap-mandatory py-3 px-1 sm:px-2 scroll-smooth"
-            style={{
-              scrollSnapType: "x mandatory",
-              WebkitOverflowScrolling: "touch",
-            }}
+            ref={containerRef}
+            className="w-full overflow-hidden py-4 -my-4"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
           >
-            {SPECIES_CATALOG.map((item, idx) => (
-              <ProductClayCard
-                key={item.id}
-                item={item}
-                index={idx}
-                lang={lang}
-                onSelect={() => setSelectedSpecies(item)}
-              />
-            ))}
+            <div
+              className="flex gap-4 sm:gap-6 items-stretch will-change-transform"
+              style={{
+                transform: step > 0 ? `translateX(-${displayIndex * step - dragDelta}px)` : undefined,
+                transition: enableTransition
+                  ? "transform 500ms cubic-bezier(0.25, 1, 0.5, 1)"
+                  : "none",
+              }}
+              onTransitionEnd={handleTransitionEnd}
+            >
+              {INFINITE_ITEMS.map((item, idx) => (
+                <ProductClayCard
+                  key={`${item.id}-${idx}`}
+                  item={item}
+                  index={idx}
+                  lang={lang}
+                  width={cardWidth}
+                  onSelect={() => {
+                    if (!wasDragged.current) {
+                      setSelectedSpecies(item);
+                    }
+                  }}
+                />
+              ))}
+            </div>
           </div>
 
           {/* Autoplay Pause/Play Status Indicator (Subtle Floating Pill) */}
@@ -260,11 +345,17 @@ export function SpeciesSection({ lang }: SpeciesSectionProps) {
         {/* Carousel Pagination Indicator Dots */}
         <div className="flex items-center justify-center gap-2 mt-6 sm:mt-8">
           {SPECIES_CATALOG.map((_, dotIdx) => {
-            const isActive = dotIdx === currentIndex;
+            const isActive = dotIdx === activeIdx;
             return (
               <button
                 key={dotIdx}
-                onClick={() => scrollToIndex(dotIdx)}
+                onClick={() => {
+                  let diff = dotIdx - activeIdx;
+                  if (diff > 2) diff -= N;
+                  if (diff < -2) diff += N;
+                  setEnableTransition(true);
+                  setDisplayIndex((prev) => prev + diff);
+                }}
                 aria-label={`Jump to fish product ${dotIdx + 1}`}
                 className={`transition-all duration-300 rounded-full cursor-pointer ${
                   isActive
@@ -279,7 +370,7 @@ export function SpeciesSection({ lang }: SpeciesSectionProps) {
         {/* Quick Help Subtext */}
         <p className="text-center text-xs font-semibold text-[#0E2038]/50 mt-3 sm:mt-4">
           {lang === "en"
-            ? "Hover or touch to pause • Tap arrow to order directly on WhatsApp"
+            ? "Hover or touch to pause • Continuous wheel auto-scrolls through breeds"
             : "ഓർഡർ ചെയ്യുവാൻ അമ്പടയാളത്തിൽ ക്ലിക്ക് ചെയ്യുക"}
         </p>
       </div>
@@ -304,15 +395,18 @@ function ProductClayCard({
   item,
   index,
   lang,
+  width,
   onSelect,
 }: {
   item: SpeciesItem;
   index: number;
   lang: "en" | "ml";
+  width: number;
   onSelect: () => void;
 }) {
   return (
     <div
+      style={width > 0 ? { width: `${width}px` } : undefined}
       className="flex-shrink-0 w-[85%] sm:w-[calc((100%-24px)/2)] lg:w-[calc((100%-48px)/3)] snap-start bg-[#FFFDF9] rounded-[28px] sm:rounded-[34px] border-2 border-[#E8DCC2]/90 p-3 sm:p-4 shadow-[0_10px_28px_rgba(14,32,56,0.07)] hover:shadow-[0_16px_36px_rgba(14,32,56,0.12)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group cursor-pointer"
       onClick={onSelect}
     >
@@ -325,7 +419,7 @@ function ProductClayCard({
             fill
             sizes="(max-width: 640px) 85vw, (max-width: 1024px) 45vw, 380px"
             className="object-cover transition-transform duration-500 group-hover:scale-105"
-            priority
+            priority={index < 8}
             unoptimized
           />
 
