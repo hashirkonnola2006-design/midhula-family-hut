@@ -34,7 +34,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 68px;
+  scroll-padding-top: 88px;
   background-color: var(--clay-yellow);
   color: var(--clay-navy);
   overflow-x: clip;

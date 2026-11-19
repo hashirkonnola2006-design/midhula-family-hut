@@ -1,173 +1,238 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { SHIPPING_STEPS, getWhatsAppUrl } from "@/lib/content";
 
 interface ShippingSectionProps {
   lang: "en" | "ml";
 }
 
-const STEP_ICONS = [
-  "/clay/icons/location.webp",
-  "/clay/icons/shield.webp",
-  "/clay/icons/truck.webp",
-  "/clay/icons/shield.webp",
-];
-
 export function ShippingSection({ lang }: ShippingSectionProps) {
+  const prefersReducedMotion = useReducedMotion();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const shouldAnimate = mounted && !prefersReducedMotion;
+
   return (
-    <section id="shipping" className="relative py-10 sm:py-24 px-3 sm:px-8 bg-[#FFE9A8] overflow-hidden">
-      {/* Background Ambient Swimming Fish Crossing Behind Heading */}
-      <div className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0" aria-hidden="true">
-        {/* Subtle Pink Guppy swimming LTR (Desktop only to prevent mobile clutter) */}
-        <div
-          className="fish-lane absolute pointer-events-none fish-track-ltr opacity-80 hidden sm:block"
-          style={{
-            top: "12%",
-            left: 0,
-            animationDuration: "30s",
-            animationDelay: "-6s",
-            willChange: "transform",
-          }}
-        >
-          <div className="fish-flip" style={{ transform: "none" }}>
-            <div className="fish-bob fish-bob-gentle" style={{ animationDuration: "3.2s" }}>
-              <div className="relative w-36 h-22">
-                <Image
-                  src="/clay/fish/pink-guppy.webp"
-                  alt=""
-                  fill
-                  className="object-contain"
-                />
-              </div>
-            </div>
-          </div>
+    <section
+      id="shipping"
+      style={{ scrollMarginTop: "88px" }}
+      className="relative pt-24 pb-16 sm:pt-28 sm:pb-24 px-4 sm:px-6 lg:px-8 bg-[#FDE58B] overflow-hidden select-none"
+    >
+      {/* Background Radial Glow */}
+      <div
+        className="absolute inset-0 pointer-events-none select-none z-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 70% 50% at 50% 20%, #FFF2B2 0%, rgba(253,229,139,0) 80%)",
+        }}
+        aria-hidden="true"
+      />
+
+      {/* Floating Ambient Clay Bubbles around Title */}
+      <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
+        <div className="absolute top-16 left-[12%] w-6 h-6 sm:w-8 sm:h-8 opacity-80 animate-float-slow">
+          <Image src="/clay/shipping/bubbles.webp" alt="" fill className="object-contain" priority unoptimized />
+        </div>
+        <div className="absolute top-28 left-[24%] w-4 h-4 sm:w-5 sm:h-5 opacity-70 animate-float-delayed">
+          <Image src="/clay/shipping/bubbles.webp" alt="" fill className="object-contain" priority unoptimized />
+        </div>
+        <div className="absolute top-20 right-[15%] w-7 h-7 sm:w-9 sm:h-9 opacity-75 animate-float-slow">
+          <Image src="/clay/shipping/bubbles.webp" alt="" fill className="object-contain" priority unoptimized />
+        </div>
+        <div className="absolute top-36 right-[26%] w-5 h-5 sm:w-6 sm:h-6 opacity-65 animate-float-delayed">
+          <Image src="/clay/shipping/bubbles.webp" alt="" fill className="object-contain" priority unoptimized />
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-
-        {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full clay-pill-orange text-xs font-bold text-white mb-2.5 sm:mb-3 shadow-sm">
-            <span className="w-1.5 h-1.5 rounded-full bg-white" />
-            <span>{lang === "en" ? "100% Live Arrival Guarantee" : "ലൈവ് അറൈവൽ ഗ്യാരണ്ടി"}</span>
+        {/* ================================================================== */}
+        {/* Header (Centered with Pink Guppy & Orange Guarantee Pill)           */}
+        {/* ================================================================== */}
+        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-20 relative">
+          {/* Orange Pill Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full clay-pill-orange text-xs sm:text-sm font-bold text-white mb-3 shadow-[0_4px_12px_rgba(255,106,19,0.3)]">
+            <span>{lang === "en" ? "100% Live Arrival Guarantee" : "100% ലൈവ് അറൈവൽ ഗ്യാരണ്ടി"}</span>
           </div>
 
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold clay-heading-blue mb-2">
-            {lang === "en" ? "How We Ship Live Fish" : "ലൈവ് ഷിപ്പിംഗ് പ്രക്രിയ"}
-          </h2>
+          {/* Title Row with Swimming Pink Guppy to Left */}
+          <div className="flex items-center justify-center gap-3 sm:gap-5 mb-2.5">
+            {/* Swimming Pink Guppy (~14% section width, bobbing gently) */}
+            <motion.div
+              animate={
+                shouldAnimate
+                  ? {
+                      y: [-4, 4, -4],
+                      rotate: [-1.5, 1.5, -1.5],
+                    }
+                  : {}
+              }
+              transition={{
+                duration: 4.2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="relative w-14 sm:w-20 md:w-24 lg:w-28 aspect-[750/484] shrink-0"
+              aria-hidden="true"
+            >
+              <Image
+                src="/clay/shipping/guppy-pink.webp"
+                alt=""
+                fill
+                className="object-contain drop-shadow-[0_8px_16px_rgba(255,79,163,0.25)]"
+                priority
+                unoptimized
+              />
+            </motion.div>
 
-          <p className="text-xs sm:text-base font-medium text-[#0E2038]/85 leading-relaxed max-w-lg mx-auto">
+            {/* Electric-Blue 3D Clay Heading */}
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold clay-heading-blue tracking-tight">
+              {lang === "en" ? "How We Ship Live Fish" : "ലൈവ് ഷിപ്പിംഗ് പ്രക്രിയ"}
+            </h2>
+          </div>
+
+          {/* Subtext */}
+          <p className="text-sm sm:text-base md:text-lg font-bold text-[#0E2038]/85 max-w-xl mx-auto leading-relaxed">
             {lang === "en"
               ? "From our Nooluvally water tubs right to your doorstep, backed by medical oxygen packing."
-              : "മെഡിക്കൽ ഓക്സിജൻ പാക്കിംഗിലൂടെയും തെർമോകോൾ ബോക്സുകളിലൂടെയും സുരക്ഷിതമായി എത്തിക്കുന്നു."}
+              : "ഞങ്ങളുടെ നൂലുവാള്ളിയിലെ വാട്ടർ ടബ്ബുകളിൽ നിന്നും നിങ്ങളുടെ വീട്ടുപടിക്കൽ വരെ, മെഡിക്കൽ ഓക്സിജൻ പാക്കിംഗിലൂടെ."}
           </p>
         </div>
 
-        {/* 4 Steps: Horizontal Scroll-Snap on Mobile (<640px), Grid on Tablet & Desktop */}
+        {/* ================================================================== */}
+        {/* 4 Cards in a Row with Curved Orange Dashed SVG Connectors           */}
+        {/* ================================================================== */}
         <div className="relative">
-          {/* Decorative Wavy Clay Path (Desktop only) */}
-          <div className="hidden lg:block absolute top-[110px] left-[8%] right-[8%] h-4 pointer-events-none z-0">
-            <svg className="w-full h-8 overflow-visible" preserveAspectRatio="none" viewBox="0 0 1000 24">
-              <path
-                d="M 0 12 Q 250 -4 500 12 T 1000 12"
-                fill="none"
-                stroke="#F0D582"
-                strokeWidth="6"
+          {/* Desktop Curved Orange Dashed SVG Connectors (Between Cards at Illustration Level) */}
+          <div className="hidden xl:block absolute top-[115px] inset-x-0 h-10 pointer-events-none z-10">
+            <svg
+              className="w-full h-full overflow-visible"
+              viewBox="0 0 1200 40"
+              fill="none"
+              preserveAspectRatio="none"
+            >
+              {/* Connector 1 -> 2 */}
+              <motion.path
+                d="M 285 20 Q 330 0 375 20"
+                stroke="#FF8A2A"
+                strokeWidth="3.5"
                 strokeLinecap="round"
-                strokeDasharray="12 12"
+                strokeDasharray="6 7"
+                initial={shouldAnimate ? { pathLength: 0 } : undefined}
+                whileInView={shouldAnimate ? { pathLength: 1 } : undefined}
+                viewport={{ once: true }}
+                transition={{ duration: 0.9, delay: 0.3 }}
+              />
+              {/* Connector 2 -> 3 */}
+              <motion.path
+                d="M 585 20 Q 630 0 675 20"
+                stroke="#FF8A2A"
+                strokeWidth="3.5"
+                strokeLinecap="round"
+                strokeDasharray="6 7"
+                initial={shouldAnimate ? { pathLength: 0 } : undefined}
+                whileInView={shouldAnimate ? { pathLength: 1 } : undefined}
+                viewport={{ once: true }}
+                transition={{ duration: 0.9, delay: 0.5 }}
+              />
+              {/* Connector 3 -> 4 */}
+              <motion.path
+                d="M 885 20 Q 930 0 975 20"
+                stroke="#FF8A2A"
+                strokeWidth="3.5"
+                strokeLinecap="round"
+                strokeDasharray="6 7"
+                initial={shouldAnimate ? { pathLength: 0 } : undefined}
+                whileInView={shouldAnimate ? { pathLength: 1 } : undefined}
+                viewport={{ once: true }}
+                transition={{ duration: 0.9, delay: 0.7 }}
               />
             </svg>
           </div>
 
-          {/* Steps Container */}
-          <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 lg:gap-8 overflow-x-auto pb-3 sm:pb-0 snap-x snap-mandatory scrollbar-none -mx-3 px-3 sm:mx-0 sm:px-0">
-            {SHIPPING_STEPS.map((step, idx) => {
-              const iconSrc = STEP_ICONS[idx] || "/clay/icons/shield.webp";
-              return (
-                <div
-                  key={step.step}
-                  className="clay-tile p-3.5 sm:p-5 flex flex-col justify-between w-[78%] sm:w-auto shrink-0 snap-start rounded-[22px] sm:rounded-[32px]"
-                >
-                  <div>
-                    {/* Packing Photo */}
-                    <div className="relative w-full h-32 sm:h-44 rounded-[18px] sm:rounded-[24px] overflow-hidden bg-[#FFF3DC] border-2 border-[#F0DEC0] mb-3 sm:mb-4 shadow-inner">
-                      <Image
-                        src={step.image}
-                        alt={step.title}
-                        fill
-                        sizes="(max-width: 640px) 75vw, (max-width: 1024px) 45vw, 25vw"
-                        className="object-cover transition-transform duration-500 hover:scale-105"
-                      />
-
-                      {/* Clay Step Badge */}
-                      <div className="absolute top-2.5 left-2.5 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#1F4FFF] text-white font-display font-extrabold text-xs sm:text-sm flex items-center justify-center shadow-md">
-                        {step.step}
-                      </div>
-
-                      {/* 3D Clay Icon Badge */}
-                      <div className="absolute top-2 right-2 w-8 h-8 sm:w-10 sm:h-10 p-0.5 rounded-full bg-[#FFF8E7]/90 backdrop-blur-sm border border-[#F0DEC0] shadow-sm">
-                        <div className="relative w-full h-full">
-                          <Image
-                            src={iconSrc}
-                            alt=""
-                            fill
-                            className="object-contain"
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Step Title */}
-                    <h3 className="font-display font-extrabold text-sm sm:text-lg lg:text-xl text-[#0E2038] mb-1 sm:mb-2 leading-snug">
-                      {lang === "en" ? step.title : step.malayalamTitle}
-                    </h3>
-
-                    {/* Step Description */}
-                    <p className="text-[11px] sm:text-sm text-[#0E2038]/80 leading-relaxed font-medium">
-                      {lang === "en" ? step.description : step.malayalamDescription}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
+          {/* Cards Grid: 4 columns >= 1200px, 2 columns 700-1199px, 1 column < 700px */}
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-7 items-stretch">
+            {SHIPPING_STEPS.map((step, idx) => (
+              <ShippingCard
+                key={step.step}
+                step={step}
+                index={idx}
+                lang={lang}
+                shouldAnimate={shouldAnimate}
+              />
+            ))}
           </div>
         </div>
 
-        {/* Guarantee Banner below steps */}
-        <div className="mt-6 sm:mt-12 p-4 sm:p-7 rounded-[24px] sm:rounded-[32px] bg-[#FFF8E7] border-2 border-[#F4E4BC] shadow-[0_8px_24px_rgba(180,140,30,0.12)] flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
-          <div className="flex items-center gap-3.5 sm:gap-5 w-full sm:w-auto">
-            {/* 3D Clay Shield Icon */}
-            <div className="relative w-12 h-12 sm:w-16 sm:h-16 shrink-0">
+        {/* ================================================================== */}
+        {/* Wide Cream Guarantee Banner (32px radius, Shield & Check Pincode)  */}
+        {/* ================================================================== */}
+        <motion.div
+          id="shipping-banner"
+          initial={shouldAnimate ? { opacity: 0, y: 30 } : undefined}
+          whileInView={shouldAnimate ? { opacity: 1, y: 0 } : undefined}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mt-12 sm:mt-16 p-6 sm:p-8 rounded-[32px] bg-[#FFF3DC] border-2 border-[#F3E3BC]/85 shadow-[0_10px_32px_rgba(180,140,40,0.12)] flex flex-col lg:flex-row items-center justify-between gap-6"
+        >
+          {/* Left Side: Shield + Text */}
+          <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-6 w-full lg:w-auto">
+            {/* 3D Clay Shield with checkmark and splash rays */}
+            <motion.div
+              animate={
+                shouldAnimate
+                  ? {
+                      scale: [1, 1.03, 1],
+                      rotate: [-1, 1, -1],
+                    }
+                  : {}
+              }
+              transition={{
+                duration: 4.8,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="relative w-16 h-16 sm:w-20 sm:h-20 shrink-0"
+            >
               <Image
-                src="/clay/icons/shield.webp"
-                alt="100% Guarantee"
+                src="/clay/shipping/shield.webp"
+                alt="100% Live Guarantee"
                 fill
-                className="object-contain drop-shadow-md"
+                className="object-contain drop-shadow-[0_6px_16px_rgba(31,79,255,0.22)]"
+                priority
+                unoptimized
               />
-            </div>
+            </motion.div>
+
             <div>
-              <h4 className="font-display font-extrabold text-base sm:text-2xl text-[#1F4FFF]">
+              <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#1F4FFF] clay-heading-blue">
                 {lang === "en" ? "100% Live Arrival Guarantee" : "100% ലൈവ് അറൈവൽ ഗ്യാരണ്ടി"}
-              </h4>
-              <p className="text-[11px] sm:text-sm text-[#0E2038]/80 mt-0.5 max-w-xl font-medium leading-relaxed">
+              </h3>
+              {/* TODO(client): unconfirmed claim: 100% live arrival guarantee with free replacement or refund */}
+              <p className="text-xs sm:text-sm font-medium text-[#0E2038]/85 mt-1 max-w-xl leading-relaxed">
                 {lang === "en"
                   ? "Share an unboxing clip on WhatsApp if any transit loss occurs for an immediate free replacement or refund."
-                  : "അൺബോക്സിങ് വീഡിയോ വാട്സ്ആപ്പിൽ പങ്കുവെച്ചാൽ ഉടനടി റീപ്ലേസ്മെന്റോ റീഫണ്ടോ നൽകുന്നു."}
+                  : "അൺബോക്സിങ് വീഡിയോ വാട്സ്ആപ്പിൽ പങ്കുവെച്ചാൽ ഉടനടി സൗജന്യ റീപ്ലേസ്മെന്റോ റീഫണ്ടോ നൽകുന്നു."}
               </p>
             </div>
           </div>
 
+          {/* Right Side: Orange Pill Button */}
           <a
-            href={getWhatsAppUrl("Hi Midhula Farm Hut, I'd like to check live fish delivery options for my pincode:")}
+            href={getWhatsAppUrl(
+              "Hi Midhula Farm Hut, I'd like to check live fish delivery options for my pincode: "
+            )}
             target="_blank"
             rel="noopener noreferrer"
-            className="clay-btn-orange w-full sm:w-auto h-11 sm:h-13 shrink-0 px-6 sm:px-8 rounded-full font-bold text-xs sm:text-sm inline-flex items-center justify-center gap-2 cursor-pointer shadow-[0_6px_20px_rgba(255,106,19,0.35)] active:scale-[0.97]"
+            className="clay-btn-orange w-full sm:w-auto h-[52px] sm:h-[54px] shrink-0 px-8 rounded-full font-bold text-sm sm:text-base text-white inline-flex items-center justify-center gap-3 cursor-pointer shadow-[0_6px_22px_rgba(255,106,19,0.38)] active:scale-95 transition-all whitespace-nowrap"
           >
-            <div className="relative w-4 h-4 sm:w-5 sm:h-5 shrink-0">
+            <div className="relative w-5 h-5 shrink-0">
               <Image
                 src="/clay/icons/whatsapp.webp"
                 alt="WhatsApp"
@@ -177,9 +242,148 @@ export function ShippingSection({ lang }: ShippingSectionProps) {
             </div>
             <span>{lang === "en" ? "Check Pincode Delivery" : "പിൻകോഡ് ഡെലിവറി പരിശോധിക്കൂ"}</span>
           </a>
-        </div>
-
+        </motion.div>
       </div>
     </section>
+  );
+}
+
+/**
+ * 3D Clay Shipping Step Card
+ * Cream background, 32px radius, blue circular badge overlapping top-left,
+ * frameless 3D clay illustration with soft oval ground shadow, bold navy title, body text.
+ */
+function ShippingCard({
+  step,
+  index,
+  lang,
+  shouldAnimate,
+}: {
+  step: (typeof SHIPPING_STEPS)[0];
+  index: number;
+  lang: "en" | "ml";
+  shouldAnimate: boolean;
+}) {
+  // Idle animation per card
+  const getIdleAnimation = () => {
+    if (!shouldAnimate) return undefined;
+    switch (step.step) {
+      case 1:
+        // Tub fish bobs
+        return {
+          y: [-3, 3, -3],
+          transition: { duration: 3.5, repeat: Infinity, ease: "easeInOut" as const },
+        };
+      case 2:
+        // Bag bubbles rise & float
+        return {
+          y: [-2.5, 2.5, -2.5],
+          rotate: [-0.6, 0.6, -0.6],
+          transition: { duration: 3.8, repeat: Infinity, ease: "easeInOut" as const },
+        };
+      case 3:
+        // Box wobbles slightly
+        return {
+          rotate: [-0.8, 0.8, -0.8],
+          y: [-2, 2, -2],
+          transition: { duration: 4.2, repeat: Infinity, ease: "easeInOut" as const },
+        };
+      case 4:
+        // Van rocks gently
+        return {
+          x: [-2.5, 2.5, -2.5],
+          y: [-1, 1, -1],
+          transition: { duration: 3.2, repeat: Infinity, ease: "easeInOut" as const },
+        };
+      default:
+        return undefined;
+    }
+  };
+
+  return (
+    <motion.div
+      initial={shouldAnimate ? { opacity: 0, scale: 0.88, y: 30 } : undefined}
+      whileInView={
+        shouldAnimate
+          ? {
+              opacity: 1,
+              scale: [0.88, 1.03, 0.98, 1],
+              y: 0,
+            }
+          : undefined
+      }
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{
+        duration: 0.6,
+        delay: index * 0.12,
+        ease: [0.34, 1.56, 0.64, 1],
+      }}
+      className="relative bg-[#FFF3DC] rounded-[32px] border-2 border-[#F3E3BC]/85 p-6 sm:p-7 shadow-[inset_0_2px_2px_rgba(255,255,255,0.85),0_10px_28px_rgba(180,140,40,0.12)] hover:shadow-[inset_0_2px_2px_rgba(255,255,255,0.9),0_16px_36px_rgba(180,140,40,0.18)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between h-full group"
+    >
+      {/* Overlapping Blue Circular Number Badge (Top-Left) */}
+      <div
+        className="absolute -top-3.5 -left-3.5 sm:-top-4 sm:-left-4 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#1F4FFF] text-white font-extrabold text-sm sm:text-base flex items-center justify-center shadow-[0_4px_14px_rgba(31,79,255,0.38)] z-20 group-hover:scale-110 transition-transform"
+        aria-hidden="true"
+      >
+        {step.step}
+      </div>
+
+      <div>
+        {/* Upper Half: Frameless Clay Illustration with Soft Oval Ground Shadow */}
+        <div className="relative w-full h-44 sm:h-48 flex items-center justify-center mb-5 pt-2">
+          {/* Soft Oval Ground Shadow */}
+          <div
+            className="absolute bottom-2 left-1/2 -translate-x-1/2 w-[72%] h-4 bg-[#D4BC88]/40 rounded-[100%] blur-[4px] pointer-events-none"
+            aria-hidden="true"
+          />
+
+          {/* Clay Illustration with Idle Animation */}
+          <motion.div
+            animate={getIdleAnimation()}
+            className="relative w-full h-full flex items-center justify-center"
+          >
+            <div className="relative w-full h-full max-w-[240px] max-h-[160px]">
+              <Image
+                src={step.image}
+                alt={step.title}
+                fill
+                sizes="(max-width: 640px) 90vw, (max-width: 1200px) 45vw, 25vw"
+                className="object-contain"
+                priority
+                unoptimized
+              />
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Bold Navy Title */}
+        <h3 className="font-display font-extrabold text-base sm:text-lg lg:text-xl text-[#0E2038] mb-2 leading-snug group-hover:text-[#1F4FFF] transition-colors">
+          {lang === "en" ? step.title : step.malayalamTitle}
+        </h3>
+
+        {/* Body Text */}
+        <p className="text-xs sm:text-sm text-[#0E2038]/80 leading-relaxed font-medium">
+          {lang === "en" ? step.description : step.malayalamDescription}
+        </p>
+      </div>
+
+      {/* Mobile-only Vertical Connector to Next Card */}
+      {index < 3 && (
+        <div className="xl:hidden flex justify-center -mb-9 mt-4 z-10 pointer-events-none">
+          <svg width="24" height="28" viewBox="0 0 24 28" fill="none">
+            <line
+              x1="12"
+              y1="0"
+              x2="12"
+              y2="28"
+              stroke="#FF8A2A"
+              strokeWidth="3.5"
+              strokeLinecap="round"
+              strokeDasharray="5 6"
+            />
+          </svg>
+        </div>
+      )}
+    </motion.div>
   );
 }

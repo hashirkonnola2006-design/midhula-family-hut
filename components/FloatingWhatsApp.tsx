@@ -12,16 +12,17 @@ export function FloatingWhatsApp({ hidden = false }: FloatingWhatsAppProps) {
   const [footerVisible, setFooterVisible] = useState(false);
 
   useEffect(() => {
-    const footer = document.querySelector("#contact");
-    if (!footer) return;
+    const targets = document.querySelectorAll("#contact, #shipping-banner");
+    if (!targets.length) return;
 
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        setFooterVisible(entry.isIntersecting);
+      (entries) => {
+        const isAnyVisible = entries.some((e) => e.isIntersecting);
+        setFooterVisible(isAnyVisible);
       },
-      { threshold: 0.08 }
+      { threshold: 0.05 }
     );
-    observer.observe(footer);
+    targets.forEach((t) => observer.observe(t));
     return () => observer.disconnect();
   }, []);
 

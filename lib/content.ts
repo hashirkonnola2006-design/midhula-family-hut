@@ -183,34 +183,37 @@ export const SHIPPING_STEPS: ShippingStep[] = [
     description: "Each fish is individually inspected for fin symmetry, vibrant scale health, and energetic swimming appetite prior to dispatch.",
     malayalamDescription: "ഓരോ മീനിനെയും ആരോഗ്യവും ചിറകുകളുടെ ഭംഗിയും സൂക്ഷ്മമായി പരിശോധിച്ച ശേഷം വേർതിരിക്കുന്നു.",
     iconName: "SearchCheck",
-    image: "/photos/shipping-choose.jpg",
+    image: "/clay/shipping/step-1-tub.webp",
   },
   {
     step: 2,
+    // TODO(client): unconfirmed claim: "medical grade oxygen"
     title: "2. Medical Grade Oxygen Packing",
     malayalamTitle: "2. ഓക്സിജൻ പാക്കിംഗ്",
     description: "Double-walled breathable poly bags enriched with pure bottled oxygen and stress-reducing conditioning water.",
     malayalamDescription: "മെഡിക്കൽ ഗ്രേഡ് ഓക്സിജനും ആന്റി-സ്ട്രെസ്സ് മരുന്നുകളും ചേർത്ത സുരക്ഷിത ഡബിൾ ലെയർ പാക്കിംഗ്.",
     iconName: "PackagePlus",
-    image: "/photos/shipping-pack.jpg",
+    image: "/clay/shipping/step-2-bag-o2.webp",
   },
   {
     step: 3,
     title: "3. Thermal Insulated Crating",
     malayalamTitle: "3. തെർമോകോൾ ബോക്സ്",
+    // TODO(client): unconfirmed claim: "Delhi or Kochi"
     description: "High-density EPS styrofoam thermal boxes shield livestock against temperature extremes whether heading to Delhi or Kochi.",
     malayalamDescription: "കാലാവസ്ഥാ വ്യതിയാനങ്ങളെ പ്രതിരോധിക്കാൻ ഉന്നത നിലവാരമുള്ള ഇൻസുലേറ്റഡ് ബോക്സുകൾ.",
     iconName: "ShieldAlert",
-    image: "/photos/shipping-box.jpg",
+    image: "/clay/shipping/step-3-box.webp",
   },
   {
     step: 4,
+    // TODO(client): unconfirmed claim: air and train express couriers
     title: "4. Express Transit & Guarantee",
     malayalamTitle: "4. എക്സ്പ്രസ്സ് ഡെലിവറി",
     description: "Shipped via fast air & train express couriers with full Live Arrival Guarantee. Unbox thriving, active aquatic companions right at your door.",
     malayalamDescription: "ഇന്ത്യയിൽ എവിടെയും അതിവേഗ ഡെലിവറിയും 100% ലൈവ് അറൈവൽ ഗ്യാരണ്ടിയും.",
     iconName: "Truck",
-    image: "/photos/shipping-delivered.jpg",
+    image: "/clay/shipping/step-4-van.webp",
   },
 ];
 
