@@ -243,23 +243,13 @@ export function SpeciesSection({ lang }: SpeciesSectionProps) {
     >
       <span id="fish" className="absolute top-0 pointer-events-none" style={{ scrollMarginTop: "88px" }} />
 
-      {/* Background Ambient Elements matching reference */}
+      {/* Background Ambient Elements: subtle low opacity bubbles (max 2, hidden on mobile) */}
       <div className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0" aria-hidden="true">
-        {/* Ambient Blue Clay Bubbles with Organic Floating Animations */}
-        <div className="absolute top-24 left-6 sm:left-14 w-6 sm:w-8 h-6 sm:h-8 opacity-85 pointer-events-none animate-bubble-float">
+        <div className="hidden md:block absolute top-28 left-8 lg:left-14 w-6 h-6 opacity-25 pointer-events-none animate-bubble-float">
           <Image src="/clay/fx/bubble-1.webp" alt="" fill className="object-contain" />
         </div>
-        <div className="absolute top-48 left-16 sm:left-28 w-4 sm:w-5 h-4 sm:h-5 opacity-75 pointer-events-none animate-float-delayed">
-          <Image src="/clay/fx/bubble-2.webp" alt="" fill className="object-contain" />
-        </div>
-        <div className="absolute top-32 right-8 sm:right-28 w-5 sm:w-7 h-5 sm:h-7 opacity-80 pointer-events-none animate-float-slow">
+        <div className="hidden md:block absolute top-36 right-10 lg:right-24 w-6 h-6 opacity-20 pointer-events-none animate-bubble-float">
           <Image src="/clay/fx/bubble-3.webp" alt="" fill className="object-contain" />
-        </div>
-        <div className="absolute bottom-20 right-10 sm:right-32 w-7 sm:w-9 h-7 sm:h-9 opacity-80 pointer-events-none animate-bubble-float">
-          <Image src="/clay/fx/bubble-4.webp" alt="" fill className="object-contain" />
-        </div>
-        <div className="absolute top-72 right-14 sm:right-40 w-4 h-4 opacity-60 pointer-events-none animate-bubble-drift hidden sm:block">
-          <Image src="/clay/fx/bubble-5.webp" alt="" fill className="object-contain" />
         </div>
       </div>
 

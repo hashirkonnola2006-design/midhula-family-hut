@@ -36,34 +36,22 @@ export function ShippingSection({ lang }: ShippingSectionProps) {
         aria-hidden="true"
       />
 
-      {/* Floating Ambient Dynamic Clay Bubbles & Swimming Guppy around Title */}
-      <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
-        {/* Left Side: Swimming Electric Blue Guppy & Rising Glossy Clay Bubbles */}
-        <div className="absolute top-10 sm:top-14 left-[6%] sm:left-[10%] lg:left-[14%] w-16 sm:w-22 lg:w-26 aspect-[290/183] opacity-90 animate-float-slow hidden sm:block">
-          <Image src="/clay/fish/blue-guppy.webp" alt="" fill className="object-contain drop-shadow-[0_8px_16px_rgba(31,79,255,0.22)]" />
+      {/* Floating Ambient Soft Clay Fish & Low-Opacity Bubbles in Outer Side Margins */}
+      <div className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden" aria-hidden="true">
+        {/* Left Outer Margin: Soft Clay Pink Guppy & Faint Bubble (Visible on Desktop >= 1024px) */}
+        <div className="hidden lg:block absolute top-16 left-4 xl:left-8 w-13 lg:w-14 aspect-[750/484] opacity-90 animate-float-slow">
+          <Image src="/clay/shipping/guppy-pink.webp" alt="" fill className="object-contain" priority unoptimized />
         </div>
-        <div className="absolute top-14 left-[4%] sm:left-[8%] w-7 h-7 sm:w-9 sm:h-9 opacity-85 animate-bubble-float">
-          <Image src="/clay/fx/clay-bubble.webp" alt="" fill className="object-contain" priority unoptimized />
-        </div>
-        <div className="absolute top-28 left-[18%] sm:left-[22%] w-5 h-5 sm:w-6 sm:h-6 opacity-75 animate-float-delayed">
+        <div className="hidden lg:block absolute top-28 left-8 xl:left-16 w-6 h-6 opacity-20 animate-bubble-float">
           <Image src="/clay/fx/bubble-1.webp" alt="" fill className="object-contain" priority unoptimized />
         </div>
-        <div className="absolute top-44 left-[10%] sm:left-[14%] w-4 h-4 sm:w-5 sm:h-5 opacity-70 animate-bubble-drift hidden sm:block">
-          <Image src="/clay/fx/bubble-2.webp" alt="" fill className="object-contain" priority unoptimized />
-        </div>
 
-        {/* Right Side: Swimming Swordtail & Rising Glossy Clay Bubbles */}
-        <div className="absolute top-12 sm:top-16 right-[6%] sm:right-[9%] lg:right-[13%] w-20 sm:w-26 lg:w-30 aspect-[315/127] opacity-90 animate-float hidden sm:block scale-x-[-1]">
-          <Image src="/clay/fish/swordtail.webp" alt="" fill className="object-contain drop-shadow-[0_8px_16px_rgba(255,106,19,0.22)]" />
+        {/* Right Outer Margin: Soft Clay Blue Guppy & Faint Bubble (Visible on Desktop >= 1024px) */}
+        <div className="hidden lg:block absolute top-18 right-4 xl:right-8 w-13 lg:w-14 aspect-[290/183] opacity-90 animate-float scale-x-[-1]">
+          <Image src="/clay/fish/blue-guppy.webp" alt="" fill className="object-contain" priority unoptimized />
         </div>
-        <div className="absolute top-16 right-[5%] sm:right-[8%] w-8 h-8 sm:w-10 sm:h-10 opacity-85 animate-bubble-float">
-          <Image src="/clay/fx/clay-bubble.webp" alt="" fill className="object-contain" priority unoptimized />
-        </div>
-        <div className="absolute top-36 right-[17%] sm:right-[21%] w-5 h-5 sm:w-6 sm:h-6 opacity-75 animate-float-slow">
+        <div className="hidden lg:block absolute top-32 right-8 xl:right-16 w-6 h-6 opacity-20 animate-bubble-float">
           <Image src="/clay/fx/bubble-3.webp" alt="" fill className="object-contain" priority unoptimized />
-        </div>
-        <div className="absolute top-52 right-[11%] sm:right-[15%] w-4 h-4 sm:w-5 sm:h-5 opacity-70 animate-bubble-drift hidden sm:block">
-          <Image src="/clay/fx/bubble-4.webp" alt="" fill className="object-contain" priority unoptimized />
         </div>
       </div>
 
@@ -77,41 +65,10 @@ export function ShippingSection({ lang }: ShippingSectionProps) {
             <span>{lang === "en" ? "100% Live Arrival Guarantee" : "100% ലൈവ് അറൈവൽ ഗ്യാരണ്ടി"}</span>
           </div>
 
-          {/* Title Row with Swimming Pink Guppy to Left */}
-          <div className="flex items-center justify-center gap-3 sm:gap-5 mb-2.5">
-            {/* Swimming Pink Guppy (~14% section width, bobbing gently) */}
-            <motion.div
-              animate={
-                shouldAnimate
-                  ? {
-                      y: [-4, 4, -4],
-                      rotate: [-1.5, 1.5, -1.5],
-                    }
-                  : {}
-              }
-              transition={{
-                duration: 4.2,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="relative w-14 sm:w-20 md:w-24 lg:w-28 aspect-[750/484] shrink-0"
-              aria-hidden="true"
-            >
-              <Image
-                src="/clay/shipping/guppy-pink.webp"
-                alt=""
-                fill
-                className="object-contain drop-shadow-[0_8px_16px_rgba(255,79,163,0.25)]"
-                priority
-                unoptimized
-              />
-            </motion.div>
-
-            {/* Electric-Blue 3D Clay Heading */}
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold clay-heading-blue tracking-tight">
-              {lang === "en" ? "How We Ship Live Fish" : "ലൈവ് ഷിപ്പിംഗ് പ്രക്രിയ"}
-            </h2>
-          </div>
+          {/* Electric-Blue 3D Clay Heading */}
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold clay-heading-blue tracking-tight mb-2.5">
+            {lang === "en" ? "How We Ship Live Fish" : "ലൈവ് ഷിപ്പിംഗ് പ്രക്രിയ"}
+          </h2>
 
           {/* Subtext */}
           <p className="text-sm sm:text-base md:text-lg font-bold text-[#0E2038]/85 max-w-xl mx-auto leading-relaxed">

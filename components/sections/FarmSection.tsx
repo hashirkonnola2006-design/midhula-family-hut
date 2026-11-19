@@ -84,53 +84,30 @@ export function FarmSection({ lang }: FarmSectionProps) {
       className="relative bg-[#FAF4E8] text-[#1E293B] pt-14 pb-20 sm:pt-20 sm:pb-28 px-4 sm:px-6 lg:px-8 overflow-hidden select-none"
     >
       {/* ============================================================ */}
-      {/* AMBIENT DECORATIONS: Floating Clay Fish & Animated Bubbles   */}
+      {/* AMBIENT DECORATIONS: Soft Clay Decor (Outer Margins, Max 2-3)*/}
       {/* ============================================================ */}
 
-      {/* Floating Orange Goldfish (Left Side) with Dynamic Animated Bubbles */}
-      <div className="absolute left-2 sm:left-6 lg:left-10 top-[44%] -translate-y-1/2 pointer-events-none z-10 hidden sm:block animate-float-slow select-none">
+      {/* Floating Soft Clay Goldfish (Left Outer Margin, Visible on Large Desktops) */}
+      <div className="absolute left-3 lg:left-6 xl:left-10 top-[46%] -translate-y-1/2 pointer-events-none z-0 hidden lg:block animate-float-slow select-none">
         <Image
           src="/clay/farm/clay-goldfish-left-hd.webp"
-          alt="Clay Goldfish"
-          width={200}
-          height={130}
-          className="w-16 sm:w-22 h-auto drop-shadow-md"
+          alt=""
+          width={160}
+          height={104}
+          className="w-13 lg:w-14 h-auto"
         />
       </div>
 
-      {/* Dynamic Animated Clay Bubbles Left */}
-      <div className="absolute left-6 sm:left-14 top-14 w-7 h-7 sm:w-9 sm:h-9 pointer-events-none z-0 hidden sm:block animate-bubble-float opacity-85">
-        <Image src="/clay/fx/clay-bubble.webp" alt="" fill className="object-contain" />
-      </div>
-      <div className="absolute left-10 sm:left-22 top-32 w-5 h-5 sm:w-6 sm:h-6 pointer-events-none z-0 hidden sm:block animate-float-delayed opacity-75">
+      {/* Subtle Low-Opacity Bubbles (Hidden on Mobile/Tablet) */}
+      <div className="absolute left-6 lg:left-12 top-20 w-6 h-6 pointer-events-none z-0 hidden lg:block animate-bubble-float opacity-20">
         <Image src="/clay/fx/bubble-1.webp" alt="" fill className="object-contain" />
       </div>
-      <div className="absolute left-4 sm:left-12 top-[62%] w-6 h-6 sm:w-7 sm:h-7 pointer-events-none z-0 hidden sm:block animate-bubble-drift opacity-80">
-        <Image src="/clay/fx/bubble-2.webp" alt="" fill className="object-contain" />
-      </div>
-
-      {/* Dynamic Animated Clay Bubbles & Swimming Guppy Right */}
-      <div className="absolute right-3 sm:right-6 lg:right-10 top-[54%] pointer-events-none z-10 hidden lg:block animate-float select-none">
-        <Image
-          src="/clay/fish/blue-guppy.webp"
-          alt="Blue Guppy"
-          width={200}
-          height={126}
-          className="w-16 lg:w-20 h-auto drop-shadow-md"
-        />
-      </div>
-      <div className="absolute right-6 sm:right-16 top-1/3 w-7 h-7 sm:w-9 sm:h-9 pointer-events-none z-0 hidden sm:block animate-bubble-float opacity-85">
-        <Image src="/clay/fx/clay-bubble.webp" alt="" fill className="object-contain" />
-      </div>
-      <div className="absolute right-10 sm:right-24 top-2/3 w-5 h-5 sm:w-6 sm:h-6 pointer-events-none z-0 hidden sm:block animate-float-slow opacity-75">
+      <div className="absolute right-8 lg:right-16 top-28 w-5 h-5 pointer-events-none z-0 hidden lg:block animate-bubble-float opacity-20">
         <Image src="/clay/fx/bubble-3.webp" alt="" fill className="object-contain" />
-      </div>
-      <div className="absolute right-16 sm:right-32 top-[78%] w-4 h-4 pointer-events-none z-0 hidden sm:block animate-bubble-drift opacity-60">
-        <Image src="/clay/fx/bubble-4.webp" alt="" fill className="object-contain" />
       </div>
 
       {/* ============================================================ */}
-      {/* BOTTOM BLUE WAVES & SEAWEED CORNERS                          */}
+      {/* BOTTOM BLUE WAVES & CLEAN SEAWEED CORNER                     */}
       {/* ============================================================ */}
       <div className="absolute bottom-0 left-0 right-0 pointer-events-none overflow-hidden z-0 leading-none">
         <svg
@@ -152,25 +129,14 @@ export function FarmSection({ lang }: FarmSectionProps) {
         </svg>
       </div>
 
-      {/* Bottom-left Seaweed sprigs */}
-      <div className="absolute bottom-0 left-0 w-24 sm:w-36 md:w-44 pointer-events-none z-10">
+      {/* Bottom-left Seaweed sprig (Small, Hidden on Mobile, Zero Box Shadow) */}
+      <div className="absolute bottom-0 left-0 w-20 sm:w-24 md:w-28 pointer-events-none z-0 hidden md:block">
         <Image
           src="/clay/farm/seaweed-bl-hd.webp"
-          alt="Seaweed"
+          alt=""
           width={220}
           height={300}
-          className="w-full h-auto object-contain object-bottom drop-shadow-[0_8px_16px_rgba(20,80,40,0.15)]"
-        />
-      </div>
-
-      {/* Bottom-right Seaweed sprigs */}
-      <div className="absolute bottom-0 right-0 w-24 sm:w-36 md:w-44 pointer-events-none z-10">
-        <Image
-          src="/clay/farm/seaweed-br-hd.webp"
-          alt="Seaweed"
-          width={220}
-          height={300}
-          className="w-full h-auto object-contain object-bottom drop-shadow-[0_8px_16px_rgba(20,80,40,0.15)]"
+          className="w-full h-auto object-contain object-bottom"
         />
       </div>
 
@@ -208,16 +174,6 @@ export function FarmSection({ lang }: FarmSectionProps) {
             </p>
           </div>
 
-          {/* Floating 3D Clay Kohaku Koi Fish (swimming gracefully near top-right header area) */}
-          <div className="absolute right-44 sm:right-56 md:right-64 top-4 sm:top-6 pointer-events-none z-20 hidden md:block animate-float select-none">
-            <Image
-              src="/clay/farm/clay-kohaku-koi.webp"
-              alt="Clay Kohaku Koi"
-              width={260}
-              height={280}
-              className="w-20 sm:w-26 md:w-30 h-auto drop-shadow-[0_12px_24px_rgba(220,50,40,0.22)]"
-            />
-          </div>
 
           {/* Top-Right Action Button: View all videos → */}
           <div className="shrink-0 self-start md:self-end">
