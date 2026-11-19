@@ -22,9 +22,10 @@ export function ShippingSection({ lang }: ShippingSectionProps) {
   return (
     <section
       id="shipping"
-      style={{ scrollMarginTop: "88px" }}
-      className="relative pt-24 pb-16 sm:pt-28 sm:pb-24 px-4 sm:px-6 lg:px-8 bg-[#FDE58B] overflow-hidden select-none"
+      style={{ scrollMarginTop: "-10px" }}
+      className="relative pt-20 pb-16 sm:pt-24 sm:pb-24 px-4 sm:px-6 lg:px-8 bg-[#FDE58B] overflow-hidden select-none"
     >
+      <span id="arrival" className="absolute top-0 pointer-events-none" style={{ scrollMarginTop: "-10px" }} />
       {/* Background Radial Glow */}
       <div
         className="absolute inset-0 pointer-events-none select-none z-0"

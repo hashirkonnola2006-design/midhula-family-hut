@@ -19,7 +19,12 @@ export function ReviewsSection({ lang }: ReviewsSectionProps) {
   };
 
   return (
-    <section id="reviews" className="relative py-10 sm:py-24 px-3 sm:px-8 bg-[#BDEBF5] overflow-hidden">
+    <section
+      id="reviews"
+      style={{ scrollMarginTop: "88px" }}
+      className="relative py-10 sm:py-24 px-3 sm:px-8 bg-[#BDEBF5] overflow-hidden"
+    >
+      <span id="customers" className="absolute top-0 pointer-events-none" style={{ scrollMarginTop: "88px" }} />
       <div className="max-w-7xl mx-auto relative z-10">
 
         {/* Section Header with Navigation Arrows */}

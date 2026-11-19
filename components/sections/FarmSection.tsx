@@ -15,7 +15,11 @@ export function FarmSection({ lang, onOpenVideo }: FarmSectionProps) {
   const [activePhoto, setActivePhoto] = useState(0);
 
   return (
-    <section id="farm" className="relative py-10 sm:py-24 px-3 sm:px-8 bg-[#FFF8E7] overflow-hidden">
+    <section
+      id="farm"
+      style={{ scrollMarginTop: "88px" }}
+      className="relative py-10 sm:py-24 px-3 sm:px-8 bg-[#FFF8E7] overflow-hidden"
+    >
       {/* Background Ambient Swimming Fish Crossing Behind Heading */}
       <div className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0" aria-hidden="true">
         {/* Swordtail swimming RTL across mid area (Desktop only to prevent clutter on mobile) */}

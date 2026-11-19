@@ -54,9 +54,9 @@ export interface NavItem {
 
 export const NAV_LINKS: NavItem[] = [
   { id: "fish", label: "Fish", labelMl: "മത്സ്യങ്ങൾ", href: "#species" },
-  { id: "farm", label: "Farm", labelMl: "ഫാം കാഴ്ചകൾ", href: "#farm" },
-  { id: "shipping", label: "Shipping", labelMl: "ഷിപ്പിംഗ്", href: "#shipping" },
-  { id: "contact", label: "Contact", labelMl: "ബന്ധപ്പെടുക", href: "#contact" },
+  { id: "farm", label: "Farm", labelMl: "ഫാം", href: "#farm" },
+  { id: "arrival", label: "Arrival", labelMl: "ലൈവ് ഗ്യാരണ്ടി", href: "#shipping" },
+  { id: "customers", label: "Customers", labelMl: "ഉപഭോക്താക്കൾ", href: "#reviews" },
 ];
 
 export interface SpeciesItem {

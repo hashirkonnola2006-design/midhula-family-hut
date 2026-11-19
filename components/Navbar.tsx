@@ -15,7 +15,8 @@ interface NavbarProps {
 const NAVBAR_LINKS = [
   { id: "fish", label: "Fish", labelMl: "മത്സ്യങ്ങൾ", href: "#species" },
   { id: "farm", label: "Farm", labelMl: "ഫാം", href: "#farm" },
-  { id: "contact", label: "Contact", labelMl: "ബന്ധപ്പെടുക", href: "#contact" },
+  { id: "arrival", label: "Arrival", labelMl: "ലൈവ് ഗ്യാരണ്ടി", href: "#shipping" },
+  { id: "customers", label: "Customers", labelMl: "ഉപഭോക്താക്കൾ", href: "#reviews" },
 ];
 
 export function Navbar({
@@ -57,15 +58,25 @@ export function Navbar({
   // Scroll spy
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["hero", "species", "farm", "contact"];
-      const scrollPos = window.scrollY + 100;
-      for (const sectionId of sections) {
-        const el = document.getElementById(sectionId);
+      if (window.scrollY < 200) {
+        setActiveSection("hero");
+        return;
+      }
+
+      const sections = [
+        { id: "species", navId: "species" },
+        { id: "farm", navId: "farm" },
+        { id: "shipping", navId: "shipping" },
+        { id: "reviews", navId: "reviews" },
+      ];
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const s = sections[i];
+        const el = document.getElementById(s.id);
         if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPos >= top && scrollPos < top + height) {
-            setActiveSection(sectionId);
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 220) {
+            setActiveSection(s.navId);
             break;
           }
         }

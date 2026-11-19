@@ -192,8 +192,10 @@ export function SpeciesSection({ lang }: SpeciesSectionProps) {
   return (
     <section
       id="species"
+      style={{ scrollMarginTop: "88px" }}
       className="relative py-12 sm:py-20 px-3 sm:px-6 lg:px-8 bg-[#BDEBF5] overflow-hidden select-none"
     >
+      <span id="fish" className="absolute top-0 pointer-events-none" style={{ scrollMarginTop: "88px" }} />
       {/* Background Ambient Elements matching reference */}
       <div className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0" aria-hidden="true">
         {/* Ambient swimming orange/white fish at top right (facing left) */}
