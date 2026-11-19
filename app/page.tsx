@@ -57,9 +57,6 @@ export default function HomePage() {
       {/* 4. "How We Ship Live Fish": 4 Steps Along Clay Path */}
       <ShippingSection lang={lang} />
 
-      {/* Wave Transition 4: Butter-Yellow -> Sky Aqua */}
-      <ClayWaveDivider fillColor="#BDEBF5" />
-
       {/* 5. "Happy Customers": Horizontal Scrollable Photo Cards */}
       <ReviewsSection lang={lang} />
 

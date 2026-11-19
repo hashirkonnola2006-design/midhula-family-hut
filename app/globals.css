@@ -28,6 +28,18 @@
   --clay-grey: #D9D9DE;
   --clay-navy: #0E2038;
 
+  /* Happy Customers Testimonials Section Tokens */
+  --color-customers-bg: #BBDDFA;
+  --color-customers-card: #F6F6FC;
+  --color-customers-card-shadow: rgba(60, 100, 200, 0.18);
+  --color-customers-navy: #1F2A6B;
+  --color-customers-quote: #2A3470;
+  --color-customers-muted: #5B6A9A;
+  --color-customers-badge: #DCEBFF;
+  --color-customers-podium: #86B8F5;
+  --color-customers-pill-from: #FF8A3D;
+  --color-customers-pill-to: #F26A1B;
+
   --background: #FFE9A0;
   --foreground: #0E2038;
 }
