@@ -374,10 +374,10 @@ export function Hero({ lang = "en", onOpenVideo }: HeroProps) {
           className="w-full h-16 sm:h-24 md:h-32 object-cover block"
           preserveAspectRatio="none"
         >
-          {/* Main Sky Aqua Wave matching #species bg (#BDEBF5) */}
+          {/* Main Sky Aqua Wave matching #species bg (#DCF4FC) */}
           <path
             d="M0,44 C260,78 480,72 720,38 C960,10 1200,62 1440,32 L1440,120 L0,120 Z"
-            fill="#BDEBF5"
+            fill="#DCF4FC"
           />
         </svg>
       </div>
