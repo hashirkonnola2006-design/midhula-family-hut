@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { MapPin } from "lucide-react";
 import { BRAND, getWhatsAppUrl } from "@/lib/content";
-import { Decor } from "@/components/Decor";
+import { FishField } from "./FishField";
 
 interface HeroProps {
   lang?: "en" | "ml";
@@ -146,21 +146,11 @@ export function Hero({ lang = "en", onOpenVideo }: HeroProps) {
       id="hero"
       className="relative w-full min-h-[100svh] pt-14 sm:pt-20 pb-8 sm:pb-14 px-3 sm:px-8 flex flex-col justify-center items-center butter-backdrop overflow-hidden select-none"
     >
-      {/* Unified Sprite Sheet Decor: Goldfish (left) & Bubbles (right) away from WhatsApp button */}
-      <Decor
-        name="goldfish"
-        className="top-24 lg:top-32 left-3 lg:left-6 xl:left-12"
-        size={76}
-        flip={true}
-        delay={0.2}
-        shadow
-      />
-      <Decor
-        name="bubbles"
-        className="top-28 lg:top-36 right-4 lg:right-8 xl:right-14"
-        size={42}
-        opacity={0.65}
-        delay={0.8}
+      {/* Continuous swimming fish moving left and right (Z-5) and rising bubbles (Z-6) */}
+      <FishField
+        isVisible={true}
+        isPaused={!isInView}
+        reducedMotion={reducedMotion}
       />
 
       {/* Main Content Area */}
