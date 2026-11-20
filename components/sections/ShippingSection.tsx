@@ -88,7 +88,7 @@ export function ShippingSection({ lang }: ShippingSectionProps) {
         </div>
 
         {/* ================================================================== */}
-        {/* 4 Cards in a Row with Clean Arched Dashed Connectors               */}
+        {/* 4 Shipping Cards in a Row                                          */}
         {/* ================================================================== */}
         <div className="relative">
           {/* Cards Grid: 4 columns >= 1200px, 2 columns 700-1199px, 1 column < 700px */}
@@ -301,57 +301,6 @@ function ShippingCard({
           {lang === "en" ? step.description : step.malayalamDescription}
         </p>
       </div>
-
-      {/* Playful Arched Dashed Step Connector (Desktop & Tablet Horizontal Gaps) */}
-      {index < 3 && (
-        <div
-          className={`absolute left-full top-[108px] w-6 lg:w-7 h-6 -translate-y-1/2 items-center justify-center pointer-events-none z-20 ${
-            index === 0 || index === 2 ? "hidden md:flex" : "hidden xl:flex"
-          }`}
-          aria-hidden="true"
-        >
-          <svg
-            className="w-full h-auto overflow-visible"
-            viewBox="0 0 28 16"
-            fill="none"
-          >
-            {/* Smooth Arched Dashed Trajectory bridging the gap */}
-            <path
-              d="M 2 12 Q 13.5 -7 25 10"
-              stroke="#FF7A13"
-              strokeWidth="2.8"
-              strokeLinecap="round"
-              strokeDasharray="3.6 4"
-            />
-            {/* Soft Rounded Clay Directional Chevron */}
-            <path
-              d="M 20.5 7 L 25 10 L 21.5 13.5"
-              stroke="#FF7A13"
-              strokeWidth="2.6"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </div>
-      )}
-
-      {/* Mobile-only Vertical Connector to Next Card */}
-      {index < 3 && (
-        <div className="md:hidden flex justify-center -mb-9 mt-4 z-10 pointer-events-none">
-          <svg width="24" height="28" viewBox="0 0 24 28" fill="none">
-            <line
-              x1="12"
-              y1="0"
-              x2="12"
-              y2="28"
-              stroke="#FF8A2A"
-              strokeWidth="3.5"
-              strokeLinecap="round"
-              strokeDasharray="5 6"
-            />
-          </svg>
-        </div>
-      )}
     </motion.div>
   );
 }
